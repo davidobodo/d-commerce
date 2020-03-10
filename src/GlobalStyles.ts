@@ -22,4 +22,4 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 70px;
     font-weight: 600;
   }
-`
+`;

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '../../shared/layout/layout';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Layout from "../../shared/layout/layout";
+import { Link } from "react-router-dom";
 
-import { AboutContainer, AboutHeader } from './style';
-
+import { AboutContainer, AboutHeader } from "./style";
 
 const About: React.FC = () => {
     return (
@@ -12,7 +11,7 @@ const About: React.FC = () => {
                 <AboutHeader></AboutHeader>
             </AboutContainer>
         </Layout>
-    )
+    );
 };
 
-export default About
+export default About;
