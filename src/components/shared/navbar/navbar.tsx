@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <NavbarContainer>
             <div>Logo</div>
-            <ul className="navlinks">
+            <ul>
                 <li>Home</li>
                 <li>Portfolio</li>
                 <li>Features</li>

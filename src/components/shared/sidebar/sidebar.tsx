@@ -1,24 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 
-const NavbarContainer = styled.div`
+const SidebarContainer = styled.div`
     width: 100%;
-    height: 70px;
-    background-color: #faf9f9;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
+    height: 100vh;
+    transform: translateX(15vw);
+    background-color: #f9f9;
+    position: fixed;
+    z-index: 1;
+    padding-left: 30px;
 
-    @media (max-width: 765px) {
-        position: fixed;
-        z-index: 1;
+    .logo {
+        height: 70px;
+        display: flex;
+        align-items: center;
+    }
+
+    .navlinks {
+        li {
+            font-size: 20px;
+            margin-bottom: 30px;
+            list-style: none;
+        }
     }
 `;
 
-const Navbar = () => {
+const Sidebar = () => {
     return (
-        <NavbarContainer>
-            <div>Logo</div>
+        <SidebarContainer>
+            <div className="logo">Logo</div>
             <ul className="navlinks">
                 <li>Home</li>
                 <li>Portfolio</li>
@@ -27,8 +37,8 @@ const Navbar = () => {
                 <li>Shop</li>
                 <li>Download</li>
             </ul>
-        </NavbarContainer>
+        </SidebarContainer>
     );
 };
 
-export default Navbar;
+export default Sidebar;
