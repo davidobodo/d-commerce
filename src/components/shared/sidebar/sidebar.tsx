@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled.div<Prop>`
     width: 100%;
     height: 100vh;
-    transform: translateX(15vw);
-    background-color: #f9f9;
+    transform: translateX(100vw);
+    background-color: #fff;
     position: fixed;
-    z-index: 1;
+    z-index: 40;
     padding-left: 30px;
+    transition: transform 0.5s ease-in-out;
+
+    ${({ isNavbarOpen }) => isNavbarOpen && "transform: translateX(15vw)"};
 
     .logo {
         height: 70px;
@@ -25,9 +28,13 @@ const SidebarContainer = styled.div`
     }
 `;
 
-const Sidebar = () => {
+interface Prop {
+    isNavbarOpen: boolean;
+}
+
+const Sidebar: React.FC<Prop> = ({ isNavbarOpen }) => {
     return (
-        <SidebarContainer>
+        <SidebarContainer isNavbarOpen={isNavbarOpen}>
             <div className="logo">Logo</div>
             <ul className="navlinks">
                 <li>Home</li>

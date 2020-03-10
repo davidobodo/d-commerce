@@ -46,7 +46,7 @@ const Layout: React.FunctionComponent<Props> = ({
                 isNavbarOpen={isNavbarOpen}
             />
             {/* <Navbar /> */}
-            <Sidebar />
+            <Sidebar isNavbarOpen={isNavbarOpen} />
             <Body>{children}</Body>
             {isFooterPresent && <Footer />}
         </LayoutContainer>

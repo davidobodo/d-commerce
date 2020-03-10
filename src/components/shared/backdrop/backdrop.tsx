@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const BackdropContainer = styled.div<Prop>`
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
     z-index: 2;
-    transform: translateY(-100vh);
+    transform: translateX(100vw);
     transition: transform 0.25s ease-in-out;
 
-    ${({ isNavbarOpen }) => isNavbarOpen && "transform: translateY(0)"}
+    ${({ isNavbarOpen }) => isNavbarOpen && "transform: translateX(0)"}
 `;
 
 interface Prop {
