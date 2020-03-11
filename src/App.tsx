@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
+import { ThemeProvider } from "styled-components";
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Routes } from './routing/routes';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Routes } from "./routing/routes";
 
-import { GlobalStyles } from './GlobalStyles';
+import { GlobalStyles } from "./styling/GlobalStyles";
+import { theme } from "./styling/themes";
 
 const App = () => {
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <GlobalStyles />
             <Router>
                 <Switch>
@@ -24,7 +26,7 @@ const App = () => {
                     })}
                 </Switch>
             </Router>
-        </>
+        </ThemeProvider>
     );
 };
 

@@ -9,6 +9,7 @@ const HomeContainer = styled.div`
         border-radius: 0px;
         padding: 7px;
         font-size: 14px;
+        border-bottom: 5px solid ${props => props.theme.textColor};
     }
 `;
 
