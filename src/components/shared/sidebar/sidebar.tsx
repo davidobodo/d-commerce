@@ -9,7 +9,7 @@ const SidebarContainer = styled.div<Prop>`
     position: fixed;
     z-index: 40;
     padding-left: 30px;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.25s ease-in-out;
 
     ${({ isNavbarOpen }) => isNavbarOpen && "transform: translateX(15vw)"};
 
