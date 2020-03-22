@@ -15,10 +15,16 @@ const HomeContainer = styled.div`
 
     .product {
         border: 1px solid ${props => props.theme.primaryColor};
+
+        &__img-wrapper {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     img {
         width: 100%;
+        max-width: 300px;
     }
 `;
 
@@ -43,7 +49,16 @@ const Home = () => {
                 <section>
                     <div className="product">
                         <div className="product__img-wrapper">
-                            <img src={banner} alt="product" />
+                            <div
+                                style={{
+                                    backgroundImage: `url(${banner})`,
+                                    paddingTop: "280px",
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    maxWidth: "300px",
+                                    width: "100%"
+                                }}
+                            ></div>
                         </div>
                         <h3 className="product__name">Racer T-shirt</h3>
                         <div className="product__stars"></div>
