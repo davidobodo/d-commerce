@@ -13,6 +13,20 @@ const HomeContainer = styled.div`
         border-radius: 0px;
         padding: 7px;
         font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .shop {
+        margin-bottom: 20px;
+
+        h1 {
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        h6 {
+            font-weight: 400;
+        }
     }
 
     .product {
@@ -74,7 +88,7 @@ const Home = () => {
                     <option value="low-high">Sort by price: low to high</option>
                     <option value="high-low">Sort by price: high to low</option>
                 </select>
-                <div>
+                <div className="shop">
                     <h1>Shop</h1>
                     <h6>Showing 1-12 of 20 results</h6>
                 </div>
