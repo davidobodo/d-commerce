@@ -17,6 +17,8 @@ const HomeContainer = styled.div`
 
     .shop {
         margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid ${props => props.theme.primaryColor};
 
         h1 {
             font-weight: 400;
@@ -26,9 +28,6 @@ const HomeContainer = styled.div`
         h6 {
             font-weight: 400;
         }
-    }
-
-    .product {
     }
 `;
 

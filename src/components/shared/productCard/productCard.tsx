@@ -15,6 +15,7 @@ const ProductCardContainer = styled.div<Partial<ProductProps>>`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
 
     .img-wrapper {
         display: flex;
