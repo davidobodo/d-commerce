@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../shared/layout/layout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import banner from "../../../assets/img/banner.png";
+import ProductCard from "../../shared/productCard/productCard";
 
 const HomeContainer = styled.div`
     select {
@@ -30,49 +29,29 @@ const HomeContainer = styled.div`
     }
 
     .product {
-        border: 1px solid ${props => props.theme.primaryColor};
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        &__img-wrapper {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        &__name {
-            margin-bottom: 15px;
-            opacity: 0.7;
-        }
-
-        &__stars {
-            margin-bottom: 15px;
-
-            .checked {
-                color: #ffa500;
-            }
-        }
-
-        &__price {
-            margin-bottom: 15px;
-            opacity: 0.7;
-        }
-
-        &__select-button {
-            background-color: ${props => props.theme.primaryColor};
-            color: #ffffff;
-            width: 100%;
-            font-size: 18px;
-            font-weight: 300;
-            text-transform: uppercase;
-            border: none;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
     }
 `;
+
+const myproducts = [
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    },
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    },
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    }
+];
 
 const Home = () => {
     return (
@@ -93,41 +72,17 @@ const Home = () => {
                     <h6>Showing 1-12 of 20 results</h6>
                 </div>
                 <section>
-                    <div className="product">
-                        <div className="product__img-wrapper">
-                            <div
-                                style={{
-                                    backgroundImage: `url(${banner})`,
-                                    paddingTop: "280px",
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                    maxWidth: "300px",
-                                    width: "100%"
-                                }}
-                            ></div>
-                        </div>
-                        <h4 className="product__name">Racer T-shirt</h4>
-                        <div className="product__stars">
-                            <FontAwesomeIcon
-                                icon={faStar}
-                                className="checked"
+                    {myproducts.map(product => {
+                        const { image, name, rating, price } = product;
+                        return (
+                            <ProductCard
+                                image={image}
+                                name={name}
+                                rating={rating}
+                                price={price}
                             />
-                            <FontAwesomeIcon
-                                icon={faStar}
-                                className="checked"
-                            />
-                            <FontAwesomeIcon
-                                icon={faStar}
-                                className="checked"
-                            />
-                            <FontAwesomeIcon icon={faStar} />
-                            <FontAwesomeIcon icon={faStar} />
-                        </div>
-                        <h4 className="product__price">$20.98</h4>
-                        <button className="product__select-button">
-                            select options
-                        </button>
-                    </div>
+                        );
+                    })}
                 </section>
             </HomeContainer>
         </Layout>
