@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../shared/layout/layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import banner from "../../../assets/img/banner.png";
 
@@ -15,10 +17,33 @@ const HomeContainer = styled.div`
 
     .product {
         border: 1px solid ${props => props.theme.primaryColor};
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         &__img-wrapper {
             display: flex;
             justify-content: center;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        &__name {
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        &__stars {
+            margin-bottom: 15px;
+
+            .checked {
+                color: #ffa500;
+            }
+        }
+
+        &__price {
+            margin-bottom: 15px;
+            opacity: 0.7;
         }
     }
 
@@ -60,9 +85,24 @@ const Home = () => {
                                 }}
                             ></div>
                         </div>
-                        <h3 className="product__name">Racer T-shirt</h3>
-                        <div className="product__stars"></div>
-                        <div className="product__price">$20.98</div>
+                        <h4 className="product__name">Racer T-shirt</h4>
+                        <div className="product__stars">
+                            <FontAwesomeIcon
+                                icon={faStar}
+                                className="checked"
+                            />
+                            <FontAwesomeIcon
+                                icon={faStar}
+                                className="checked"
+                            />
+                            <FontAwesomeIcon
+                                icon={faStar}
+                                className="checked"
+                            />
+                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} />
+                        </div>
+                        <h4 className="product__price">$20.98</h4>
                         <button className="product__select-button">
                             select options
                         </button>
