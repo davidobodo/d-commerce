@@ -45,11 +45,18 @@ const HomeContainer = styled.div`
             margin-bottom: 15px;
             opacity: 0.7;
         }
-    }
 
-    img {
-        width: 100%;
-        max-width: 300px;
+        &__select-button {
+            background-color: ${props => props.theme.primaryColor};
+            color: #ffffff;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 300;
+            text-transform: uppercase;
+            border: none;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
     }
 `;
 
