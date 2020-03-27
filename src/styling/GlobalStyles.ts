@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body{
     font-size: 1.4rem;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
   }
 
   h1{
