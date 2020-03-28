@@ -13,13 +13,14 @@ const SidebarContainer = styled.div<Prop>`
 
     ${({ isNavbarOpen }) => isNavbarOpen && "transform: translateX(15vw)"};
 
-    .logo {
+    .sideNav__brand {
         height: 70px;
         display: flex;
         align-items: center;
+        color: #444444;
     }
 
-    .navlinks {
+    .sideNav__links {
         li {
             font-size: 20px;
             margin-bottom: 30px;
@@ -35,8 +36,8 @@ interface Prop {
 const Sidebar: React.FC<Prop> = ({ isNavbarOpen }) => {
     return (
         <SidebarContainer isNavbarOpen={isNavbarOpen}>
-            <div className="logo">d-Commerce</div>
-            <ul className="navlinks">
+            <h1 className="sideNav__brand">d-Commerce</h1>
+            <ul className="sideNav__links">
                 <li>Home</li>
                 <li>Portfolio</li>
                 <li>Features</li>
