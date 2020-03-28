@@ -8,18 +8,25 @@ const NavbarContainer = styled.div`
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    padding-left: 20px;
 
-    @media (max-width: 765px) {
-        position: fixed;
-        z-index: 1;
+    .nav__brand {
+        color: #444444;
+    }
+
+    .nav__links {
+        display: none;
     }
 `;
 
 const Navbar = () => {
     return (
         <NavbarContainer>
-            <div>Logo</div>
-            <ul>
+            <h1 className="nav__brand">d-Commerce</h1>
+            <ul className="nav__links">
                 <li>Home</li>
                 <li>Portfolio</li>
                 <li>Features</li>

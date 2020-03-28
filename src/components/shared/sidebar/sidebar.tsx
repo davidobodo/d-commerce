@@ -35,7 +35,7 @@ interface Prop {
 const Sidebar: React.FC<Prop> = ({ isNavbarOpen }) => {
     return (
         <SidebarContainer isNavbarOpen={isNavbarOpen}>
-            <div className="logo">Logo</div>
+            <div className="logo">d-Commerce</div>
             <ul className="navlinks">
                 <li>Home</li>
                 <li>Portfolio</li>
