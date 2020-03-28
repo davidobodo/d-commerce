@@ -1,35 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import Layout from "../../shared/layout/layout";
 
 import banner from "../../../assets/img/banner.png";
 import ProductCard from "../../shared/productCard/productCard";
 
-const HomeContainer = styled.div`
-    select {
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        outline: none;
-        border-radius: 0px;
-        padding: 7px;
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-    .shop {
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid ${props => props.theme.primaryColor};
-
-        h1 {
-            font-weight: 400;
-            margin-bottom: 15px;
-        }
-
-        h6 {
-            font-weight: 400;
-        }
-    }
-`;
+import { HomeContainer } from "./style";
+import { HomeProps } from "../../../interfaces/IHome";
 
 const myproducts = [
     {
@@ -52,11 +28,22 @@ const myproducts = [
     }
 ];
 
-const Home = () => {
+const Home: React.FC<HomeProps> = () => {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [currentOption, setCurrentOption] = useState("Default sorting");
+
+    const handleShowDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+
+    const handleSelectOption = e => {
+        setCurrentOption(e.target.innerHTML);
+    };
+
     return (
         <Layout isFooterPresent>
-            <HomeContainer>
-                <select name="" id="">
+            <HomeContainer showDropdown={showDropdown}>
+                {/* <select name="" id="">
                     <option value="default">Default sorting</option>
                     <option value="popularity">Sort by popularity</option>
                     <option value="average-rating">
@@ -65,7 +52,18 @@ const Home = () => {
                     <option value="latest">Sort by latest</option>
                     <option value="low-high">Sort by price: low to high</option>
                     <option value="high-low">Sort by price: high to low</option>
-                </select>
+                </select> */}
+                <section className="dropdown" onClick={handleShowDropdown}>
+                    {currentOption}
+                    <ul onClick={handleSelectOption}>
+                        <li>Default sorting</li>
+                        <li>Sort by popularity</li>
+                        <li>Sort by average rating</li>
+                        <li>Sort by latest</li>
+                        <li>Sort by price: low to high</li>
+                        <li>Sort by price: high to low</li>
+                    </ul>
+                </section>
                 <div className="shop">
                     <h1>Shop</h1>
                     <h6>Showing 1-12 of 20 results</h6>
