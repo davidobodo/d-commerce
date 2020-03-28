@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { devices } from "../../../styling/devices";
 
 interface Props {
     handleShowNavbar?: any;
@@ -12,6 +13,10 @@ const HamburgerContainer = styled.div<Props>`
     right: 45px;
     top: 35px;
     cursor: pointer;
+
+    @media ${devices.tablet}{
+        display: none;
+    }
 
     .hamburger{
             width: 25px;

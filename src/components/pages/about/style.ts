@@ -1,12 +1,5 @@
-import styled from 'styled-components';
-import { Props } from '../../../interfaces/IAbout';
+import styled from "styled-components";
 
+export const AboutContainer = styled.div``;
 
-export const AboutContainer = styled.div`
-
-`
-
-export const AboutHeader = styled.h1`
-
-
-`
+export const AboutHeader = styled.h1``;

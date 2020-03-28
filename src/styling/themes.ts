@@ -1,3 +1,4 @@
 export const theme = {
-    primaryColor: "#cecece"
+    primaryColor: "#cecece",
+    padding: "5vw"
 };

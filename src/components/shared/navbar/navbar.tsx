@@ -1,39 +1,62 @@
 import React from "react";
 import styled from "styled-components";
+import { devices } from "../../../styling/devices";
 
 const NavbarContainer = styled.div`
     width: 100%;
-    height: 70px;
     background-color: #faf9f9;
     top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: fixed;
     z-index: 1;
     padding-left: 20px;
 
-    .nav__brand {
-        color: #444444;
+    @media ${devices.tablet} {
+        padding-left: ${props => props.theme.padding};
+        padding-right: ${props => props.theme.padding};
     }
 
-    .nav__links {
-        display: none;
+    .nav {
+        max-width: 1440px;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+
+        &__brand {
+            color: #444444;
+        }
+
+        &__links {
+            display: none;
+
+            @media ${devices.tablet} {
+                display: flex;
+                list-style: none;
+
+                li {
+                    margin-right: 30px;
+                }
+            }
+        }
     }
 `;
 
 const Navbar = () => {
     return (
         <NavbarContainer>
-            <h1 className="nav__brand">d-Commerce</h1>
-            <ul className="nav__links">
-                <li>Home</li>
-                <li>Portfolio</li>
-                <li>Features</li>
-                <li>Blog</li>
-                <li>Shop</li>
-                <li>Download</li>
-            </ul>
+            <nav className="nav">
+                <h1 className="nav__brand">d-Commerce</h1>
+                <ul className="nav__links">
+                    <li>Home</li>
+                    <li>Portfolio</li>
+                    <li>Features</li>
+                    <li>Blog</li>
+                    <li>Shop</li>
+                    <li>Download</li>
+                </ul>
+            </nav>
         </NavbarContainer>
     );
 };
