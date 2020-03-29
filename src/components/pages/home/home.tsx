@@ -1,32 +1,12 @@
 import React, { useState } from "react";
 import Layout from "../../shared/layout/layout";
 
-import banner from "../../../assets/img/banner.png";
 import ProductCard from "../../shared/productCard/productCard";
 
 import { HomeContainer } from "./style";
 import { HomeProps } from "../../../interfaces/IHome";
 
-const myproducts = [
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    }
-];
+import { myproducts } from "../../../AllProducts";
 
 const Home: React.FC<HomeProps> = () => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -68,7 +48,7 @@ const Home: React.FC<HomeProps> = () => {
                     <h1>Shop</h1>
                     <h6>Showing 1-12 of 20 results</h6>
                 </div>
-                <section>
+                <section className="products">
                     {myproducts.map(product => {
                         const { image, name, rating, price } = product;
                         return (

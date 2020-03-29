@@ -7,6 +7,7 @@ import Footer from "../footer/footer";
 
 import Hamburger from "../hamburger/hamburger";
 import Backdrop from "../backdrop/backdrop";
+import { devices } from "../../../styling/devices";
 
 const LayoutContainer = styled.div`
     height: 100vh;
@@ -16,6 +17,13 @@ const Body = styled.div`
     padding: 0 10vw;
     background-color: #ffffff;
     padding: 80px 20px 0px;
+
+    @media ${devices.tablet} {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-left: ${props => props.theme.padding};
+        padding-right: ${props => props.theme.padding};
+    }
 `;
 
 interface Props {

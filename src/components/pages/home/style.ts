@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { HomeProps } from "../../../interfaces/IHome";
+import { devices } from "../../../styling/devices";
 
 export const HomeContainer = styled.div<HomeProps>`
     .dropdown {
@@ -11,6 +12,7 @@ export const HomeContainer = styled.div<HomeProps>`
         margin-bottom: 20px;
         position: relative;
         cursor: pointer;
+        max-width: 300px;
 
         &:before {
             content: "";
@@ -67,6 +69,22 @@ export const HomeContainer = styled.div<HomeProps>`
 
         h6 {
             font-weight: 400;
+        }
+    }
+
+    .products {
+        @media ${devices.mobile} {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px;
+        }
+
+        @media ${devices.tablet} {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media ${devices.laptop} {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }
 `;
