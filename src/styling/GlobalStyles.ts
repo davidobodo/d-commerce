@@ -55,4 +55,9 @@ export const GlobalStyles = createGlobalStyle`
       color: $paragraph-color;
   }
 
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+
 `;
