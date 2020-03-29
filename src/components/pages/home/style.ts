@@ -14,6 +14,7 @@ export const HomeContainer = styled.div<HomeProps>`
 
         .shop {
             margin-bottom: 20px;
+            margin-top: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid ${props => props.theme.primaryColor};
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../shared/layout/layout";
+import Dropdown from "../../shared/dropdown/dropdown";
 
 const ProductPageContainer = styled.div`
     .wrapper {
@@ -13,6 +14,7 @@ const ProductPageContainer = styled.div`
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: 30px;
 
                 .actual-image {
                     object-fit: cover;
@@ -31,10 +33,67 @@ const ProductPageContainer = styled.div`
             }
 
             &__details {
+                color: #444;
+                .name {
+                    border-bottom: 1px solid
+                        ${props => props.theme.primaryColor};
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                    font-weight: 400;
+                }
+
+                .price {
+                    border-bottom: 1px solid
+                        ${props => props.theme.primaryColor};
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                    font-weight: 400;
+                }
+
+                .info {
+                    margin-bottom: 15px;
+                }
+
+                .sizes {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 30px;
+
+                    h4 {
+                        margin-right: 15px;
+                    }
+                }
+
+                .btn-cart {
+                    border-bottom: 1px solid
+                        ${props => props.theme.primaryColor};
+                    color: #ffffff;
+                    background-color: #5f7fa2;
+                    border: none;
+                    font-size: 20px;
+                    padding: 10px 20px;
+                }
+
+                .data {
+                    margin-top: 30px;
+                    padding-top: 30px;
+                    border-top: 1px solid ${props => props.theme.primaryColor};
+                    font-size: 11px;
+
+                    &__section {
+                        margin-bottom: 8px;
+
+                        span {
+                            font-weight: 600;
+                        }
+                    }
+                }
             }
         }
     }
 `;
+
+const allSizes = ["Large", "Medium", "Small", "X-Large", "X-small"];
 
 const ProductPage = () => {
     return (
@@ -65,6 +124,23 @@ const ProductPage = () => {
                                 voluptas beatae natus quisquam! Eveniet, nulla
                                 soluta!
                             </p>
+                            <div className="sizes">
+                                <h4>Sizes</h4>
+                                <Dropdown options={allSizes} />
+                            </div>
+                            <button className="btn-cart">ADD TO CART</button>
+                            <div className="data">
+                                <div className="data__section">
+                                    <span>SKU:</span> N/A
+                                </div>
+                                <div className="data__section">
+                                    <span>Categories:</span> Apparel, T-shirts,
+                                    Womans
+                                </div>
+                                <div className="data__section">
+                                    <span>Tags:</span> Brand, clothing, T-shirts
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

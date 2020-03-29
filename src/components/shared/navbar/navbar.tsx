@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { devices } from "../../../styling/devices";
+import { Link } from "react-router-dom";
 
 const NavbarContainer = styled.div`
     width: 100%;
@@ -47,7 +48,9 @@ const Navbar = () => {
     return (
         <NavbarContainer>
             <nav className="nav">
-                <h1 className="nav__brand">d-Commerce</h1>
+                <Link to="/">
+                    <h1 className="nav__brand">d-Commerce</h1>
+                </Link>
                 <ul className="nav__links">
                     <li>Home</li>
                     <li>Portfolio</li>

@@ -9,15 +9,15 @@ const DropdownContainer = styled.div<DropdownProps>`
     border-radius: 0px;
     padding: 10px;
     font-size: 14px;
-    margin-bottom: 20px;
     position: relative;
     cursor: pointer;
     max-width: 300px;
+    flex: 1;
 
     @media ${devices.tablet} {
         order: 2;
         align-self: center;
-        width: 300px;
+        flex-basis: 300px;
     }
 
     &:before {
