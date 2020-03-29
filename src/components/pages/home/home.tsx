@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../../shared/layout/layout";
 
 import ProductCard from "../../shared/productCard/productCard";
+import Dropdown from "../../shared/dropdown/dropdown";
 
 import { HomeContainer } from "./style";
 import { HomeProps } from "../../../interfaces/IHome";
 
 import { myproducts } from "../../../AllProducts";
 
+const allSorts = [
+    "Default sorting",
+    "Sort by popularity",
+    "Sort by average rating",
+    "Sort by latest",
+    "Sort by price: low to high",
+    "Sort by price: high to low"
+];
+
 const Home: React.FC<HomeProps> = () => {
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [currentOption, setCurrentOption] = useState("Default sorting");
-
-    const handleShowDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
-
-    const handleSelectOption = e => {
-        setCurrentOption(e.target.innerHTML);
-    };
-
     return (
         <Layout isFooterPresent>
-            <HomeContainer showDropdown={showDropdown}>
+            <HomeContainer>
                 {/* <select name="" id="">
                     <option value="default">Default sorting</option>
                     <option value="popularity">Sort by popularity</option>
@@ -34,17 +33,7 @@ const Home: React.FC<HomeProps> = () => {
                     <option value="high-low">Sort by price: high to low</option>
                 </select> */}
                 <div className="dropdown-shop">
-                    <section className="dropdown" onClick={handleShowDropdown}>
-                        {currentOption}
-                        <ul onClick={handleSelectOption}>
-                            <li>Default sorting</li>
-                            <li>Sort by popularity</li>
-                            <li>Sort by average rating</li>
-                            <li>Sort by latest</li>
-                            <li>Sort by price: low to high</li>
-                            <li>Sort by price: high to low</li>
-                        </ul>
-                    </section>
+                    <Dropdown options={allSorts} />
                     <div className="shop">
                         <h1>Shop</h1>
                         <h6>Showing 1-12 of 20 results</h6>

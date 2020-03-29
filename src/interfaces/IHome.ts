@@ -1,3 +1,1 @@
-export interface HomeProps {
-    showDropdown: boolean;
-}
+export interface HomeProps {}
