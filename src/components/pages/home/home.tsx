@@ -33,20 +33,22 @@ const Home: React.FC<HomeProps> = () => {
                     <option value="low-high">Sort by price: low to high</option>
                     <option value="high-low">Sort by price: high to low</option>
                 </select> */}
-                <section className="dropdown" onClick={handleShowDropdown}>
-                    {currentOption}
-                    <ul onClick={handleSelectOption}>
-                        <li>Default sorting</li>
-                        <li>Sort by popularity</li>
-                        <li>Sort by average rating</li>
-                        <li>Sort by latest</li>
-                        <li>Sort by price: low to high</li>
-                        <li>Sort by price: high to low</li>
-                    </ul>
-                </section>
-                <div className="shop">
-                    <h1>Shop</h1>
-                    <h6>Showing 1-12 of 20 results</h6>
+                <div className="dropdown-shop">
+                    <section className="dropdown" onClick={handleShowDropdown}>
+                        {currentOption}
+                        <ul onClick={handleSelectOption}>
+                            <li>Default sorting</li>
+                            <li>Sort by popularity</li>
+                            <li>Sort by average rating</li>
+                            <li>Sort by latest</li>
+                            <li>Sort by price: low to high</li>
+                            <li>Sort by price: high to low</li>
+                        </ul>
+                    </section>
+                    <div className="shop">
+                        <h1>Shop</h1>
+                        <h6>Showing 1-12 of 20 results</h6>
+                    </div>
                 </div>
                 <section className="products">
                     {myproducts.map(product => {
