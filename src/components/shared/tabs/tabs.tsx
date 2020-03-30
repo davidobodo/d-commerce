@@ -66,7 +66,27 @@ const Tabs = () => {
                         </p>
                     </div>
                 )}
-                {displayTabTwo && <div>tab two</div>}
+                {displayTabTwo && (
+                    <div className="tab-info">
+                        <h1>Additional Information</h1>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Weight</td>
+                                    <td>2lbs</td>
+                                </tr>
+                                <tr>
+                                    <td>Brand</td>
+                                    <td>A Good One</td>
+                                </tr>
+                                <tr>
+                                    <td>Color</td>
+                                    <td>Blue</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
                 {displayTabThree && <div>tab three</div>}
             </div>
         </TabsContainer>

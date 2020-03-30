@@ -47,6 +47,45 @@ export const TabsContainer = styled.div`
         .tab-description {
             h1 {
                 margin-bottom: 20px;
+                font-weight: 400;
+            }
+        }
+
+        .tab-info {
+            h1 {
+                margin-bottom: 20px;
+                font-weight: 400;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+
+                tr {
+                    border-top: 1px dotted ${props => props.theme.primaryColor};
+
+                    &:nth-child(2n) {
+                        background-color: #f7f7f7;
+                    }
+
+                    &:last-child {
+                        border-bottom: 1px dotted
+                            ${props => props.theme.primaryColor};
+                    }
+
+                    td {
+                        padding: 10px;
+
+                        &:first-child {
+                            font-weight: 600;
+                            width: 12%;
+                        }
+
+                        &:last-child {
+                            font-style: italic;
+                        }
+                    }
+                }
             }
         }
     }
