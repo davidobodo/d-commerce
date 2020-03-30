@@ -1,51 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const TabsContainer = styled.div`
-    .wrapper {
-        .tab__nav {
-            &__links {
-                list-style: none;
-                display: flex;
-                padding-left: 10px;
-                margin-bottom: 40px;
-                position: relative;
-
-                li {
-                    font-size: 14px;
-                    font-weight: 700;
-                    border: 1px solid ${props => props.theme.primaryColor};
-                    border-right: none;
-                    border-bottom: none;
-                    padding: 10px;
-                    background-color: #f2f2f2;
-                    cursor: pointer;
-
-                    &:last-of-type {
-                        border-right: 1px solid
-                            ${props => props.theme.primaryColor};
-                    }
-                }
-
-                .active {
-                    background-color: #ffffff;
-                    position: relative;
-                    z-index: 2;
-                }
-
-                hr {
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    bottom: 0;
-                    left: 0px;
-                    background-color: ${props => props.theme.primaryColor};
-                    border: none;
-                }
-            }
-        }
-    }
-`;
+import { TabsContainer } from "./style";
 
 const Tabs = () => {
     const [displayTabOne, setDisplayTabOne] = useState(true);
@@ -92,7 +46,26 @@ const Tabs = () => {
                         <hr />
                     </ul>
                 </nav>
-                {displayTabOne && <div>tab one</div>}
+                {displayTabOne && (
+                    <div className="tab-description">
+                        <h1>Description</h1>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Quas, iure corrupti facere repudiandae
+                            architecto eligendi nobis minima illo amet! Ad vitae
+                            placeat non odit? Quod cumque officia minima?
+                            Pariatur, minus! Lorem ipsum dolor sit, amet
+                            consectetur adipisicing elit. Quas, iure corrupti
+                            facere repudiandae architecto eligendi nobis minima
+                            illo amet! Ad vitae placeat non odit? Quod cumque
+                            officia minima? Pariatur, minus! Lorem ipsum dolor
+                            sit, amet consectetur adipisicing elit. Quas, iure
+                            corrupti facere repudiandae architecto eligendi
+                            nobis minima illo amet! Ad vitae placeat non odit?
+                            Quod cumque officia minima? Pariatur, minus!
+                        </p>
+                    </div>
+                )}
                 {displayTabTwo && <div>tab two</div>}
                 {displayTabThree && <div>tab three</div>}
             </div>
