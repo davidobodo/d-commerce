@@ -73,7 +73,7 @@ const ProductCard: React.FC<ProductProps> = ({
     price
 }) => {
     return (
-        <Link to={"/dcommerce/product/" + name}>
+        <Link to={"/product/" + name}>
             <ProductCardContainer image={image}>
                 <div className="img-wrapper">
                     <div className="image"></div>

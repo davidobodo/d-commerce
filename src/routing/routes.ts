@@ -2,6 +2,7 @@ import Home from "../components/pages/home/home";
 import About from "../components/pages/about/about";
 import Contact from "../components/pages/contact/contact";
 import ProductPage from "../components/pages/productPage/productPage";
+import CartPage from "../components/pages/cartPage/cartPage";
 
 export const Routes = [
     {
@@ -22,6 +23,11 @@ export const Routes = [
     {
         component: ProductPage,
         exact: true,
-        path: "/dcommerce/product/:id"
+        path: "/product/:id"
+    },
+    {
+        component: CartPage,
+        exact: true,
+        path: "/cart"
     }
 ];

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Tabs from "../../shared/tabs/tabs";
@@ -68,7 +69,11 @@ const ProductPage = () => {
                                 <h4>Sizes</h4>
                                 <Dropdown options={allSizes} />
                             </div>
-                            <button className="btn-cart">ADD TO CART</button>
+                            <Link to="/cart">
+                                <button className="btn-cart">
+                                    ADD TO CART
+                                </button>
+                            </Link>
                             <div className="data">
                                 <div className="data__section">
                                     <span>SKU:</span> N/A

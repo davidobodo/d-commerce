@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TabsContainer } from "./style";
+import Button from "../button/button";
 
 const Tabs = () => {
     const [displayTabOne, setDisplayTabOne] = useState(true);
@@ -127,7 +128,7 @@ const Tabs = () => {
                                     browser for the next time I comment.
                                 </h6>
                             </div>
-                            <button className="btn-submit">Submit</button>
+                            <Button>Submit</Button>
                         </form>
                     </div>
                 )}
