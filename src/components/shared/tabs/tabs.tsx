@@ -59,6 +59,7 @@ const Tabs = () => {
 
     const handleSelectedTab = e => {
         const currentTab = e.target.id;
+        setChosen(currentTab);
         if (currentTab === "tab-1") {
             setDisplayTabTwo(false);
             setDisplayTabThree(false);
@@ -79,25 +80,13 @@ const Tabs = () => {
             <div className="wrapper">
                 <nav className="tab__nav">
                     <ul className="tab__nav__links" onClick={handleSelectedTab}>
-                        <li
-                            id="tab-1"
-                            onClick={() => setChosen("tab-1")}
-                            className={active1 ? "active" : ""}
-                        >
+                        <li id="tab-1" className={active1 ? "active" : ""}>
                             Description
                         </li>
-                        <li
-                            id="tab-2"
-                            onClick={() => setChosen("tab-2")}
-                            className={active2 ? "active" : ""}
-                        >
+                        <li id="tab-2" className={active2 ? "active" : ""}>
                             Additional Information
                         </li>
-                        <li
-                            id="tab-3"
-                            onClick={() => setChosen("tab-3")}
-                            className={active3 ? "active" : ""}
-                        >
+                        <li id="tab-3" className={active3 ? "active" : ""}>
                             Reviews (0)
                         </li>
                         <hr />
