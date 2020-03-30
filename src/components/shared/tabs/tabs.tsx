@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { TabsContainer } from "./style";
 
 const Tabs = () => {
-    const [displayTabOne, setDisplayTabOne] = useState(false);
+    const [displayTabOne, setDisplayTabOne] = useState(true);
     const [displayTabTwo, setDisplayTabTwo] = useState(false);
-    const [displayTabThree, setDisplayTabThree] = useState(true);
+    const [displayTabThree, setDisplayTabThree] = useState(false);
 
-    const [chosen, setChosen] = useState("tab-3");
+    const [chosen, setChosen] = useState("tab-1");
     let active1 = "tab-1" === chosen;
     let active2 = "tab-2" === chosen;
     let active3 = "tab-3" === chosen;

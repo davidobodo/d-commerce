@@ -3,6 +3,7 @@ import { devices } from "../../../styling/devices";
 
 export const ProductPageContainer = styled.div`
     .wrapper {
+        margin-bottom: 20px;
         .product {
             border-top: 1px solid ${props => props.theme.primaryColor};
             margin-top: 20px;
@@ -98,6 +99,31 @@ export const ProductPageContainer = styled.div`
                             font-weight: 600;
                         }
                     }
+                }
+            }
+        }
+
+        .related-products {
+            margin-top: 50px;
+
+            h1 {
+                margin-bottom: 20px;
+                font-weight: 400;
+            }
+
+            &__products-wrapper {
+                @media ${devices.mobile} {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 15px;
+                }
+
+                @media ${devices.tablet} {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                @media ${devices.laptop} {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
                 }
             }
         }

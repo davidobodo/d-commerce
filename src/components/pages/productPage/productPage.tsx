@@ -3,8 +3,37 @@ import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Tabs from "../../shared/tabs/tabs";
 import { ProductPageContainer } from "./style";
+import ProductCard from "../../shared/productCard/productCard";
+import banner from "../../../assets/img/banner.png";
 
 const allSizes = ["Large", "Medium", "Small", "X-Large", "X-small"];
+
+const related_products = [
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    },
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    },
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    },
+    {
+        image: banner,
+        name: "Racer T-shirt",
+        rating: 5,
+        price: "$20.98"
+    }
+];
 
 const ProductPage = () => {
     return (
@@ -55,6 +84,22 @@ const ProductPage = () => {
                         </div>
                     </div>
                     <Tabs />
+                    <div className="related-products">
+                        <h1>Related products</h1>
+                        <div className="related-products__products-wrapper">
+                            {related_products.map(product => {
+                                const { image, name, rating, price } = product;
+                                return (
+                                    <ProductCard
+                                        image={image}
+                                        name={name}
+                                        rating={rating}
+                                        price={price}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </ProductPageContainer>
         </Layout>
