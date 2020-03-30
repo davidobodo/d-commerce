@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { TabsContainer } from "./style";
 
 const Tabs = () => {
-    const [displayTabOne, setDisplayTabOne] = useState(true);
+    const [displayTabOne, setDisplayTabOne] = useState(false);
     const [displayTabTwo, setDisplayTabTwo] = useState(false);
-    const [displayTabThree, setDisplayTabThree] = useState(false);
+    const [displayTabThree, setDisplayTabThree] = useState(true);
 
-    const [chosen, setChosen] = useState();
+    const [chosen, setChosen] = useState("tab-3");
     let active1 = "tab-1" === chosen;
     let active2 = "tab-2" === chosen;
     let active3 = "tab-3" === chosen;
@@ -87,7 +87,50 @@ const Tabs = () => {
                         </table>
                     </div>
                 )}
-                {displayTabThree && <div>tab three</div>}
+                {displayTabThree && (
+                    <div className="tab-reviews">
+                        <h1>Reviews</h1>
+                        <p>There are no Reviews yet.</p>
+                        <p>
+                            Be the first to review <span>"Coffee T-shirt"</span>{" "}
+                            <br />
+                            Youe email address will not be published. Required
+                            fields are marked
+                        </p>
+                        <div className="stars">
+                            <h6>Your rating</h6>
+                            <div>stars</div>
+                        </div>
+                        <form action="">
+                            <div className="field-textarea">
+                                <label htmlFor="">
+                                    <h6>Your review</h6>
+                                </label>
+                                <textarea name="" id=""></textarea>
+                            </div>
+                            <div className="field-input">
+                                <label htmlFor="">
+                                    <h6>Name</h6>
+                                </label>
+                                <input type="text" />
+                            </div>
+                            <div className="field-input">
+                                <label htmlFor="">
+                                    <h6>Email</h6>
+                                </label>
+                                <input type="text" />
+                            </div>
+                            <div className="field-checkbox">
+                                <input type="checkbox" />
+                                <h6>
+                                    Save my name, email, and website in this
+                                    browser for the next time I comment.
+                                </h6>
+                            </div>
+                            <button className="btn-submit">Submit</button>
+                        </form>
+                    </div>
+                )}
             </div>
         </TabsContainer>
     );

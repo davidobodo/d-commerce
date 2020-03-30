@@ -6,6 +6,7 @@ export const ProductPageContainer = styled.div`
         .product {
             border-top: 1px solid ${props => props.theme.primaryColor};
             margin-top: 20px;
+            margin-bottom: 50px;
             padding-top: 15px;
 
             @media ${devices.laptop} {

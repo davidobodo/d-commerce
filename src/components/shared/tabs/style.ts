@@ -88,5 +88,70 @@ export const TabsContainer = styled.div`
                 }
             }
         }
+
+        .tab-reviews {
+            h1 {
+                margin-bottom: 20px;
+                dont-weight: 400;
+            }
+
+            p {
+                margin-bottom: 20px;
+            }
+
+            h6 {
+                margin-bottom: 10px;
+                font-weight: 800;
+            }
+
+            .stars {
+                margin-bottom: 15px;
+            }
+
+            form {
+                .field-textarea {
+                    margin-bottom: 20px;
+
+                    textarea {
+                        width: 100%;
+                        min-height: 190px;
+                        border: 1px solid ${props => props.theme.primaryColor};
+                    }
+                }
+
+                .field-input {
+                    display: inline-block;
+                    margin-right: 30px;
+                    margin-bottom: 20px;
+
+                    input {
+                        width: 300px;
+                        border: 1px solid ${props => props.theme.primaryColor};
+                        font-size: 14px;
+                        padding: 7px;
+                        outline: none;
+                    }
+                }
+
+                .field-checkbox {
+                    display: flex;
+                    margin-bottom: 20px;
+
+                    input {
+                        margin-right: 10px;
+                    }
+                }
+
+                .btn-submit {
+                    background-color: #2e5c87;
+                    border-bottom: 1px solid
+                        ${props => props.theme.primaryColor};
+                    color: #ffffff;
+                    border: none;
+                    font-size: 12px;
+                    padding: 12px 25px;
+                }
+            }
+        }
     }
 `;
