@@ -1,6 +1,7 @@
 import React from "react";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
+import Button from "../../shared/button/button";
 
 const CartPage = () => {
     return (
@@ -12,12 +13,15 @@ const CartPage = () => {
                             <h1>Cart</h1>
                         </div>
                         <div className="cart__alert">
-                            <div>
-                                <span>Coffee T-shirt</span> has been added to
-                                your cart
+                            <div className="first-section">
+                                <span>tic</span>
+                                <h4>
+                                    <span>Coffee T-shirt</span> has been added
+                                    to your cart
+                                </h4>
                             </div>
-                            <div>
-                                <button></button>
+                            <div className="second-section">
+                                <Button>Continue Shopping</Button>
                             </div>
                         </div>
                     </div>
