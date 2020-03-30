@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
+import Tabs from "../../shared/tabs/tabs";
 import { ProductPageContainer } from "./style";
 
 const allSizes = ["Large", "Medium", "Small", "X-Large", "X-small"];
@@ -53,6 +54,7 @@ const ProductPage = () => {
                             </div>
                         </div>
                     </div>
+                    <Tabs />
                 </div>
             </ProductPageContainer>
         </Layout>
