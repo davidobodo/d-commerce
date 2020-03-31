@@ -26,7 +26,14 @@ export const CartPageContainer = styled.div`
 
                 .first-section {
                     display: flex;
+                    align-items: center;
                     margin-bottom: 20px;
+
+                    svg {
+                        font-size: 22px;
+                        margin-right: 12px;
+                        color: #2e5c87;
+                    }
 
                     @media ${devices.mobile} {
                         margin-bottom: 0;
@@ -44,6 +51,8 @@ export const CartPageContainer = styled.div`
                     font-weight: 600;
 
                     tr {
+                        border-bottom: 1px solid
+                            ${props => props.theme.primaryColor};
                         td {
                             padding: 10px;
                         }
@@ -52,14 +61,36 @@ export const CartPageContainer = styled.div`
 
                 tbody {
                     tr {
-                        border-top: 1px solid
+                        border-bottom: 1px solid
                             ${props => props.theme.primaryColor};
 
                         &:nth-child(2n) {
                             background-color: #f7f7f7;
                         }
 
+                        .col-cancel {
+                            width: 70px;
+                            padding-left: 20px;
+                            div {
+                                display: inline-block;
+                                padding: 3px;
+                                svg {
+                                    color: #ff0000;
+                                    transform: rotate(45deg);
+                                }
+
+                                &:hover {
+                                    background-color: #ff0000;
+
+                                    svg {
+                                        color: #ffffff;
+                                    }
+                                }
+                            }
+                        }
+
                         .col-img {
+                            width: 120px;
                             padding-top: 10px;
                             padding-bottom: 10px;
                             img {
@@ -82,6 +113,27 @@ export const CartPageContainer = styled.div`
                                 }
                             }
                         }
+
+                        .col-price {
+                            width: 15%;
+                        }
+
+                        .col-counter {
+                            width: 15%;
+                        }
+
+                        .col-total-price {
+                            width: 15%;
+                        }
+                    }
+                }
+
+                tfoot {
+                    input {
+                        border: 1px solid ${props => props.theme.primaryColor};
+                        padding: 7px;
+                        outline: none;
+                        margin: 15px 10px 15px 0;
                     }
                 }
             }

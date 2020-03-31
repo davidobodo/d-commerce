@@ -4,6 +4,9 @@ import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
 import banner from "../../../assets/img/banner.png";
 import Counter from "../../shared/counter/counter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const cart_products = [
     {
@@ -43,14 +46,16 @@ const CartPage = () => {
                         </div>
                         <div className="cart__alert">
                             <div className="first-section">
-                                <span>tic</span>
+                                <FontAwesomeIcon icon={faCheck} />
                                 <h4>
                                     <span>Coffee T-shirt</span> has been added
                                     to your cart
                                 </h4>
                             </div>
                             <div className="second-section">
-                                <Button>Continue Shopping</Button>
+                                <Button blue_small_text>
+                                    Continue Shopping
+                                </Button>
                             </div>
                         </div>
                         <table className="cart__table">
@@ -74,7 +79,13 @@ const CartPage = () => {
                                     } = product;
                                     return (
                                         <tr>
-                                            <td>cancel</td>
+                                            <td className="col-cancel">
+                                                <div>
+                                                    <FontAwesomeIcon
+                                                        icon={faPlus}
+                                                    />
+                                                </div>
+                                            </td>
                                             <td className="col-img">
                                                 <img src={image} alt={image} />
                                             </td>
@@ -84,15 +95,42 @@ const CartPage = () => {
                                                     Sizes: <span>Large</span>
                                                 </h5>
                                             </td>
-                                            <td>{price}</td>
-                                            <td>
+                                            <td className="col-price">
+                                                {price}
+                                            </td>
+                                            <td className="col-counter">
                                                 <Counter />
                                             </td>
-                                            <td>{price}</td>
+                                            <td className="col-total-price">
+                                                {price}
+                                            </td>
                                         </tr>
                                     );
                                 })}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            placeholder="Coupon Code"
+                                        />
+                                    </td>
+                                    <td>
+                                        <Button ash_small_text>
+                                            Apply coupon
+                                        </Button>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <Button ash_small_text>
+                                            Update Cart
+                                        </Button>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

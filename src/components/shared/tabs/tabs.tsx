@@ -128,7 +128,7 @@ const Tabs = () => {
                                     browser for the next time I comment.
                                 </h6>
                             </div>
-                            <Button>Submit</Button>
+                            <Button blue_small_text>Submit</Button>
                         </form>
                     </div>
                 )}
