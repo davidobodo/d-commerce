@@ -132,6 +132,24 @@ const CartPage = () => {
                                 </tr>
                             </tfoot>
                         </table>
+                        <div className="cart__total">
+                            <h1>Cart totals</h1>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal:</td>
+                                        <td className="subtotal-value">
+                                            $180.96
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td>$180.96</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <Button blue_small_text>Proceed to checkout</Button>
+                        </div>
                     </div>
                 </div>
             </CartPageContainer>

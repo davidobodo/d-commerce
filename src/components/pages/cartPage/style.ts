@@ -45,6 +45,7 @@ export const CartPageContainer = styled.div`
                 border: 1px solid ${props => props.theme.primaryColor};
                 border-collapse: collapse;
                 width: 100%;
+                margin-bottom: 40px;
 
                 thead {
                     background-color: #f7f7f7;
@@ -134,6 +135,43 @@ export const CartPageContainer = styled.div`
                         padding: 7px;
                         outline: none;
                         margin: 15px 10px 15px 0;
+                    }
+                }
+            }
+
+            &__total {
+                @media ${devices.tablet} {
+                    width: 500px;
+                    margin-left: auto;
+                }
+                h1 {
+                    font-weight: 400;
+                    font-size: 38px;
+                    margin-bottom: 15px;
+                }
+
+                table {
+                    border: 1px solid ${props => props.theme.primaryColor};
+                    border-collapse: collapse;
+                    margin-bottom: 5px;
+                    width: 100%;
+
+                    tr {
+                        border-bottom: 1px solid
+                            ${props => props.theme.primaryColor};
+
+                        &:nth-child(2n) {
+                            background-color: #f7f7f7;
+                        }
+
+                        td {
+                            padding: 10px;
+                            font-weight: 800;
+                        }
+
+                        .subtotal-value {
+                            font-weight: 400;
+                        }
                     }
                 }
             }
