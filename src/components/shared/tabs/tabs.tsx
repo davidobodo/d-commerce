@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TabsContainer } from "./style";
 import Button from "../button/button";
+import Input from "../input/input";
 
 const Tabs = () => {
     const [displayTabOne, setDisplayTabOne] = useState(true);
@@ -110,16 +111,8 @@ const Tabs = () => {
                                 <textarea name="" id=""></textarea>
                             </div>
                             <div className="field-input">
-                                <label htmlFor="">
-                                    <h6>Name</h6>
-                                </label>
-                                <input type="text" />
-                            </div>
-                            <div className="field-input">
-                                <label htmlFor="">
-                                    <h6>Email</h6>
-                                </label>
-                                <input type="text" />
+                                <Input label="Name" />
+                                <Input label="Email" />
                             </div>
                             <div className="field-checkbox">
                                 <input type="checkbox" />

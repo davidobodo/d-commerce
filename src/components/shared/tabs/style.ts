@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../../styling/devices";
 
 export const TabsContainer = styled.div`
     .wrapper {
@@ -120,16 +121,10 @@ export const TabsContainer = styled.div`
                 }
 
                 .field-input {
-                    display: inline-block;
-                    margin-right: 30px;
-                    margin-bottom: 20px;
-
-                    input {
-                        width: 300px;
-                        border: 1px solid ${props => props.theme.primaryColor};
-                        font-size: 14px;
-                        padding: 7px;
-                        outline: none;
+                    div:first-child {
+                        @media ${devices.mobile} {
+                            margin-right: 30px;
+                        }
                     }
                 }
 
