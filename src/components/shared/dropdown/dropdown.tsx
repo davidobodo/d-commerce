@@ -48,6 +48,8 @@ const DropdownContainer = styled.div<DropdownProps>`
         width: 100%;
         left: 0px;
         top: 31px;
+        max-height: 200px;
+        overflow-y: scroll;
         ${({ showDropdown }) => showDropdown && "display: block"};
         ${({ showDropdown }) => !showDropdown && "display: none"};
 

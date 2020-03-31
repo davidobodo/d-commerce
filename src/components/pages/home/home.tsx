@@ -7,7 +7,7 @@ import Dropdown from "../../shared/dropdown/dropdown";
 import { HomeContainer } from "./style";
 import { HomeProps } from "../../../interfaces/IHome";
 
-import { myproducts } from "../../../AllProducts";
+import { myproducts } from "../../../constants/AllProducts";
 
 const allSorts = [
     "Default sorting",
