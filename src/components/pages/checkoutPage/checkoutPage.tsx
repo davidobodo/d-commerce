@@ -31,47 +31,49 @@ const CheckoutPage = () => {
                             <span>Click here to enter your coupon</span>
                         </h4>
                     </div>
-                    <form action="" className="checkout__form">
-                        <h2>Billing details</h2>
-                        <div>
-                            <Input label="First name" />
-                            <Input label="Last name" />
-                        </div>
-                        <Input label="Company name(optional)" />
-                        <div className="dropdown">
-                            <label htmlFor="">
-                                <h6>Country</h6>
-                            </label>
-                            <Dropdown options={countryList} />
-                        </div>
-                        <div className="street-address">
+                    <div className="checkout__user-info">
+                        <form action="" className="checkout__user-info__form">
+                            <h2>Billing details</h2>
+                            <div className="field-input">
+                                <Input label="First name" />
+                                <Input label="Last name" />
+                            </div>
+                            <Input label="Company name(optional)" />
+                            <div className="dropdown">
+                                <label htmlFor="">
+                                    <h6>Country</h6>
+                                </label>
+                                <Dropdown options={countryList} />
+                            </div>
+                            <div className="street-address">
+                                <Input
+                                    label="Street address"
+                                    placeholder="House number and street name"
+                                />
+                                <Input placeholder="Apartment, suite, unit etc.(optional)" />
+                            </div>
+                            <Input label="Town/City" />
                             <Input
-                                label="Street address"
-                                placeholder="House number and street name"
+                                label="State/County"
+                                placeholder="Select an option..."
                             />
-                            <Input placeholder="Apartment, suite, unit etc.(optional)" />
-                        </div>
-                        <Input label="Town/City" />
-                        <Input
-                            label="State/County"
-                            placeholder="Select an option..."
-                        />
 
-                        <Input label="Postcode/ZIP" />
-                        <Input label="Phone" />
-                        <Input label="Email address" />
-                    </form>
-                    <div className="checkout__add-info">
-                        <h2>Additional Information</h2>
-                        <div className="field-textarea">
-                            <label htmlFor="">
-                                <h6>Order notes (optional)</h6>
-                            </label>
-                            <textarea
-                                name=""
-                                id=""
-                                placeholder="Notes about your order e.g special notes for delivery"
-                            ></textarea>
+                            <Input label="Postcode/ZIP" />
+                            <Input label="Phone" />
+                            <Input label="Email address" />
+                        </form>
+                        <div className="checkout__user-info__add-info">
+                            <h2>Additional Information</h2>
+                            <div className="field-textarea">
+                                <label htmlFor="">
+                                    <h6>Order notes (optional)</h6>
+                                </label>
+                                <textarea
+                                    name=""
+                                    id=""
+                                    placeholder="Notes about your order e.g special notes for delivery"
+                                ></textarea>
+                            </div>
                         </div>
                     </div>
                     <div className="checkout__total">

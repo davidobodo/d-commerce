@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../../styling/devices";
 
 export const CheckoutPageContainer = styled.div`
     .checkout {
@@ -37,32 +38,52 @@ export const CheckoutPageContainer = styled.div`
             }
         }
 
-        &__form {
+        &__user-info {
             padding-top: 30px;
-            margin-bottom: 40px;
-            h2 {
-                font-weight: 300;
-                margin-bottom: 20px;
+            @media ${devices.laptop} {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 50px;
             }
-        }
+            &__form {
+                margin-bottom: 40px;
+                h2 {
+                    font-weight: 300;
+                    margin-bottom: 20px;
+                }
+                div {
+                    @media ${devices.tablet} {
+                        width: 100%;
+                    }
+                }
 
-        &__add-info {
-            margin-bottom: 40px;
-            h2 {
-                font-weight: 300;
-                margin-bottom: 20px;
+                .field-input {
+                    @media ${devices.tablet} {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-gap: 30px;
+                    }
+                }
             }
 
-            .field-textarea {
-                margin-bottom: 20px;
+            &__add-info {
+                margin-bottom: 40px;
+                h2 {
+                    font-weight: 300;
+                    margin-bottom: 20px;
+                }
 
-                textarea {
-                    width: 100%;
-                    min-height: 60px;
-                    border: 1px solid ${props => props.theme.primaryColor};
-                    font-size: 14px;
-                    padding: 7px;
-                    outline: none;
+                .field-textarea {
+                    margin-bottom: 20px;
+
+                    textarea {
+                        width: 100%;
+                        min-height: 60px;
+                        border: 1px solid ${props => props.theme.primaryColor};
+                        font-size: 14px;
+                        padding: 7px;
+                        outline: none;
+                    }
                 }
             }
         }
