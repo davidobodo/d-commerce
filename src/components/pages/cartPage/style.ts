@@ -161,21 +161,35 @@ export const CartPageContainer = styled.div`
                     }
                 }
 
-                tfoot {
-                    input {
-                        border: 1px solid ${props => props.theme.primaryColor};
-                        padding: 7px;
-                        outline: none;
-                        margin: 15px 10px 15px 0;
+                .desktop-table-footer {
+                    display: none;
+
+                    @media ${devices.laptop} {
+                        display: table-row-group;
+                        input {
+                            border: 1px solid
+                                ${props => props.theme.primaryColor};
+                            padding: 7px;
+                            outline: none;
+                            margin: 15px 10px 15px 0;
+                        }
                     }
+                }
+            }
 
-                    // td:nth-child(4) {
-                    //     display: none;
+            .mobile-table-footer {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
 
-                    //     @media ${devices.mobile} {
-                    //         display: block;
-                    //     }
-                    // }
+                @media ${devices.laptop} {
+                    display: none;
+                }
+                input {
+                    border: 1px solid ${props => props.theme.primaryColor};
+                    padding: 7px;
+                    outline: none;
+                    margin: 15px 10px 15px 0;
                 }
             }
 

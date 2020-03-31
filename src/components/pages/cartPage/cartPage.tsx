@@ -108,7 +108,7 @@ const CartPage = () => {
                                     );
                                 })}
                             </tbody>
-                            <tfoot>
+                            <tfoot className="desktop-table-footer">
                                 <tr>
                                     <td></td>
                                     <td>
@@ -132,6 +132,15 @@ const CartPage = () => {
                                 </tr>
                             </tfoot>
                         </table>
+                        <div className="mobile-table-footer">
+                            <div>
+                                <input type="text" placeholder="Coupon Code" />
+                                <Button ash_small_text>Apply coupon</Button>
+                            </div>
+                            <div>
+                                <Button ash_small_text>Update Cart</Button>
+                            </div>
+                        </div>
                         <div className="cart__total">
                             <h1>Cart totals</h1>
                             <table>
