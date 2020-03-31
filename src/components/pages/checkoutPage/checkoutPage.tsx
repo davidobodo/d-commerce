@@ -38,13 +38,13 @@ const CheckoutPage = () => {
                             <Input label="Last name" />
                         </div>
                         <Input label="Company name(optional)" />
-                        <div>
+                        <div className="dropdown">
                             <label htmlFor="">
                                 <h6>Country</h6>
                             </label>
                             <Dropdown options={countryList} />
                         </div>
-                        <div>
+                        <div className="street-address">
                             <Input
                                 label="Street address"
                                 placeholder="House number and street name"

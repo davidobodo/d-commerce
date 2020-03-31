@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CheckoutPageContainer = styled.div`
     .checkout {
         margin-bottom: 50px;
+
         &__header {
             border-bottom: 1px solid ${props => props.theme.primaryColor};
             margin-bottom: 20px;
@@ -38,14 +39,18 @@ export const CheckoutPageContainer = styled.div`
 
         &__form {
             padding-top: 30px;
+            margin-bottom: 40px;
             h2 {
                 font-weight: 300;
+                margin-bottom: 20px;
             }
         }
 
         &__add-info {
+            margin-bottom: 40px;
             h2 {
                 font-weight: 300;
+                margin-bottom: 20px;
             }
 
             .field-textarea {
@@ -55,6 +60,9 @@ export const CheckoutPageContainer = styled.div`
                     width: 100%;
                     min-height: 60px;
                     border: 1px solid ${props => props.theme.primaryColor};
+                    font-size: 14px;
+                    padding: 7px;
+                    outline: none;
                 }
             }
         }
@@ -63,6 +71,7 @@ export const CheckoutPageContainer = styled.div`
             margin-bottom: 20px;
             h2 {
                 font-weight: 300;
+                margin-bottom: 20px;
             }
 
             table {
@@ -92,6 +101,35 @@ export const CheckoutPageContainer = styled.div`
                     }
                 }
             }
+        }
+    }
+
+    //-------------------------------------------------------------------------
+    //resets on some components on this page
+    //-------------------------------------------------------------------------
+
+    h6 {
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: 800;
+    }
+
+    .dropdown {
+        margin-bottom: 20px;
+
+        div {
+            max-width: 100%;
+            border: 1px solid ${props => props.theme.primaryColor};
+
+            ul {
+                border: 1px solid ${props => props.theme.primaryColor};
+            }
+        }
+    }
+
+    .street-address {
+        div:first-child {
+            margin-bottom: 0;
         }
     }
 `;
