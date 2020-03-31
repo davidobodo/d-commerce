@@ -56,6 +56,14 @@ export const CartPageContainer = styled.div`
                             ${props => props.theme.primaryColor};
                         td {
                             padding: 10px;
+
+                            &:nth-child(2) {
+                                display: none;
+
+                                @media ${devices.mobile} {
+                                    display: table-cell;
+                                }
+                            }
                         }
                     }
                 }
@@ -70,8 +78,12 @@ export const CartPageContainer = styled.div`
                         }
 
                         .col-cancel {
-                            width: 70px;
-                            padding-left: 20px;
+                            padding-left: 5px;
+
+                            @media ${devices.mobile} {
+                                width: 70px;
+                                padding-left: 20px;
+                            }
                             div {
                                 display: inline-block;
                                 padding: 3px;
@@ -91,13 +103,27 @@ export const CartPageContainer = styled.div`
                         }
 
                         .col-img {
-                            width: 120px;
-                            padding-top: 10px;
-                            padding-bottom: 10px;
-                            img {
-                                object-fit: cover;
-                                width: 100px;
-                                height: 100px;
+                            display: none;
+
+                            @media ${devices.mobile} {
+                                display: table-cell;
+                                width: 80px;
+                                padding-top: 10px;
+                                padding-bottom: 10px;
+                                img {
+                                    object-fit: cover;
+                                    width: 80px;
+                                    height: 80px;
+                                }
+                            }
+
+                            @media ${devices.tablet} {
+                                width: 120px;
+
+                                img {
+                                    width: 100px;
+                                    height: 100px;
+                                }
                             }
                         }
 
@@ -116,15 +142,21 @@ export const CartPageContainer = styled.div`
                         }
 
                         .col-price {
-                            width: 15%;
+                            @media ${devices.mobile} {
+                                width: 15%;
+                            }
                         }
 
                         .col-counter {
-                            width: 15%;
+                            @media ${devices.mobile} {
+                                width: 15%;
+                            }
                         }
 
                         .col-total-price {
-                            width: 15%;
+                            @media ${devices.mobile} {
+                                width: 15%;
+                            }
                         }
                     }
                 }
@@ -136,6 +168,14 @@ export const CartPageContainer = styled.div`
                         outline: none;
                         margin: 15px 10px 15px 0;
                     }
+
+                    // td:nth-child(4) {
+                    //     display: none;
+
+                    //     @media ${devices.mobile} {
+                    //         display: block;
+                    //     }
+                    // }
                 }
             }
 
