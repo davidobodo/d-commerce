@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { CounterProps } from "../../../interfaces/ICounter";
 
 const CounterContainer = styled.div`
     border: 1px solid ${props => props.theme.primaryColor};
@@ -20,28 +21,44 @@ const CounterContainer = styled.div`
 
         .increase {
             border-bottom: 1px solid ${props => props.theme.primaryColor};
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
         }
 
-        .decrease {
+        .btn {
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+
+            &:hover {
+                background-color: ${props => props.theme.primaryColor};
+            }
         }
     }
 `;
 
-const Counter = () => {
+const Counter: React.FC<CounterProps> = ({ maxValue }) => {
+    const [count, setCount] = useState(1);
+    maxValue = 10;
+
+    const handleSetCount = e => {
+        if (e.target.id === "+") {
+            if (count === maxValue) return;
+            setCount(count + 1);
+        } else if (e.target.id === "-") {
+            if (count === 1) return;
+            setCount(count - 1);
+        }
+    };
     return (
         <CounterContainer>
-            <div className="counter">1</div>
-            <div className="editor">
-                <div className="increase">+</div>
-                <div className="decrease">-</div>
+            <div className="counter">{count}</div>
+            <div className="editor" onClick={handleSetCount}>
+                <div id="+" className="increase btn">
+                    +
+                </div>
+                <div id="-" className="decrease btn">
+                    -
+                </div>
             </div>
         </CounterContainer>
     );
