@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
@@ -71,12 +72,7 @@ const CartPage = () => {
                             </thead>
                             <tbody>
                                 {cart_products.map(product => {
-                                    const {
-                                        image,
-                                        name,
-                                        rating,
-                                        price
-                                    } = product;
+                                    const { image, name, price } = product;
                                     return (
                                         <tr>
                                             <td className="col-cancel">
@@ -157,7 +153,11 @@ const CartPage = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Button blue_small_text>Proceed to checkout</Button>
+                            <Link to="/checkout">
+                                <Button blue_small_text>
+                                    Proceed to checkout
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

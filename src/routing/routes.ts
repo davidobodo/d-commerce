@@ -3,6 +3,7 @@ import About from "../components/pages/about/about";
 import Contact from "../components/pages/contact/contact";
 import ProductPage from "../components/pages/productPage/productPage";
 import CartPage from "../components/pages/cartPage/cartPage";
+import CheckoutPage from "../components/pages/checkoutPage/checkoutPage";
 
 export const Routes = [
     {
@@ -29,5 +30,10 @@ export const Routes = [
         component: CartPage,
         exact: true,
         path: "/cart"
+    },
+    {
+        component: CheckoutPage,
+        exact: true,
+        path: "/checkout"
     }
 ];
