@@ -4,6 +4,7 @@ import Contact from "../components/pages/contact/contact";
 import ProductPage from "../components/pages/productPage/productPage";
 import CartPage from "../components/pages/cartPage/cartPage";
 import CheckoutPage from "../components/pages/checkoutPage/checkoutPage";
+import PaymentPage from "../components/pages/paymentPage/paymentPage";
 
 export const Routes = [
     {
@@ -35,5 +36,10 @@ export const Routes = [
         component: CheckoutPage,
         exact: true,
         path: "/checkout"
+    },
+    {
+        component: PaymentPage,
+        exact: true,
+        path: "/payment"
     }
 ];

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../shared/layout/layout";
@@ -107,7 +108,9 @@ const CheckoutPage = () => {
                             </tfoot>
                         </table>
                     </div>
-                    <Button blue_small_text>PLACE ORDER</Button>
+                    <Link to="payment">
+                        <Button blue_small_text>PLACE ORDER</Button>
+                    </Link>
                 </div>
             </CheckoutPageContainer>
         </Layout>
