@@ -5,6 +5,8 @@ import ProductPage from "../components/pages/productPage/productPage";
 import CartPage from "../components/pages/cartPage/cartPage";
 import CheckoutPage from "../components/pages/checkoutPage/checkoutPage";
 import PaymentPage from "../components/pages/paymentPage/paymentPage";
+import SignUpPage from "../components/pages/signUpPage/signUpPage";
+import LoginPage from "../components/pages/loginPage/loginPage";
 
 export const Routes = [
     {
@@ -41,5 +43,15 @@ export const Routes = [
         component: PaymentPage,
         exact: true,
         path: "/payment"
+    },
+    {
+        component: SignUpPage,
+        excat: true,
+        path: "/signup"
+    },
+    {
+        component: LoginPage,
+        excat: true,
+        path: "/login"
     }
 ];
