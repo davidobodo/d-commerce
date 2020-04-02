@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
+import { devices } from "../../../styling/devices";
 
 const ipnut_fields = [
     {
@@ -31,9 +32,20 @@ const SignUpContainer = styled.div`
         border: 1px solid ${props => props.theme.primaryColor};
         padding: 30px 10px;
 
+        @media ${devices.tablet} {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
         h2 {
             font-weight: 400;
             margin-bottom: 20px;
+        }
+
+        div {
+            @media ${devices.tablet} {
+                width: 100%;
+            }
         }
     }
 
