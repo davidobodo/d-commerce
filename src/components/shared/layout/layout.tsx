@@ -20,6 +20,7 @@ const Body = styled.div`
 
     @media ${devices.tablet} {
         max-width: 1440px;
+        min-height: 80vh;
         margin: 0 auto;
         padding-left: ${props => props.theme.padding};
         padding-right: ${props => props.theme.padding};
