@@ -36,35 +36,25 @@ const related_products = [
     }
 ];
 
-const ProductPage = () => {
+const ProductPage = ({ location }) => {
+    const { image, name, price, description } = location.state.product;
     return (
         <Layout isFooterPresent>
             <ProductPageContainer>
                 <div className="wrapper">
                     <div className="product">
                         <div className="product__image">
+                            <img src={image} alt="" className="actual-image" />
                             <img
-                                src="https://images.unsplash.com/photo-1585314540179-a05ddca757c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                                alt=""
-                                className="actual-image"
-                            />
-                            <img
-                                src="https://images.unsplash.com/photo-1585314540179-a05ddca757c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                                alt=""
+                                src={image}
+                                alt={image}
                                 className="preview-image"
                             />
                         </div>
                         <div className="product__details">
-                            <h1 className="name">Coffee T-shirt</h1>
-                            <h3 className="price">$20.78</h3>
-                            <p className="info">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Magni, excepturi qui expedita
-                                tempore voluptates possimus provident libero
-                                neque, nobis, laudantium corporis deleniti fuga
-                                voluptas beatae natus quisquam! Eveniet, nulla
-                                soluta!
-                            </p>
+                            <h1 className="name">{name}</h1>
+                            <h3 className="price">{price}</h3>
+                            <p className="info">{description}</p>
                             <div className="sizes">
                                 <h4>Sizes</h4>
                                 <Dropdown options={allSizes} />

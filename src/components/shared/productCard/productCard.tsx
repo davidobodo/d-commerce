@@ -9,7 +9,7 @@ import { ProductCardProps } from "../../../interfaces/IProductCard";
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { image, name, rating, price } = product;
     return (
-        <Link to={"/product/" + name}>
+        <Link to={{ pathname: "/product/" + name, state: { product } }}>
             <ProductCardContainer image={image}>
                 <div className="img-wrapper">
                     <div className="image"></div>
