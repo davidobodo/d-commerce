@@ -2,12 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
+import Counter from "../../shared/counter/counter";
 import Tabs from "../../shared/tabs/tabs";
 import { ProductPageContainer } from "./style";
 import ProductCard from "../../shared/productCard/productCard";
 import banner from "../../../assets/img/banner.png";
 
-const allSizes = ["Large", "Medium", "Small", "X-Large", "X-small"];
+const allSizes = [
+    "Choose an option",
+    "Large",
+    "Medium",
+    "Small",
+    "X-Large",
+    "X-small"
+];
 
 const related_products = [
     {
@@ -59,11 +67,14 @@ const ProductPage = ({ location }) => {
                                 <h4>Sizes</h4>
                                 <Dropdown options={allSizes} />
                             </div>
-                            <Link to="/cart">
-                                <button className="btn-cart">
-                                    ADD TO CART
-                                </button>
-                            </Link>
+                            <div className="counter-cart">
+                                <Counter />
+                                <Link to="/cart">
+                                    <button className="btn-cart">
+                                        ADD TO CART
+                                    </button>
+                                </Link>
+                            </div>
                             <div className="data">
                                 <div className="data__section">
                                     <span>SKU:</span> N/A

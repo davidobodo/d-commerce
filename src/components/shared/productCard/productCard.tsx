@@ -21,9 +21,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                             <FontAwesomeIcon
                                 icon={faStar}
                                 className="checked"
+                                key={i}
                             />
                         ) : (
-                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} key={i} />
                         );
                     })}
                 </div>

@@ -76,6 +76,14 @@ export const ProductPageContainer = styled.div`
                     }
                 }
 
+                .counter-cart {
+                    display: flex;
+
+                    & > div {
+                        margin-right: 15px;
+                    }
+                }
+
                 .btn-cart {
                     border-bottom: 1px solid
                         ${props => props.theme.primaryColor};
