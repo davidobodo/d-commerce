@@ -4,13 +4,13 @@ import { InputContainer } from "./style";
 import { InputProps } from "../../../interfaces/IInput";
 
 // text-field
-const Input: React.FC<InputProps> = ({ label, placeholder }) => {
+const Input: React.FC<InputProps> = ({ label, placeholder, type = "text" }) => {
     return (
         <InputContainer>
             <label htmlFor="">
                 <h6>{label}</h6>
             </label>
-            <input type="text" placeholder={placeholder} />
+            <input type={type} placeholder={placeholder} />
         </InputContainer>
     );
 };
