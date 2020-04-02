@@ -40,16 +40,8 @@ const Home: React.FC<HomeProps> = () => {
                     </div>
                 </div>
                 <section className="products">
-                    {myproducts.map(product => {
-                        const { image, name, rating, price } = product;
-                        return (
-                            <ProductCard
-                                image={image}
-                                name={name}
-                                rating={rating}
-                                price={price}
-                            />
-                        );
+                    {myproducts.map((product, i) => {
+                        return <ProductCard product={product} key={i} />;
                     })}
                 </section>
             </HomeContainer>

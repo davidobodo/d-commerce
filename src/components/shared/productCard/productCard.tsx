@@ -4,14 +4,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { ProductCardContainer } from "./style";
 
-import { ProductProps } from "../../../interfaces/IProductCard";
+import { ProductCardProps } from "../../../interfaces/IProductCard";
 
-const ProductCard: React.FC<ProductProps> = ({
-    image,
-    name,
-    rating,
-    price
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+    const { image, name, rating, price } = product;
     return (
         <Link to={"/product/" + name}>
             <ProductCardContainer image={image}>

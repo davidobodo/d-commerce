@@ -92,15 +92,9 @@ const ProductPage = () => {
                     <div className="related-products">
                         <h1>Related products</h1>
                         <div className="related-products__products-wrapper">
-                            {related_products.map(product => {
-                                const { image, name, rating, price } = product;
+                            {related_products.map((product, i) => {
                                 return (
-                                    <ProductCard
-                                        image={image}
-                                        name={name}
-                                        rating={rating}
-                                        price={price}
-                                    />
+                                    <ProductCard product={product} key={i} />
                                 );
                             })}
                         </div>
