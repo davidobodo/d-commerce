@@ -8,6 +8,8 @@ import { ProductPageContainer } from "./style";
 import ProductCard from "../../shared/productCard/productCard";
 import banner from "../../../assets/img/banner.png";
 
+import { useSelector, shallowEqual } from "react-redux";
+
 const allSizes = [
     "Choose an option",
     "Large",
@@ -45,6 +47,8 @@ const related_products = [
 ];
 
 const ProductPage = ({ location }) => {
+    const cart = useSelector(state => state, shallowEqual);
+    console.log(cart);
     const { image, name, price, description } = location.state.product;
     return (
         <Layout isFooterPresent>
