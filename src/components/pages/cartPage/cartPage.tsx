@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
@@ -37,6 +37,7 @@ const cart_products = [
 ];
 
 const CartPage = () => {
+    const [no_of_products, set_no_of_products] = useState();
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -71,10 +72,10 @@ const CartPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart_products.map(product => {
+                                {cart_products.map((product, i) => {
                                     const { image, name, price } = product;
                                     return (
-                                        <tr>
+                                        <tr key={i}>
                                             <td className="col-cancel">
                                                 <div>
                                                     <FontAwesomeIcon
@@ -95,7 +96,11 @@ const CartPage = () => {
                                                 {price}
                                             </td>
                                             <td className="col-counter">
-                                                <Counter />
+                                                <Counter
+                                                    setValue={
+                                                        set_no_of_products
+                                                    }
+                                                />
                                             </td>
                                             <td className="col-total-price">
                                                 {price}

@@ -1,4 +1,4 @@
 export interface CounterProps {
     maxValue?: number;
-    setValue?: any;
+    setValue?: Function;
 }
