@@ -50,8 +50,6 @@ const ProductPage = ({ location }) => {
     // const cart = useSelector(state => state, shallowEqual);
     const [productSize, setProductSize] = useState();
     const [no_of_products, Set_no_of_products] = useState();
-
-    console.log(no_of_products);
     console.log(productSize);
 
     const { image, name, price, description } = location.state.product;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../shared/layout/layout";
 
 import ProductCard from "../../shared/productCard/productCard";
@@ -19,6 +19,7 @@ const allSorts = [
 ];
 
 const Home: React.FC<HomeProps> = () => {
+    const [sorting, setSorting] = useState();
     return (
         <Layout isFooterPresent>
             <HomeContainer>
@@ -33,7 +34,7 @@ const Home: React.FC<HomeProps> = () => {
                     <option value="high-low">Sort by price: high to low</option>
                 </select> */}
                 <div className="dropdown-shop">
-                    <Dropdown options={allSorts} />
+                    <Dropdown options={allSorts} selectedOption={setSorting} />
                     <div className="shop">
                         <h1>Shop</h1>
                         <h6>Showing 1-12 of 20 results</h6>

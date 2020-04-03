@@ -17,6 +17,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
     useEffect(() => {
         selectedOption(currentOption);
     }, [currentOption, selectedOption]);
+
     return (
         <DropdownContainer
             onClick={handleShowDropdown}
