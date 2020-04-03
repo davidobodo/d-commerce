@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
@@ -47,8 +47,13 @@ const related_products = [
 ];
 
 const ProductPage = ({ location }) => {
-    const cart = useSelector(state => state, shallowEqual);
-    console.log(cart);
+    // const cart = useSelector(state => state, shallowEqual);
+    const [productSize, setProductSize] = useState();
+    const [no_of_products, Set_no_of_products] = useState();
+
+    console.log(no_of_products);
+    console.log(productSize);
+
     const { image, name, price, description } = location.state.product;
     return (
         <Layout isFooterPresent>
@@ -69,10 +74,13 @@ const ProductPage = ({ location }) => {
                             <p className="info">{description}</p>
                             <div className="sizes">
                                 <h4>Sizes</h4>
-                                <Dropdown options={allSizes} />
+                                <Dropdown
+                                    options={allSizes}
+                                    selectedOption={setProductSize}
+                                />
                             </div>
                             <div className="counter-cart">
-                                <Counter />
+                                <Counter setValue={Set_no_of_products} />
                                 <Link to="/cart">
                                     <button className="btn-cart">
                                         ADD TO CART

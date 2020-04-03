@@ -1,43 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { CounterProps } from "../../../interfaces/ICounter";
+import { CounterContainer } from "./style";
 
-const CounterContainer = styled.div`
-    border: 1px solid ${props => props.theme.primaryColor};
-    display: flex;
-    width: 60px;
-
-    .counter {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 600;
-    }
-
-    .editor {
-        flex-basis: 40%;
-        background-color: #f7f7f7;
-        border-left: 1px solid ${props => props.theme.primaryColor};
-
-        .increase {
-            border-bottom: 1px solid ${props => props.theme.primaryColor};
-        }
-
-        .btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-
-            &:hover {
-                background-color: ${props => props.theme.primaryColor};
-            }
-        }
-    }
-`;
-
-const Counter: React.FC<CounterProps> = ({ maxValue }) => {
+const Counter: React.FC<CounterProps> = ({ maxValue, setValue }) => {
     const [count, setCount] = useState(1);
     maxValue = 10;
 
@@ -50,6 +15,10 @@ const Counter: React.FC<CounterProps> = ({ maxValue }) => {
             setCount(count - 1);
         }
     };
+
+    useEffect(() => {
+        setValue(count);
+    }, [count, setValue]);
     return (
         <CounterContainer>
             <div className="counter">{count}</div>
