@@ -77,12 +77,16 @@ const CartPage = () => {
                                                     </td>
                                                     <td className="col-name-size">
                                                         <h4>{name}</h4>
-                                                        <h5>
-                                                            Sizes:{" "}
-                                                            <span>
-                                                                {productSize}
-                                                            </span>
-                                                        </h5>
+                                                        {productSize && (
+                                                            <h5>
+                                                                Sizes:{" "}
+                                                                <span>
+                                                                    {
+                                                                        productSize
+                                                                    }
+                                                                </span>
+                                                            </h5>
+                                                        )}
                                                     </td>
                                                     <td className="col-price">
                                                         {price}
