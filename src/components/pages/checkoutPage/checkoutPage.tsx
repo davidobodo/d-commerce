@@ -44,7 +44,10 @@ const CheckoutPage = () => {
                                 <label htmlFor="">
                                     <h6>Country</h6>
                                 </label>
-                                <Dropdown options={countryList} />
+                                <Dropdown
+                                    options={countryList}
+                                    selectedOption={() => console.log("here")}
+                                />
                             </div>
                             <div className="street-address">
                                 <Input

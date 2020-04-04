@@ -92,6 +92,7 @@ export const ProductPageContainer = styled.div`
                     border: none;
                     font-size: 20px;
                     padding: 10px 20px;
+                    outline: none;
                 }
 
                 .data {

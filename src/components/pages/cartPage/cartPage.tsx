@@ -37,7 +37,7 @@ const cart_products = [
 ];
 
 const CartPage = () => {
-    const [no_of_products, set_no_of_products] = useState();
+    const [quantity, setQuantity] = useState();
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -97,9 +97,7 @@ const CartPage = () => {
                                             </td>
                                             <td className="col-counter">
                                                 <Counter
-                                                    setValue={
-                                                        set_no_of_products
-                                                    }
+                                                    setValue={setQuantity}
                                                 />
                                             </td>
                                             <td className="col-total-price">

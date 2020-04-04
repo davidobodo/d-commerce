@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Counter from "../../shared/counter/counter";
@@ -8,7 +8,8 @@ import { ProductPageContainer } from "./style";
 import ProductCard from "../../shared/productCard/productCard";
 import banner from "../../../assets/img/banner.png";
 
-import { useSelector, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../../../redux/actions/cart";
 
 const allSizes = [
     "Choose an option",
@@ -47,12 +48,20 @@ const related_products = [
 ];
 
 const ProductPage = ({ location }) => {
-    // const cart = useSelector(state => state, shallowEqual);
     const [productSize, setProductSize] = useState();
-    const [no_of_products, Set_no_of_products] = useState();
-    console.log(productSize);
+    const [quantity, setQuantity] = useState();
+    const { image, name, price, description, id } = location.state.product;
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const { image, name, price, description } = location.state.product;
+    const handleUpdateCart = () => {
+        if (productSize === "Choose an option") {
+            alert("please select a size");
+            return;
+        }
+        dispatch(updateCart({ id, productSize, quantity }));
+        history.push("/cart");
+    };
     return (
         <Layout isFooterPresent>
             <ProductPageContainer>
@@ -78,12 +87,13 @@ const ProductPage = ({ location }) => {
                                 />
                             </div>
                             <div className="counter-cart">
-                                <Counter setValue={Set_no_of_products} />
-                                <Link to="/cart">
-                                    <button className="btn-cart">
-                                        ADD TO CART
-                                    </button>
-                                </Link>
+                                <Counter setValue={setQuantity} />
+                                <button
+                                    className="btn-cart"
+                                    onClick={handleUpdateCart}
+                                >
+                                    ADD TO CART
+                                </button>
                             </div>
                             <div className="data">
                                 <div className="data__section">
