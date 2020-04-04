@@ -18,3 +18,11 @@ export const updateCart = (
         productQuantity
     };
 };
+
+export const updateCount = (num, cartProductId) => {
+    return {
+        type: actionTypes.UPDATE_COUNT,
+        num,
+        cartProductId
+    };
+};

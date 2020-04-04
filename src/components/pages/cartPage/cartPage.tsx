@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
@@ -8,17 +8,39 @@ import Counter from "../../shared/counter/counter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterface";
+import { updateCount } from "../../../redux/actions/cart";
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
+
     const cart = useSelector(state => state.cart, shallowEqual);
 
-    const renderTotalPrice = (price: any, quantity: any) => {
+    const dispatch = useDispatch();
+
+    const renderItemTotalPrice = (price: any, quantity: any) => {
         return `$${(parseFloat(price.slice(1)) * quantity).toFixed(2)}`;
     };
+
+    const renderTotalPrice = () => {
+        if (!!cart) {
+            const total = Object.values(cart)
+                .map((item: cartActionInterface) => {
+                    const { price, productQuantity } = item;
+                    const item_total_price = (
+                        parseFloat(price.slice(1)) * parseInt(productQuantity)
+                    ).toFixed(2);
+                    return parseFloat(item_total_price);
+                })
+                .reduce((i: number, j: any) => {
+                    return (i + j) as number;
+                }, 0);
+            return `$${total}`;
+        }
+    };
+
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -54,68 +76,63 @@ const CartPage = () => {
                             </thead>
                             <tbody>
                                 {!!cart &&
-                                    Object.values(cart).map(
-                                        (item: cartActionInterface, i) => {
-                                            const {
-                                                name,
-                                                image,
-                                                price,
-                                                productSize,
-                                                productQuantity
-                                            } = item;
-                                            return (
-                                                <tr key={i}>
-                                                    <td className="col-cancel">
-                                                        <div>
-                                                            <FontAwesomeIcon
-                                                                icon={faPlus}
-                                                            />
-                                                        </div>
-                                                    </td>
-                                                    <td className="col-img">
-                                                        <img
-                                                            src={image}
-                                                            alt={image}
+                                    Object.entries(cart).map((item: any, i) => {
+                                        const {
+                                            name,
+                                            image,
+                                            price,
+                                            productSize,
+                                            productQuantity
+                                        } = item[1] as cartActionInterface;
+                                        const cartProductId = item[0];
+                                        return (
+                                            <tr key={i}>
+                                                <td className="col-cancel">
+                                                    <div>
+                                                        <FontAwesomeIcon
+                                                            icon={faPlus}
                                                         />
-                                                    </td>
-                                                    <td className="col-name-size">
-                                                        <h4>{name}</h4>
-                                                        {productSize && (
-                                                            <h5>
-                                                                Sizes:{" "}
-                                                                <span>
-                                                                    {
-                                                                        productSize
-                                                                    }
-                                                                </span>
-                                                            </h5>
-                                                        )}
-                                                    </td>
-                                                    <td className="col-price">
-                                                        {price}
-                                                    </td>
-                                                    <td className="col-counter">
-                                                        <Counter
-                                                            setValue={
-                                                                setQuantity
-                                                            }
-                                                            initialCount={
-                                                                productQuantity
-                                                            }
-                                                        />
-                                                    </td>
-                                                    <td className="col-total-price">
-                                                        {
-                                                            renderTotalPrice(
-                                                                price,
-                                                                productQuantity
-                                                            ) as any
+                                                    </div>
+                                                </td>
+                                                <td className="col-img">
+                                                    <img
+                                                        src={image}
+                                                        alt={image}
+                                                    />
+                                                </td>
+                                                <td className="col-name-size">
+                                                    <h4>{name}</h4>
+                                                    {productSize && (
+                                                        <h5>
+                                                            Sizes:{" "}
+                                                            <span>
+                                                                {productSize}
+                                                            </span>
+                                                        </h5>
+                                                    )}
+                                                </td>
+                                                <td className="col-price">
+                                                    {price}
+                                                </td>
+                                                <td className="col-counter">
+                                                    <Counter
+                                                        setValue={setQuantity}
+                                                        initialCount={
+                                                            productQuantity
                                                         }
-                                                    </td>
-                                                </tr>
-                                            );
-                                        }
-                                    )}
+                                                    />
+                                                </td>
+                                                <td className="col-total-price">
+                                                    {
+                                                        renderItemTotalPrice(
+                                                            price,
+                                                            productQuantity
+                                                        ) as any
+                                                    }
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
                             </tbody>
                             <tfoot className="desktop-table-footer">
                                 <tr>
@@ -134,7 +151,10 @@ const CartPage = () => {
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <Button ash_small_text>
+                                        <Button
+                                            ash_small_text
+                                            // onClick={handleUpdateCart}
+                                        >
                                             Update Cart
                                         </Button>
                                     </td>
@@ -157,12 +177,12 @@ const CartPage = () => {
                                     <tr>
                                         <td>Subtotal:</td>
                                         <td className="subtotal-value">
-                                            $180.96
+                                            {renderTotalPrice() as any}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Total:</td>
-                                        <td>$180.96</td>
+                                        <td>{renderTotalPrice() as any}</td>
                                     </tr>
                                 </tbody>
                             </table>

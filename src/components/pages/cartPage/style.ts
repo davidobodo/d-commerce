@@ -73,7 +73,7 @@ export const CartPageContainer = styled.div`
                         border-bottom: 1px solid
                             ${props => props.theme.primaryColor};
 
-                        &:nth-child(2n) {
+                        &:nth-child(even) {
                             background-color: #f7f7f7;
                         }
 
@@ -84,9 +84,11 @@ export const CartPageContainer = styled.div`
                                 width: 70px;
                                 padding-left: 20px;
                             }
+
                             div {
                                 display: inline-block;
                                 padding: 3px;
+
                                 svg {
                                     color: #ff0000;
                                     transform: rotate(45deg);
@@ -110,6 +112,7 @@ export const CartPageContainer = styled.div`
                                 width: 80px;
                                 padding-top: 10px;
                                 padding-bottom: 10px;
+
                                 img {
                                     object-fit: cover;
                                     width: 80px;

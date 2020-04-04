@@ -6,4 +6,5 @@ export interface cartActionInterface {
     productSize?: any;
     productQuantity?: any;
     type: any;
+    num: number;
 }

@@ -3,18 +3,16 @@ import { cartActionInterface } from "./cartInterface";
 const initState = null;
 
 export default (state = initState, action: cartActionInterface) => {
-    const {
-        type,
-        cartProductId,
-        productSize,
-        productQuantity,
-        name,
-        image,
-        price
-    } = action;
-
-    switch (type) {
+    switch (action.type) {
         case actionTypes.UPDATE_CART:
+            const {
+                cartProductId,
+                productSize,
+                productQuantity,
+                name,
+                image,
+                price
+            } = action;
             return {
                 ...state,
                 [cartProductId]: {
@@ -23,6 +21,15 @@ export default (state = initState, action: cartActionInterface) => {
                     price,
                     productSize,
                     productQuantity
+                }
+            };
+        case actionTypes.UPDATE_COUNT:
+            const { num, cartProductId: _cartProductId } = action;
+            return {
+                ...state,
+                [_cartProductId]: {
+                    ...state,
+                    productQuantity: num
                 }
             };
         default:
