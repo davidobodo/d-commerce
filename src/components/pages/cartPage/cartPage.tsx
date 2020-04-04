@@ -12,33 +12,6 @@ import { useSelector, shallowEqual } from "react-redux";
 
 import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterface";
 
-const cart_products = [
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    }
-];
-
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
     const cart = useSelector(state => state.cart, shallowEqual);
@@ -118,6 +91,9 @@ const CartPage = () => {
                                                         <Counter
                                                             setValue={
                                                                 setQuantity
+                                                            }
+                                                            initialCount={
+                                                                productQuantity
                                                             }
                                                         />
                                                     </td>

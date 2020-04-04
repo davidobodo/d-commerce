@@ -13,15 +13,6 @@ import { updateCart } from "../../../redux/actions/cart";
 
 import { v4 as uuidv4 } from "uuid";
 
-const allSizes = [
-    "Choose an option",
-    "Large",
-    "Medium",
-    "Small",
-    "X-Large",
-    "X-small"
-];
-
 const related_products = [
     {
         image: banner,
@@ -57,6 +48,7 @@ const ProductPage = ({ location }) => {
         name,
         price,
         description,
+        sizes,
         id: productId
     } = location.state.product;
     const dispatch = useDispatch();
@@ -97,13 +89,16 @@ const ProductPage = ({ location }) => {
                             <h1 className="name">{name}</h1>
                             <h3 className="price">{price}</h3>
                             <p className="info">{description}</p>
-                            <div className="sizes">
-                                <h4>Sizes</h4>
-                                <Dropdown
-                                    options={allSizes}
-                                    selectedOption={setProductSize}
-                                />
-                            </div>
+                            {sizes && (
+                                <div className="sizes">
+                                    <h4>Sizes</h4>
+                                    <Dropdown
+                                        options={sizes}
+                                        selectedOption={setProductSize}
+                                    />
+                                </div>
+                            )}
+
                             <div className="counter-cart">
                                 <Counter setValue={setProductQuantity} />
                                 <button

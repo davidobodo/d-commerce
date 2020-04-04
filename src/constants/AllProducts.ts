@@ -8,6 +8,7 @@ export const myproducts = [
         name: "Vans shoe",
         rating: 2,
         price: "$20.98",
+        sizes: [32, 35, 40, 42, 25],
         description:
             "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time and from culture to culture, with appearance originally being tied to function."
     },
@@ -18,6 +19,7 @@ export const myproducts = [
         name: "delux T-shirt",
         rating: 4,
         price: "$10",
+        sizes: ["Large", "Medium", "Small", "X-Large", "X-small"],
         description:
             "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     },
@@ -38,6 +40,7 @@ export const myproducts = [
         name: "coutour brande",
         rating: 3,
         price: "$50.98",
+        sizes: ["Large", "Medium", "Small", "X-Large", "X-small"],
         description:
             "a set of outer clothes made of the same fabric and designed to be worn together, typically consisting of a jacket and trousers or a jacket and skirt."
     },

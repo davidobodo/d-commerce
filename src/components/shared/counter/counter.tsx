@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { CounterProps } from "../../../interfaces/ICounter";
 import { CounterContainer } from "./style";
 
-const Counter: React.FC<CounterProps> = ({ maxValue, setValue }) => {
-    const [count, setCount] = useState(1);
+const Counter: React.FC<CounterProps> = ({
+    maxValue,
+    setValue,
+    initialCount = 1
+}) => {
+    const [count, setCount] = useState(initialCount);
     maxValue = 10;
 
     const handleSetCount = e => {
