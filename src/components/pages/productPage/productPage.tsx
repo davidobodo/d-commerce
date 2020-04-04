@@ -11,6 +11,8 @@ import banner from "../../../assets/img/banner.png";
 import { useDispatch } from "react-redux";
 import { updateCart } from "../../../redux/actions/cart";
 
+import { v4 as uuidv4 } from "uuid";
+
 const allSizes = [
     "Choose an option",
     "Large",
@@ -49,8 +51,14 @@ const related_products = [
 
 const ProductPage = ({ location }) => {
     const [productSize, setProductSize] = useState();
-    const [quantity, setQuantity] = useState();
-    const { image, name, price, description, id } = location.state.product;
+    const [productQuantity, setProductQuantity] = useState();
+    const {
+        image,
+        name,
+        price,
+        description,
+        id: productId
+    } = location.state.product;
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -59,7 +67,17 @@ const ProductPage = ({ location }) => {
             alert("please select a size");
             return;
         }
-        dispatch(updateCart({ id, productSize, quantity }));
+        const cartProductId = uuidv4();
+        dispatch(
+            updateCart(
+                cartProductId,
+                name,
+                image,
+                price,
+                productSize,
+                productQuantity
+            )
+        );
         history.push("/cart");
     };
     return (
@@ -87,7 +105,7 @@ const ProductPage = ({ location }) => {
                                 />
                             </div>
                             <div className="counter-cart">
-                                <Counter setValue={setQuantity} />
+                                <Counter setValue={setProductQuantity} />
                                 <button
                                     className="btn-cart"
                                     onClick={handleUpdateCart}

@@ -8,6 +8,9 @@ import Counter from "../../shared/counter/counter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, shallowEqual } from "react-redux";
+
+import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterface";
 
 const cart_products = [
     {
@@ -38,6 +41,7 @@ const cart_products = [
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
+    const cart = useSelector(state => state.cart, shallowEqual);
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -72,40 +76,58 @@ const CartPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart_products.map((product, i) => {
-                                    const { image, name, price } = product;
-                                    return (
-                                        <tr key={i}>
-                                            <td className="col-cancel">
-                                                <div>
-                                                    <FontAwesomeIcon
-                                                        icon={faPlus}
-                                                    />
-                                                </div>
-                                            </td>
-                                            <td className="col-img">
-                                                <img src={image} alt={image} />
-                                            </td>
-                                            <td className="col-name-size">
-                                                <h4>{name}</h4>
-                                                <h5>
-                                                    Sizes: <span>Large</span>
-                                                </h5>
-                                            </td>
-                                            <td className="col-price">
-                                                {price}
-                                            </td>
-                                            <td className="col-counter">
-                                                <Counter
-                                                    setValue={setQuantity}
-                                                />
-                                            </td>
-                                            <td className="col-total-price">
-                                                {price}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
+                                {!!cart &&
+                                    Object.values(cart).map(
+                                        (item: cartActionInterface, i) => {
+                                            console.log(item);
+                                            const {
+                                                name,
+                                                image,
+                                                price,
+                                                productSize,
+                                                productQuantity
+                                            } = item;
+                                            return (
+                                                <tr key={i}>
+                                                    <td className="col-cancel">
+                                                        <div>
+                                                            <FontAwesomeIcon
+                                                                icon={faPlus}
+                                                            />
+                                                        </div>
+                                                    </td>
+                                                    <td className="col-img">
+                                                        <img
+                                                            src={image}
+                                                            alt={image}
+                                                        />
+                                                    </td>
+                                                    <td className="col-name-size">
+                                                        <h4>{name}</h4>
+                                                        <h5>
+                                                            Sizes:{" "}
+                                                            <span>
+                                                                {productSize}
+                                                            </span>
+                                                        </h5>
+                                                    </td>
+                                                    <td className="col-price">
+                                                        {price}
+                                                    </td>
+                                                    <td className="col-counter">
+                                                        <Counter
+                                                            setValue={
+                                                                setQuantity
+                                                            }
+                                                        />
+                                                    </td>
+                                                    <td className="col-total-price">
+                                                        {/* {price} */}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        }
+                                    )}
                             </tbody>
                             <tfoot className="desktop-table-footer">
                                 <tr>
