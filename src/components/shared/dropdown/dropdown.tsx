@@ -6,7 +6,6 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
     let allOptions = ["Choose an option", ...options];
     const [showDropdown, setShowDropdown] = useState(false);
     const [currentOption, setCurrentOption] = useState(allOptions[0]);
-    console.log(allOptions);
 
     const handleShowDropdown = () => {
         setShowDropdown(!showDropdown);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
@@ -15,6 +15,10 @@ import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterf
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
     const cart = useSelector(state => state.cart, shallowEqual);
+
+    const renderTotalPrice = (price: any, quantity: any) => {
+        return `$${(parseFloat(price.slice(1)) * quantity).toFixed(2)}`;
+    };
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -52,7 +56,6 @@ const CartPage = () => {
                                 {!!cart &&
                                     Object.values(cart).map(
                                         (item: cartActionInterface, i) => {
-                                            console.log(item);
                                             const {
                                                 name,
                                                 image,
@@ -102,7 +105,12 @@ const CartPage = () => {
                                                         />
                                                     </td>
                                                     <td className="col-total-price">
-                                                        {/* {price} */}
+                                                        {
+                                                            renderTotalPrice(
+                                                                price,
+                                                                productQuantity
+                                                            ) as any
+                                                        }
                                                     </td>
                                                 </tr>
                                             );
