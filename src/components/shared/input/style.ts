@@ -16,6 +16,13 @@ export const InputContainer = styled.div<InputProps>`
             margin-bottom: 10px;
             font-weight: 800;
         }
+
+        svg {
+            color: #ff0000;
+            width: 7px !important;
+            margin-left: 3px;
+            margin-bottom: 3px;
+        }
     }
 
     input {

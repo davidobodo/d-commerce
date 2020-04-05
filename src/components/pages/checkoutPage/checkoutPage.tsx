@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,8 @@ import { CheckoutPageContainer } from "./style";
 import { countryList } from "../../../constants/AllCountries";
 
 const CheckoutPage = () => {
+    const [currentCountry, setCurrentCountry] = useState();
+    console.log(currentCountry);
     return (
         <Layout isFooterPresent>
             <CheckoutPageContainer>
@@ -19,7 +21,7 @@ const CheckoutPage = () => {
                     <div className="checkout__header">
                         <h1>Checkout</h1>
                     </div>
-                    <div className="checkout__alert">
+                    {/* <div className="checkout__alert">
                         <FontAwesomeIcon icon={faInfo} />
                         <h4>
                             Returning customer? <span>Click here to login</span>
@@ -31,13 +33,13 @@ const CheckoutPage = () => {
                             Have a coupon?{" "}
                             <span>Click here to enter your coupon</span>
                         </h4>
-                    </div>
+                    </div> */}
                     <div className="checkout__user-info">
                         <form action="" className="checkout__user-info__form">
                             <h2>Billing details</h2>
                             <div className="field-input">
-                                <Input label="First name" />
-                                <Input label="Last name" />
+                                <Input label="First name" required />
+                                <Input label="Last name" required />
                             </div>
                             <Input label="Company name(optional)" />
                             <div className="dropdown">
@@ -46,25 +48,27 @@ const CheckoutPage = () => {
                                 </label>
                                 <Dropdown
                                     options={countryList}
-                                    selectedOption={() => console.log("here")}
+                                    selectedOption={setCurrentCountry}
                                 />
                             </div>
                             <div className="street-address">
                                 <Input
                                     label="Street address"
                                     placeholder="House number and street name"
+                                    required
                                 />
                                 <Input placeholder="Apartment, suite, unit etc.(optional)" />
                             </div>
-                            <Input label="Town/City" />
+                            <Input label="Town/City" required />
                             <Input
                                 label="State/County"
                                 placeholder="Select an option..."
+                                required
                             />
 
-                            <Input label="Postcode/ZIP" />
-                            <Input label="Phone" />
-                            <Input label="Email address" />
+                            <Input label="Postcode/ZIP" required />
+                            <Input label="Phone" required />
+                            <Input label="Email address" required />
                         </form>
                         <div className="checkout__user-info__add-info">
                             <h2>Additional Information</h2>
