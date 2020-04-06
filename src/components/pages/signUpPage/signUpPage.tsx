@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
-import { devices } from "../../../styling/devices";
+import { SignUpContainer } from "./style";
+import { requestSignUpStart } from "../../../redux/actions/auth";
 
 const ipnut_fields = [
     {
@@ -24,47 +25,32 @@ const ipnut_fields = [
     }
 ];
 
-const SignUpContainer = styled.div`
-    margin-top: 50px;
-    margin-bottom: 100px;
-
-    form {
-        border: 1px solid ${props => props.theme.primaryColor};
-        padding: 30px 10px;
-
-        @media ${devices.tablet} {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-
-        div {
-            @media ${devices.tablet} {
-                width: 100%;
-            }
-        }
-    }
-
-    //-------------------------------------------------------------------------
-    //resets on some components on this page
-    //-------------------------------------------------------------------------
-
-    h6 {
-        font-size: 14px;
-        margin-bottom: 10px;
-        font-weight: 800;
-    }
-`;
-
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const [userDetails, setUserDetails] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    });
+    const handleOnChange = e => {
+        const { name, value } = e.target;
+        setUserDetails({ ...userDetails, [name]: value });
+    };
+    const handleOnsubmit = e => {
+        e.preventDefault();
+        console.log(userDetails);
+        dispatch(requestSignUpStart(userDetails));
+    };
     return (
         <Layout isFooterPresent>
             <SignUpContainer>
-                <form action="">
+                <form
+                    action=""
+                    onSubmit={handleOnsubmit}
+                    onChange={handleOnChange}
+                    noValidate
+                >
                     <h2>Sign Up</h2>
                     {ipnut_fields.map((field, i) => {
                         const { label, type } = field;
