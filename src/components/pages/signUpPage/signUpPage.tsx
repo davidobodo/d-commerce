@@ -9,19 +9,23 @@ import { requestSignUpStart } from "../../../redux/actions/auth";
 const ipnut_fields = [
     {
         label: "First Name",
-        type: "text"
+        type: "text",
+        name: "firstName"
     },
     {
         label: "Last Name",
-        type: "text"
+        type: "text",
+        name: "lastName"
     },
     {
         label: "Email",
-        type: "email"
+        type: "email",
+        name: "email"
     },
     {
         label: "Password",
-        type: "password"
+        type: "password",
+        name: "password"
     }
 ];
 
@@ -53,8 +57,15 @@ const SignUp = () => {
                 >
                     <h2>Sign Up</h2>
                     {ipnut_fields.map((field, i) => {
-                        const { label, type } = field;
-                        return <Input key={i} label={label} type={type} />;
+                        const { label, type, name } = field;
+                        return (
+                            <Input
+                                key={i}
+                                label={label}
+                                type={type}
+                                name={name}
+                            />
+                        );
                     })}
                     <Button blue_small_text>Sign Up</Button>
                 </form>
