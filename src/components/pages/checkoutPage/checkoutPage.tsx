@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../shared/layout/layout";
@@ -12,8 +12,120 @@ import { CheckoutPageContainer } from "./style";
 import { countryList } from "../../../constants/AllCountries";
 
 const CheckoutPage = () => {
+    const history = useHistory();
     const [currentCountry, setCurrentCountry] = useState();
-    console.log(currentCountry);
+
+    const [userDetails, setUserDetails] = useState({
+        firstName: "",
+        lastName: "",
+        company: "",
+        country: "",
+        streetAddress: "",
+        apartment: "",
+        town: "",
+        state: "",
+        zip: "",
+        phoneNumber: "",
+        email: "",
+        orderNotes: ""
+    });
+
+    const handleSetCurrentCountry = () => {
+        // setUserDetails({
+        //     ...userDetails,
+        //     country: currentCountry
+        // });
+    };
+
+    const handleOnChange = e => {
+        const { name, value } = e.target;
+        setUserDetails({
+            ...userDetails,
+            [name]: value
+        });
+    };
+
+    const handleValidateForm = () => {
+        const {
+            firstName,
+            lastName,
+            company,
+            country,
+            streetAddress,
+            town,
+            state,
+            zip,
+            phoneNumber,
+            email
+        } = userDetails;
+        const letters = /^[A-Za-z]+$/;
+
+        //--
+        if (firstName == "") {
+            console.log("Name cannot be empty");
+        }
+
+        if (!firstName.match(letters)) {
+            console.log("please input only letters");
+        }
+        //--
+
+        //--
+        if (lastName == "") {
+            console.log("Name cannot be empty");
+        }
+
+        if (!lastName.match(letters)) {
+            console.log("please input only letters");
+        }
+        //--
+
+        //--
+        if (zip == "") {
+            console.log("Zip cannot be empty");
+        }
+
+        if (zip.length !== 5) {
+            console.log("zip code must be 5 numbers");
+        }
+        //--
+
+        if (company == "") {
+            console.log("company cannot be empty");
+        }
+
+        if (streetAddress == "") {
+            console.log("street address cannot be empty");
+        }
+
+        if (town == "") {
+            console.log("town cannot be empty");
+        }
+
+        if (state == "") {
+            console.log("state cannot be empty");
+        }
+
+        if (phoneNumber == "") {
+            console.log("phoneNumber cannot be empty");
+        }
+
+        if (email == "") {
+            console.log("email cannot be empty");
+        }
+
+        if (country === "Choose an option") {
+            console.log("Please select a country");
+        }
+    };
+
+    const handleOnSubmit = e => {
+        handleValidateForm();
+        userDetails.country = currentCountry;
+        console.log(userDetails);
+        // history.push("/payment");
+    };
+
     return (
         <Layout isFooterPresent>
             <CheckoutPageContainer>
@@ -35,13 +147,29 @@ const CheckoutPage = () => {
                         </h4>
                     </div> */}
                     <div className="checkout__user-info">
-                        <form action="" className="checkout__user-info__form">
+                        <form
+                            action=""
+                            className="checkout__user-info__form"
+                            onChange={handleOnChange}
+                            onSubmit={handleOnSubmit}
+                        >
                             <h2>Billing details</h2>
                             <div className="field-input">
-                                <Input label="First name" required />
-                                <Input label="Last name" required />
+                                <Input
+                                    label="First name"
+                                    name="firstName"
+                                    required
+                                />
+                                <Input
+                                    label="Last name"
+                                    name="lastName"
+                                    required
+                                />
                             </div>
-                            <Input label="Company name(optional)" />
+                            <Input
+                                label="Company name(optional)"
+                                name="company"
+                            />
                             <div className="dropdown">
                                 <label htmlFor="">
                                     <h6>Country</h6>
@@ -55,20 +183,29 @@ const CheckoutPage = () => {
                                 <Input
                                     label="Street address"
                                     placeholder="House number and street name"
+                                    name="streetAddress"
                                     required
                                 />
-                                <Input placeholder="Apartment, suite, unit etc.(optional)" />
+                                <Input
+                                    placeholder="Apartment, suite, unit etc.(optional)"
+                                    name="apartment"
+                                />
                             </div>
-                            <Input label="Town/City" required />
+                            <Input label="Town/City" required name="town" />
                             <Input
                                 label="State/County"
                                 placeholder="Select an option..."
+                                name="state"
                                 required
                             />
 
-                            <Input label="Postcode/ZIP" required />
-                            <Input label="Phone" required />
-                            <Input label="Email address" required />
+                            <Input label="Postcode/ZIP" name="zip" required />
+                            <Input label="Phone" name="phone" required />
+                            <Input
+                                label="Email address"
+                                name="email"
+                                required
+                            />
                         </form>
                         <div className="checkout__user-info__add-info">
                             <h2>Additional Information</h2>
@@ -115,9 +252,9 @@ const CheckoutPage = () => {
                             </tfoot>
                         </table>
                     </div>
-                    <Link to="payment">
+                    <div className="checkout__btn" onClick={handleOnSubmit}>
                         <Button blue_small_text>PLACE ORDER</Button>
-                    </Link>
+                    </div>
                 </div>
             </CheckoutPageContainer>
         </Layout>

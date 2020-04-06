@@ -3,4 +3,5 @@ export interface InputProps {
     placeholder?: string;
     type?: string;
     required?: boolean;
+    name?: string;
 }

@@ -123,6 +123,10 @@ export const CheckoutPageContainer = styled.div`
                 }
             }
         }
+
+        &__btn {
+            display: inline-block;
+        }
     }
 
     //-------------------------------------------------------------------------

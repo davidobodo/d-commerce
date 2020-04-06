@@ -10,6 +10,7 @@ import { InputProps } from "../../../interfaces/IInput";
 const Input: React.FC<InputProps> = ({
     label,
     placeholder,
+    name,
     required = false,
     type = "text"
 }) => {
@@ -21,7 +22,7 @@ const Input: React.FC<InputProps> = ({
                     {required && <FontAwesomeIcon icon={faStar} />}
                 </h6>
             </label>
-            <input type={type} placeholder={placeholder} />
+            <input type={type} placeholder={placeholder} name={name} />
         </InputContainer>
     );
 };
