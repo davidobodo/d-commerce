@@ -43,7 +43,6 @@ const SignUp = () => {
     };
     const handleOnsubmit = e => {
         e.preventDefault();
-        console.log(userDetails);
         dispatch(requestSignUpStart(userDetails));
     };
     return (

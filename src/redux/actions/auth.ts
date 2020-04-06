@@ -32,7 +32,7 @@ export const requestSignUpError = error => {
     };
 };
 
-export const requestUserLogin = payload => {
+export const requestUserLoginStart = payload => {
     return {
         type: REQUEST_USERLOGIN_START,
         payload
