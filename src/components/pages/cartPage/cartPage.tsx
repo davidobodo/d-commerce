@@ -21,7 +21,10 @@ const CartPage = () => {
     const dispatch = useDispatch();
 
     const renderItemTotalPrice = (price: any, quantity: any) => {
-        return `$${(parseFloat(price.slice(1)) * quantity).toFixed(2)}`;
+        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
+            2
+        )}`;
+        return totalPrice;
     };
 
     const renderTotalPrice = () => {
@@ -83,7 +86,7 @@ const CartPage = () => {
                                             price,
                                             productSize,
                                             productQuantity
-                                        } = item[1] as cartActionInterface;
+                                        } = item[1];
                                         const cartProductId = item[0];
                                         return (
                                             <tr key={i}>
@@ -186,7 +189,7 @@ const CartPage = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link to="/checkout">
+                            <Link to={{ pathname: "/checkout" }}>
                                 <Button blue_small_text>
                                     Proceed to checkout
                                 </Button>

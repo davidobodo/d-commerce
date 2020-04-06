@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../shared/layout/layout";
@@ -13,6 +14,9 @@ import { countryList } from "../../../constants/AllCountries";
 
 const CheckoutPage = () => {
     const history = useHistory();
+    const cart = useSelector(state => {
+        return state.cart;
+    }, shallowEqual);
     const [currentCountry, setCurrentCountry] = useState();
 
     const [userDetails, setUserDetails] = useState({
@@ -126,6 +130,30 @@ const CheckoutPage = () => {
         // history.push("/payment");
     };
 
+    const renderItemTotalPrice = (price: any, quantity: any) => {
+        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
+            2
+        )}`;
+        return totalPrice;
+    };
+
+    const renderTotalPrice = () => {
+        if (!!cart) {
+            const total = Object.values(cart)
+                .map((item: any) => {
+                    const { price, productQuantity } = item;
+                    const item_total_price = (
+                        parseFloat(price.slice(1)) * parseInt(productQuantity)
+                    ).toFixed(2);
+                    return parseFloat(item_total_price);
+                })
+                .reduce((i: number, j: any) => {
+                    return (i + j) as number;
+                }, 0);
+            return `$${total}`;
+        }
+    };
+
     return (
         <Layout isFooterPresent>
             <CheckoutPageContainer>
@@ -231,23 +259,34 @@ const CheckoutPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>T-shirt</td>
-                                    <td>$56.45</td>
-                                </tr>
-                                <tr>
-                                    <td>Boffin-T-shirt</td>
-                                    <td>$56.45</td>
-                                </tr>
+                                {!!cart &&
+                                    Object.values(cart).map((item: any, i) => {
+                                        const {
+                                            name,
+                                            price,
+                                            productQuantity
+                                        } = item;
+                                        return (
+                                            <tr key={i}>
+                                                <td>{name}</td>
+                                                <td>
+                                                    {renderItemTotalPrice(
+                                                        price,
+                                                        productQuantity
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td>Subtotal:</td>
-                                    <td>$180.96</td>
+                                    <td>{renderTotalPrice()}</td>
                                 </tr>
                                 <tr>
                                     <td>Total:</td>
-                                    <td>$180.96</td>
+                                    <td>{renderTotalPrice()}</td>
                                 </tr>
                             </tfoot>
                         </table>
