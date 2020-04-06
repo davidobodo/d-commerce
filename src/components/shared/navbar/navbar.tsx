@@ -17,10 +17,10 @@ const Navbar = () => {
                         <li>Features</li>
                         <li>Blog</li>
                     </ul>
-                    <ul className="nav__links__auth">
+                    <div className="nav__links__auth">
                         <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link>
-                    </ul>
+                    </div>
                 </ul>
             </nav>
         </NavbarContainer>
