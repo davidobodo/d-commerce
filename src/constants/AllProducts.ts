@@ -119,7 +119,7 @@ export const myproducts = [
             "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     },
     {
-        id: "shirt/1",
+        id: "shirt/2",
         image: shirt2,
         name: "Bad Gang T Shirt - Black",
         rating: 2,
@@ -128,7 +128,7 @@ export const myproducts = [
             "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     },
     {
-        id: "shirt/1",
+        id: "shirt/3",
         image: shirt3,
         name: "Birrs Casual Tee",
         rating: 4,
@@ -137,7 +137,7 @@ export const myproducts = [
             "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     },
     {
-        id: "shirt/1",
+        id: "shirt/4",
         image: shirt4,
         name: "4-in-1 quality Men's polo",
         rating: 5,
@@ -146,7 +146,7 @@ export const myproducts = [
             "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     },
     {
-        id: "shirt/1",
+        id: "shirt/5",
         image: shirt5,
         name: "Men's white stylish T-shirt",
         rating: 3,

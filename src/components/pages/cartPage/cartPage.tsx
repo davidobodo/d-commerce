@@ -61,9 +61,11 @@ const CartPage = () => {
                                 </h4>
                             </div>
                             <div className="second-section">
-                                <Button blue_small_text>
-                                    Continue Shopping
-                                </Button>
+                                <Link to="/">
+                                    <Button blue_small_text>
+                                        Continue Shopping
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                         <table className="cart__table">
