@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
+import Spinner from "../../shared/spinner/spinner";
 import { requestUserLoginStart } from "../../../redux/actions/auth";
 import { LoginContainer } from "./style";
 
@@ -21,9 +22,8 @@ const ipnut_fields = [
 
 const Login = () => {
     const dispatch = useDispatch();
+    const isLoading = useSelector(state => state.login.loading, shallowEqual);
     const [userDetails, setUserDetails] = useState({
-        firstName: "",
-        lastName: "",
         email: "",
         password: ""
     });
@@ -37,6 +37,7 @@ const Login = () => {
     };
     return (
         <Layout isFooterPresent>
+            {isLoading && <Spinner />}
             <LoginContainer>
                 <form
                     action=""
@@ -46,8 +47,15 @@ const Login = () => {
                 >
                     <h2>Login</h2>
                     {ipnut_fields.map((field, i) => {
-                        const { label, type } = field;
-                        return <Input key={i} label={label} type={type} />;
+                        const { label, type, name } = field;
+                        return (
+                            <Input
+                                key={i}
+                                label={label}
+                                type={type}
+                                name={name}
+                            />
+                        );
                     })}
                     <Button blue_small_text>Login</Button>
                 </form>

@@ -5,7 +5,6 @@ import * as action_types from "../../constants/action_types";
 import * as actions from "../../actions/auth";
 
 function* handleuserSignUp({ payload }) {
-    console.log(payload);
     const { email, password, firstName, lastName } = payload;
     try {
         const auth = firebase.auth();
@@ -24,7 +23,9 @@ function* handleuserSignUp({ payload }) {
                 });
             yield put(actions.requestSignUpSuccess(user));
         }
-    } catch (err) {}
+    } catch (err) {
+        yield put(actions.requestSignUpError(err));
+    }
 }
 
 function* watchSignUpUser() {

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
+import Spinner from "../../shared/spinner/spinner";
 import { SignUpContainer } from "./style";
 import { requestSignUpStart } from "../../../redux/actions/auth";
 
@@ -31,6 +32,7 @@ const ipnut_fields = [
 
 const SignUp = () => {
     const dispatch = useDispatch();
+    const isLoading = useSelector(state => state.signup.loading, shallowEqual);
     const [userDetails, setUserDetails] = useState({
         firstName: "",
         lastName: "",
@@ -45,8 +47,10 @@ const SignUp = () => {
         e.preventDefault();
         dispatch(requestSignUpStart(userDetails));
     };
+
     return (
         <Layout isFooterPresent>
+            {isLoading && <Spinner />}
             <SignUpContainer>
                 <form
                     action=""

@@ -3,7 +3,7 @@ import { takeEvery, put, all, call } from "redux-saga/effects";
 import * as action_types from "../../constants/action_types";
 import * as actions from "../../actions/auth";
 
-//worker saga: fired on each REQUEST_USERLOGIN_START action
+//worker saga: fired on each REQUEST_LOGIN_START action
 function* handleUserLogin({ payload }) {
     const { email, password } = payload;
     try {
@@ -21,10 +21,7 @@ function* handleUserLogin({ payload }) {
 
 //watcher saga: watches for which action is fired
 function* watchLoginUser() {
-    yield takeEvery(
-        action_types.REQUEST_USERLOGIN_START as any,
-        handleUserLogin
-    );
+    yield takeEvery(action_types.REQUEST_LOGIN_START as any, handleUserLogin);
 }
 
 export default function*() {
