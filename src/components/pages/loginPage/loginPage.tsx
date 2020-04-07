@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { Redirect } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
@@ -22,19 +23,32 @@ const ipnut_fields = [
 
 const Login = () => {
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.login.loading, shallowEqual);
+
+    const { isLoading, firebase } = useSelector(state => {
+        return {
+            isLoading: state.login.loading,
+            firebase: state.firebaseReducer
+        };
+    }, shallowEqual);
+
     const [userDetails, setUserDetails] = useState({
         email: "",
         password: ""
     });
+
     const handleOnChange = e => {
         const { name, value } = e.target;
         setUserDetails({ ...userDetails, [name]: value });
     };
+
     const handleOnsubmit = e => {
         e.preventDefault();
         dispatch(requestUserLoginStart(userDetails));
     };
+
+    if (firebase.auth.uid) {
+        return <Redirect to="/" />;
+    }
     return (
         <Layout isFooterPresent>
             {isLoading && <Spinner />}
