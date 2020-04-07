@@ -1,17 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { SidebarProps } from "../../../interfaces/ISidebar";
 import { SidebarContainer } from "./style";
+import { signOutStart } from "../../../redux/actions/auth";
 
 const Sidebar: React.FC<SidebarProps> = ({ isNavbarOpen }) => {
+    const dispatch = useDispatch();
     const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
+
+    const handleSignout = () => {
+        dispatch(signOutStart());
+    };
 
     const renderAuthLinks = () => {
         if (firebase.auth.uid) {
             return (
                 <div className="sideNav__authLinks">
-                    <Link to="/login">Log out</Link>
+                    <Link to="/" onClick={handleSignout}>
+                        Log out
+                    </Link>
                 </div>
             );
         }
