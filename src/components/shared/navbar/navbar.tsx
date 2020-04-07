@@ -1,9 +1,27 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 import { NavbarContainer } from "./style";
 
 const Navbar = () => {
+    const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
+
+    const renderAuthLinks = () => {
+        if (firebase.auth.uid) {
+            return (
+                <div className="nav__links__auth">
+                    <Link to="/login">Log out</Link>
+                </div>
+            );
+        }
+        return (
+            <div className="nav__links__auth">
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Signup</Link>
+            </div>
+        );
+    };
     return (
         <NavbarContainer>
             <nav className="nav">
@@ -17,10 +35,7 @@ const Navbar = () => {
                         <li>Features</li>
                         <li>Blog</li>
                     </ul>
-                    <div className="nav__links__auth">
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link>
-                    </div>
+                    {renderAuthLinks()}
                 </ul>
             </nav>
         </NavbarContainer>
