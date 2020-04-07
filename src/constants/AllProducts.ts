@@ -4,6 +4,12 @@ import shoe3 from "../assets/img/products/shoes/pink-hells.jpg";
 import shoe4 from "../assets/img/products/shoes/red-heels.jpg";
 import shoe5 from "../assets/img/products/shoes/snickers.png";
 
+import shirt1 from "../assets/img/products/shirts/black-ash.jpg";
+import shirt2 from "../assets/img/products/shirts/black-polo.jpg";
+import shirt3 from "../assets/img/products/shirts/mixed.jpg";
+import shirt4 from "../assets/img/products/shirts/pack.jpg";
+import shirt5 from "../assets/img/products/shirts/white-bulb.jpg";
+
 export const myproducts = [
     {
         id: 1,
@@ -102,5 +108,50 @@ export const myproducts = [
         price: "$56",
         description:
             "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
+    },
+    {
+        id: "shirt/1",
+        image: shirt1,
+        name: "Long sleeve T-shirt",
+        rating: 5,
+        price: "$56",
+        description:
+            "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
+    },
+    {
+        id: "shirt/1",
+        image: shirt2,
+        name: "Bad Gang T Shirt - Black",
+        rating: 2,
+        price: "$78",
+        description:
+            "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
+    },
+    {
+        id: "shirt/1",
+        image: shirt3,
+        name: "Birrs Casual Tee",
+        rating: 4,
+        price: "$20.86",
+        description:
+            "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
+    },
+    {
+        id: "shirt/1",
+        image: shirt4,
+        name: "4-in-1 quality Men's polo",
+        rating: 5,
+        price: "$200.87",
+        description:
+            "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
+    },
+    {
+        id: "shirt/1",
+        image: shirt5,
+        name: "Men's white stylish T-shirt",
+        rating: 3,
+        price: "$100.02",
+        description:
+            "A shirt is a cloth garment for the upper body Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a "
     }
 ];
