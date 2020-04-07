@@ -1,4 +1,8 @@
-import banner from "../assets/img/banner.png";
+import shoe1 from "../assets/img/products/shoes/ash-canvas.jpg";
+import shoe2 from "../assets/img/products/shoes/brown-merrell.jpg";
+import shoe3 from "../assets/img/products/shoes/pink-hells.jpg";
+import shoe4 from "../assets/img/products/shoes/red-heels.jpg";
+import shoe5 from "../assets/img/products/shoes/snickers.png";
 
 export const myproducts = [
     {
@@ -53,5 +57,50 @@ export const myproducts = [
         price: "$155.98",
         description:
             "A belt is a flexible band or strap, typically made of leather or heavy cloth and worn around the waist, that is usually of less circumference than the hips underneath. Belts are used to secure or hold up clothing, like trousers"
+    },
+    {
+        id: "shoe/1",
+        image: shoe1,
+        name: "Boss cv",
+        rating: 5,
+        price: "$200.54",
+        description:
+            "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
+    },
+    {
+        id: "shoe/2",
+        image: shoe2,
+        name: "Merrell shoe",
+        rating: 3,
+        price: "$193.26",
+        description:
+            "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
+    },
+    {
+        id: "shoe/3",
+        image: shoe3,
+        name: "L-V",
+        rating: 4,
+        price: "$549.60",
+        description:
+            "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
+    },
+    {
+        id: "shoe/4",
+        image: shoe4,
+        name: "Princess",
+        rating: 2,
+        price: "$100.97",
+        description:
+            "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
+    },
+    {
+        id: "shoe/5",
+        image: shoe5,
+        name: "Snickers",
+        rating: 3,
+        price: "$56",
+        description:
+            "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
     }
 ];
