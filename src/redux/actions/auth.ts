@@ -52,7 +52,7 @@ export const requestUserLoginError = payload => {
     };
 };
 
-export const signOutStart = payload => {
+export const signOutStart = () => {
     return {
         type: SIGNOUT_START
     };
