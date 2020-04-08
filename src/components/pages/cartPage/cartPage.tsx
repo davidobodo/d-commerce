@@ -5,7 +5,7 @@ import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
 import Counter from "../../shared/counter/counter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFrown } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
@@ -47,10 +47,19 @@ const CartPage = () => {
         }
     };
 
+    const renderCartLength = () => {
+        if (!!cart) {
+            const _cart = Object.values(cart);
+            return _cart.length;
+        }
+    };
+
     const renderLastCartItem = () => {
-        const _cart = Object.values(cart);
-        const lastItem: any = _cart[_cart.length - 1];
-        return lastItem.name;
+        if (!!cart) {
+            const _cart = Object.values(cart);
+            const lastItem: any = _cart[_cart.length - 1];
+            return lastItem.name;
+        }
     };
 
     return (
@@ -61,8 +70,13 @@ const CartPage = () => {
                         <div className="cart__header">
                             <h1>Cart</h1>
                         </div>
-                        {!!cart && (
-                            <div className="cart__alert">
+                        <div className="cart__alert">
+                            {renderCartLength() == 0 || cart == null ? (
+                                <div className="first-section">
+                                    <FontAwesomeIcon icon={faFrown} />
+                                    <h4>Sorry you have no item in your cart</h4>
+                                </div>
+                            ) : (
                                 <div className="first-section">
                                     <FontAwesomeIcon icon={faCheck} />
                                     <h4>
@@ -70,15 +84,15 @@ const CartPage = () => {
                                         been added to your cart
                                     </h4>
                                 </div>
-                                <div className="second-section">
-                                    <Link to="/">
-                                        <Button blue_small_text>
-                                            Continue Shopping
-                                        </Button>
-                                    </Link>
-                                </div>
+                            )}
+                            <div className="second-section">
+                                <Link to="/">
+                                    <Button blue_small_text>
+                                        Continue Shopping
+                                    </Button>
+                                </Link>
                             </div>
-                        )}
+                        </div>
 
                         <table className="cart__table">
                             <thead>
