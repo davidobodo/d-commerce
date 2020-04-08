@@ -1,4 +1,4 @@
-export interface cartActionInterface {
+export interface cartItemInterface {
     cartProductId: any;
     name: any;
     image: any;
