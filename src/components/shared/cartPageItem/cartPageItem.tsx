@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,8 @@ import {
 
 const CartPageItem: React.FC<cartItemProp> = ({
     item,
-    handleDeleteProduct
+    handleDeleteProduct,
+    handleEditItemQuantity
 }) => {
     const [quantity, setQuantity] = useState();
     const { name, image, price, productSize, productQuantity } = item[1];
@@ -23,7 +24,10 @@ const CartPageItem: React.FC<cartItemProp> = ({
         )}`;
         return totalPrice;
     };
-    console.log(quantity, cartProductId);
+
+    // useEffect(() => {
+    //     handleEditItemQuantity(cartProductId, quantity);
+    // }, [quantity]);
     return (
         <CartPageItemContainer>
             <td className="col-cancel">
