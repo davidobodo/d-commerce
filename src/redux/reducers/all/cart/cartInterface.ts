@@ -8,3 +8,8 @@ export interface cartItemInterface {
     type: any;
     num: number;
 }
+
+export interface cartItemProp {
+    item: any;
+    handleDeleteProduct: any;
+}
