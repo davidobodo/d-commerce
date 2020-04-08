@@ -33,16 +33,6 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_appId
 };
 
-// const firebaseConfig = {
-//     apiKey: "***REMOVED***",
-//     authDomain: "d-commerce-99633.firebaseapp.com",
-//     databaseURL: "https://d-commerce-99633.firebaseio.com",
-//     projectId: "d-commerce-99633",
-//     storageBucket: "d-commerce-99633.appspot.com",
-//     messagingSenderId: "308038401229",
-//     appId: "1:308038401229:web:6b59c6c56e5a46b9bfbd84"
-// };
-
 const firebase_init = firebase.initializeApp(firebaseConfig);
 
 export const rsf = new ReduxSagaFirebase(firebase_init);
