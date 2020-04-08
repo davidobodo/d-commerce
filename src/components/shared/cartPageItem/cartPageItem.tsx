@@ -23,6 +23,7 @@ const CartPageItem: React.FC<cartItemProp> = ({
         )}`;
         return totalPrice;
     };
+    console.log(quantity, cartProductId);
     return (
         <CartPageItemContainer>
             <td className="col-cancel">
