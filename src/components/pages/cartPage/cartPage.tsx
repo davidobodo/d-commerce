@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
-import banner from "../../../assets/img/banner.png";
 import Counter from "../../shared/counter/counter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
