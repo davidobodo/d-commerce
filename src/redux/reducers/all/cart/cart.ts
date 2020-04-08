@@ -2,6 +2,10 @@ import * as actionTypes from "../../../constants/action_types";
 import { cartActionInterface } from "./cartInterface";
 const initState = null;
 
+export const cloneObject = <T>(source: T): T => {
+    return JSON.parse(JSON.stringify(source)) as T;
+};
+
 export default (state = initState, action: cartActionInterface) => {
     switch (action.type) {
         case actionTypes.UPDATE_CART:
@@ -34,7 +38,7 @@ export default (state = initState, action: cartActionInterface) => {
             };
         case actionTypes.DELETE_CART_ITEM:
             let { cartProductId: id } = action;
-            const clonedState = state;
+            const clonedState = cloneObject(state);
             delete clonedState[id];
             return clonedState;
         default:
