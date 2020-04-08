@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Dropdown from "../../shared/dropdown/dropdown";
@@ -13,7 +11,7 @@ import { CheckoutPageContainer } from "./style";
 import { countryList } from "../../../constants/AllCountries";
 
 const CheckoutPage = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const cart = useSelector(state => {
         return state.cart;
     }, shallowEqual);
@@ -33,13 +31,6 @@ const CheckoutPage = () => {
         email: "",
         orderNotes: ""
     });
-
-    const handleSetCurrentCountry = () => {
-        // setUserDetails({
-        //     ...userDetails,
-        //     country: currentCountry
-        // });
-    };
 
     const handleOnChange = e => {
         const { name, value } = e.target;
@@ -65,7 +56,7 @@ const CheckoutPage = () => {
         const letters = /^[A-Za-z]+$/;
 
         //--
-        if (firstName == "") {
+        if (firstName === "") {
             console.log("Name cannot be empty");
         }
 
@@ -75,7 +66,7 @@ const CheckoutPage = () => {
         //--
 
         //--
-        if (lastName == "") {
+        if (lastName === "") {
             console.log("Name cannot be empty");
         }
 
@@ -85,7 +76,7 @@ const CheckoutPage = () => {
         //--
 
         //--
-        if (zip == "") {
+        if (zip === "") {
             console.log("Zip cannot be empty");
         }
 
@@ -94,27 +85,27 @@ const CheckoutPage = () => {
         }
         //--
 
-        if (company == "") {
+        if (company === "") {
             console.log("company cannot be empty");
         }
 
-        if (streetAddress == "") {
+        if (streetAddress === "") {
             console.log("street address cannot be empty");
         }
 
-        if (town == "") {
+        if (town === "") {
             console.log("town cannot be empty");
         }
 
-        if (state == "") {
+        if (state === "") {
             console.log("state cannot be empty");
         }
 
-        if (phoneNumber == "") {
+        if (phoneNumber === "") {
             console.log("phoneNumber cannot be empty");
         }
 
-        if (email == "") {
+        if (email === "") {
             console.log("email cannot be empty");
         }
 

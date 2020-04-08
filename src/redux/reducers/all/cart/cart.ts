@@ -24,7 +24,7 @@ export default (state = initState, action: cartActionInterface) => {
                 }
             };
         case actionTypes.UPDATE_COUNT:
-            const { num, cartProductId: _cartProductId } = action;
+            let { num, cartProductId: _cartProductId } = action;
             return {
                 ...state,
                 [_cartProductId]: {
@@ -32,6 +32,11 @@ export default (state = initState, action: cartActionInterface) => {
                     productQuantity: num
                 }
             };
+        case actionTypes.DELETE_CART_ITEM:
+            let { cartProductId: id } = action;
+            const clonedState = state;
+            delete clonedState[id];
+            return clonedState;
         default:
             return state;
     }
