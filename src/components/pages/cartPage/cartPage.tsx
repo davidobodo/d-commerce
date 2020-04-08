@@ -11,10 +11,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
-import {
-    // updateItemQuantity,
-    deleteCartItem
-} from "../../../redux/actions/cart";
+import { editItemQuantity, deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
@@ -59,13 +56,11 @@ const CartPage = () => {
         }
     };
 
-    const getEditedCartItem = e => {
-        console.log(e.currentTarget);
+    const handleEditItemQuantity = (id, quantity) => {
+        // console.log("in the function");
+        console.log(id, quantity);
+        dispatch(editItemQuantity(id, quantity));
     };
-
-    useEffect(() => {
-        console.log(quantity);
-    }, [quantity]);
 
     return (
         <Layout isFooterPresent>
@@ -119,6 +114,12 @@ const CartPage = () => {
                                                 item={item}
                                                 handleDeleteProduct={
                                                     handleDeleteProduct
+                                                }
+                                                handleEditItemQuantity={(
+                                                    a,
+                                                    b
+                                                ) =>
+                                                    handleEditItemQuantity(a, b)
                                                 }
                                             />
                                         );
