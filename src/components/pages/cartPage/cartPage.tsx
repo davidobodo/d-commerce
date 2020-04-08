@@ -9,7 +9,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterface";
+import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
 import { updateCount, deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
@@ -30,11 +30,10 @@ const CartPage = () => {
         return totalPrice;
     };
 
-    console.log(cart);
     const renderTotalPrice = () => {
         if (!!cart) {
             const total = Object.values(cart)
-                .map((item: cartActionInterface) => {
+                .map((item: cartItemInterface) => {
                     const { price, productQuantity } = item;
                     const item_total_price = (
                         parseFloat(price.slice(1)) * parseInt(productQuantity)
@@ -48,6 +47,12 @@ const CartPage = () => {
         }
     };
 
+    const renderLastCartItem = () => {
+        const _cart = Object.values(cart);
+        const lastItem: any = _cart[_cart.length - 1];
+        return lastItem.name;
+    };
+
     return (
         <Layout isFooterPresent>
             <CartPageContainer>
@@ -56,22 +61,25 @@ const CartPage = () => {
                         <div className="cart__header">
                             <h1>Cart</h1>
                         </div>
-                        <div className="cart__alert">
-                            <div className="first-section">
-                                <FontAwesomeIcon icon={faCheck} />
-                                <h4>
-                                    <span>Coffee T-shirt</span> has been added
-                                    to your cart
-                                </h4>
+                        {!!cart && (
+                            <div className="cart__alert">
+                                <div className="first-section">
+                                    <FontAwesomeIcon icon={faCheck} />
+                                    <h4>
+                                        <span>{renderLastCartItem()}</span> has
+                                        been added to your cart
+                                    </h4>
+                                </div>
+                                <div className="second-section">
+                                    <Link to="/">
+                                        <Button blue_small_text>
+                                            Continue Shopping
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
-                            <div className="second-section">
-                                <Link to="/">
-                                    <Button blue_small_text>
-                                        Continue Shopping
-                                    </Button>
-                                </Link>
-                            </div>
-                        </div>
+                        )}
+
                         <table className="cart__table">
                             <thead>
                                 <tr>

@@ -1,12 +1,10 @@
 import * as actionTypes from "../../../constants/action_types";
-import { cartActionInterface } from "./cartInterface";
+import { cartItemInterface } from "./cartInterface";
+import { cloneObject } from "../../../../utils";
+
 const initState = null;
 
-export const cloneObject = <T>(source: T): T => {
-    return JSON.parse(JSON.stringify(source)) as T;
-};
-
-export default (state = initState, action: cartActionInterface) => {
+export default (state = initState, action: cartItemInterface) => {
     switch (action.type) {
         case actionTypes.UPDATE_CART:
             const {
