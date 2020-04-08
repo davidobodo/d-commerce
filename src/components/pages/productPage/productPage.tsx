@@ -43,14 +43,7 @@ const related_products = [
 const ProductPage = ({ location }) => {
     const [productSize, setProductSize] = useState();
     const [productQuantity, setProductQuantity] = useState();
-    const {
-        image,
-        name,
-        price,
-        description,
-        sizes,
-        id: productId
-    } = location.state.product;
+    const { image, name, price, description, sizes } = location.state.product;
     const dispatch = useDispatch();
     const history = useHistory();
 

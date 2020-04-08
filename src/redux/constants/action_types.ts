@@ -2,6 +2,7 @@ export const CONSTANT = "CONSTANT";
 
 export const UPDATE_CART = "UPDATE_CART";
 export const UPDATE_COUNT = "UPDATE_COUNT";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
 
 //auth actionTypes
 export const REQUEST_SIGNUP_START = "REQUEST_SIGNUP_START";

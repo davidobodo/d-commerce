@@ -11,7 +11,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { cartActionInterface } from "../../../redux/reducers/all/cart/cartInterface";
-import { updateCount } from "../../../redux/actions/cart";
+import { updateCount, deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
@@ -20,6 +20,10 @@ const CartPage = () => {
 
     const dispatch = useDispatch();
 
+    const handleDeleteProduct = id => {
+        dispatch(deleteCartItem(id));
+    };
+
     const renderItemTotalPrice = (price: any, quantity: any) => {
         const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
             2
@@ -27,6 +31,7 @@ const CartPage = () => {
         return totalPrice;
     };
 
+    console.log(cart);
     const renderTotalPrice = () => {
         if (!!cart) {
             const total = Object.values(cart)
@@ -93,7 +98,13 @@ const CartPage = () => {
                                         return (
                                             <tr key={i}>
                                                 <td className="col-cancel">
-                                                    <div>
+                                                    <div
+                                                        onClick={() =>
+                                                            handleDeleteProduct(
+                                                                cartProductId
+                                                            )
+                                                        }
+                                                    >
                                                         <FontAwesomeIcon
                                                             icon={faPlus}
                                                         />

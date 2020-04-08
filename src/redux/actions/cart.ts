@@ -26,3 +26,10 @@ export const updateCount = (num, cartProductId) => {
         cartProductId
     };
 };
+
+export const deleteCartItem = cartProductId => {
+    return {
+        type: actionTypes.DELETE_CART_ITEM,
+        cartProductId
+    };
+};
