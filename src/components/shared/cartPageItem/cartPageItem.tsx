@@ -15,8 +15,8 @@ const CartPageItem: React.FC<cartItemProp> = ({
     handleDeleteProduct,
     handleEditItemQuantity
 }) => {
-    const [quantity, setQuantity] = useState();
     const { name, image, price, productSize, productQuantity } = item[1];
+    const [quantity, setQuantity] = useState(productQuantity);
     const cartProductId = item[0];
     const renderItemTotalPrice = (price: any, quantity: any) => {
         const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
@@ -24,6 +24,7 @@ const CartPageItem: React.FC<cartItemProp> = ({
         )}`;
         return totalPrice;
     };
+    console.log(cartProductId, quantity);
 
     // useEffect(() => {
     //     handleEditItemQuantity(cartProductId, quantity);
