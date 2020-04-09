@@ -20,7 +20,6 @@ export const updateCart = (
 };
 
 export const editItemQuantity = (cartProductId, num) => {
-    console.log(cartProductId, num);
     return {
         type: actionTypes.UPDATE_COUNT,
         cartProductId,

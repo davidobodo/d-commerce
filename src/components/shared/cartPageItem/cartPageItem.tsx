@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Counter from "../../shared/counter/counter";
 import { CartPageItemContainer } from "./style";
+import { editItemQuantity } from "../../../redux/actions/cart";
 
 import {
     cartItemInterface,
@@ -15,6 +16,8 @@ const CartPageItem: React.FC<cartItemProp> = ({
     handleDeleteProduct,
     handleEditItemQuantity
 }) => {
+    console.log("cartPageItem renders");
+    const dispatch = useDispatch();
     const { name, image, price, productSize, productQuantity } = item[1];
     const [quantity, setQuantity] = useState(productQuantity);
     const cartProductId = item[0];
@@ -24,11 +27,10 @@ const CartPageItem: React.FC<cartItemProp> = ({
         )}`;
         return totalPrice;
     };
-    console.log(cartProductId, quantity);
 
-    // useEffect(() => {
-    //     handleEditItemQuantity(cartProductId, quantity);
-    // }, [quantity]);
+    useEffect(() => {
+        dispatch(editItemQuantity(cartProductId, quantity));
+    }, [quantity]);
     return (
         <CartPageItemContainer>
             <td className="col-cancel">
