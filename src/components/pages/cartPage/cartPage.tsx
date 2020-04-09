@@ -14,7 +14,6 @@ import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterfac
 import { editItemQuantity, deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
-    console.log("component renders");
     const [quantity, setQuantity] = useState();
 
     const cart = useSelector(state => state.cart, shallowEqual);
@@ -30,7 +29,6 @@ const CartPage = () => {
             const total = Object.values(cart)
                 .map((item: cartItemInterface) => {
                     const { price, productQuantity } = item;
-                    console.log({ price }, { productQuantity });
                     const item_total_price = (
                         parseFloat(price.slice(1)) * parseInt(productQuantity)
                     ).toFixed(2);
