@@ -30,7 +30,7 @@ export default (state = initState, action: cartItemInterface) => {
             return {
                 ...state,
                 [_cartProductId]: {
-                    ...state,
+                    ...state[_cartProductId],
                     productQuantity: num
                 }
             };
