@@ -38,10 +38,10 @@ const Navbar = () => {
                 </Link>
                 <ul className="nav__links">
                     <ul className="nav__links__pages">
-                        <li>Home</li>
+                        {/* <li>Home</li>
                         <li>Portfolio</li>
-                        <li>Features</li>
-                        <li>Blog</li>
+                        <li>Chat App</li>
+                        <li>Contact Us</li> */}
                     </ul>
                     {renderAuthLinks()}
                 </ul>

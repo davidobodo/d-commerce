@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     })}
                 </div>
                 <h4 className="price">{price}</h4>
-                <button className="select-button">select options</button>
+                {/* <button className="select-button">select options</button> */}
             </ProductCardContainer>
         </Link>
     );

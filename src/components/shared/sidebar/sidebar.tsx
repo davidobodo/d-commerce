@@ -34,10 +34,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isNavbarOpen }) => {
         <SidebarContainer isNavbarOpen={isNavbarOpen}>
             <h1 className="sideNav__brand">d-Commerce</h1>
             <ul className="sideNav__links">
-                <li>Home</li>
-                <li>Portfolio</li>
-                <li>Features</li>
-                <li>Blog</li>
+                {/* <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="www.obododavid.com" target="_blank">
+                        Portfolio
+                    </a>
+                </li>
+                <li>
+                    <a href="" target="_blank">
+                        Chat App
+                    </a>
+                </li>
+                <li>Contact Us</li> */}
             </ul>
             {renderAuthLinks()}
         </SidebarContainer>
