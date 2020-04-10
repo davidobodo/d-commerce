@@ -12,8 +12,11 @@ const Input: React.FC<InputProps> = ({
     placeholder,
     name,
     required = false,
-    type = "text"
+    type = "text",
+    hasError,
+    errorMessage
 }) => {
+    const errorClassName = hasError ? "error" : "";
     return (
         <InputContainer>
             <label htmlFor="">
@@ -22,7 +25,13 @@ const Input: React.FC<InputProps> = ({
                     {required && <FontAwesomeIcon icon={faStar} />}
                 </h6>
             </label>
-            <input type={type} placeholder={placeholder} name={name} />
+            <input
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                className={errorClassName}
+            />
+            {hasError && <h6 className="error-message">{errorMessage}</h6>}
         </InputContainer>
     );
 };
