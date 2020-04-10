@@ -4,13 +4,14 @@ import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
 import Counter from "../../shared/counter/counter";
+import CartPageItem from "../../shared/cartPageItem/cartPageItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faFrown } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
-import { updateCount, deleteCartItem } from "../../../redux/actions/cart";
+import { editItemQuantity, deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
@@ -21,13 +22,6 @@ const CartPage = () => {
 
     const handleDeleteProduct = id => {
         dispatch(deleteCartItem(id));
-    };
-
-    const renderItemTotalPrice = (price: any, quantity: any) => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
     };
 
     const renderTotalPrice = () => {
@@ -60,6 +54,12 @@ const CartPage = () => {
             const lastItem: any = _cart[_cart.length - 1];
             return lastItem.name;
         }
+    };
+
+    const handleEditItemQuantity = (id, quantity) => {
+        // console.log("in the function");
+        console.log(id, quantity);
+        dispatch(editItemQuantity(id, quantity));
     };
 
     return (
@@ -108,66 +108,20 @@ const CartPage = () => {
                             <tbody>
                                 {!!cart &&
                                     Object.entries(cart).map((item: any, i) => {
-                                        const {
-                                            name,
-                                            image,
-                                            price,
-                                            productSize,
-                                            productQuantity
-                                        } = item[1];
-                                        const cartProductId = item[0];
                                         return (
-                                            <tr key={i}>
-                                                <td className="col-cancel">
-                                                    <div
-                                                        onClick={() =>
-                                                            handleDeleteProduct(
-                                                                cartProductId
-                                                            )
-                                                        }
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            icon={faPlus}
-                                                        />
-                                                    </div>
-                                                </td>
-                                                <td className="col-img">
-                                                    <img
-                                                        src={image}
-                                                        alt={image}
-                                                    />
-                                                </td>
-                                                <td className="col-name-size">
-                                                    <h4>{name}</h4>
-                                                    {productSize && (
-                                                        <h5>
-                                                            Sizes:{" "}
-                                                            <span>
-                                                                {productSize}
-                                                            </span>
-                                                        </h5>
-                                                    )}
-                                                </td>
-                                                <td className="col-price">
-                                                    {price}
-                                                </td>
-                                                <td className="col-counter">
-                                                    <Counter
-                                                        setValue={setQuantity}
-                                                        initialCount={
-                                                            productQuantity
-                                                        }
-                                                    />
-                                                </td>
-                                                <td className="col-total-price">
-                                                    {
-                                                        renderItemTotalPrice(
-                                                            price,
-                                                            productQuantity
-                                                        ) as any
-                                                    }
-                                                </td>
-                                            </tr>
+                                            <CartPageItem
+                                                key={i}
+                                                item={item}
+                                                handleDeleteProduct={
+                                                    handleDeleteProduct
+                                                }
+                                                handleEditItemQuantity={(
+                                                    a,
+                                                    b
+                                                ) =>
+                                                    handleEditItemQuantity(a, b)
+                                                }
+                                            />
                                         );
                                     })}
                             </tbody>
@@ -214,7 +168,7 @@ const CartPage = () => {
                                     <tr>
                                         <td>Subtotal:</td>
                                         <td className="subtotal-value">
-                                            {renderTotalPrice() as any}
+                                            {/* {renderTotalPrice() as any} */}
                                         </td>
                                     </tr>
                                     <tr>
