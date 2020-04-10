@@ -11,7 +11,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
 import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
-import { editItemQuantity, deleteCartItem } from "../../../redux/actions/cart";
+import { deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
     const [quantity, setQuantity] = useState();
@@ -54,12 +54,6 @@ const CartPage = () => {
             const lastItem: any = _cart[_cart.length - 1];
             return lastItem.name;
         }
-    };
-
-    const handleEditItemQuantity = (id, quantity) => {
-        // console.log("in the function");
-        console.log(id, quantity);
-        dispatch(editItemQuantity(id, quantity));
     };
 
     return (
@@ -115,17 +109,11 @@ const CartPage = () => {
                                                 handleDeleteProduct={
                                                     handleDeleteProduct
                                                 }
-                                                handleEditItemQuantity={(
-                                                    a,
-                                                    b
-                                                ) =>
-                                                    handleEditItemQuantity(a, b)
-                                                }
                                             />
                                         );
                                     })}
                             </tbody>
-                            <tfoot className="desktop-table-footer">
+                            {/* <tfoot className="desktop-table-footer">
                                 <tr>
                                     <td></td>
                                     <td>
@@ -150,9 +138,9 @@ const CartPage = () => {
                                         </Button>
                                     </td>
                                 </tr>
-                            </tfoot>
+                            </tfoot> */}
                         </table>
-                        <div className="mobile-table-footer">
+                        {/* <div className="mobile-table-footer">
                             <div>
                                 <input type="text" placeholder="Coupon Code" />
                                 <Button ash_small_text>Apply coupon</Button>
@@ -160,7 +148,7 @@ const CartPage = () => {
                             <div>
                                 <Button ash_small_text>Update Cart</Button>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="cart__total">
                             <h1>Cart totals</h1>
                             <table>
@@ -168,7 +156,7 @@ const CartPage = () => {
                                     <tr>
                                         <td>Subtotal:</td>
                                         <td className="subtotal-value">
-                                            {/* {renderTotalPrice() as any} */}
+                                            {renderTotalPrice() as any}
                                         </td>
                                     </tr>
                                     <tr>
