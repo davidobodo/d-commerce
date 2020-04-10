@@ -12,5 +12,5 @@ export interface cartItemInterface {
 export interface cartItemProp {
     item: any;
     handleDeleteProduct: any;
-    handleEditItemQuantity: any;
+    handleEditItemQuantity?: any;
 }

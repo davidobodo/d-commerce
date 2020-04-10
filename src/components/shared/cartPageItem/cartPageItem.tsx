@@ -13,8 +13,7 @@ import {
 
 const CartPageItem: React.FC<cartItemProp> = ({
     item,
-    handleDeleteProduct,
-    handleEditItemQuantity
+    handleDeleteProduct
 }) => {
     console.log("cartPageItem renders");
     const dispatch = useDispatch();
