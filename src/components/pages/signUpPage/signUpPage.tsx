@@ -10,7 +10,6 @@ import { SignUpContainer } from "./style";
 import { requestSignUpStart } from "../../../redux/actions/auth";
 
 const SignUp = () => {
-    console.log("component renders");
     const dispatch = useDispatch();
 
     const { isLoading, firebase } = useSelector(state => {
@@ -42,7 +41,50 @@ const SignUp = () => {
         setUserDetails({ ...userDetails, [name]: value });
     };
 
-    const handleValidateForm = () => {
+    const handleOnKeyDown = e => {
+        const { name } = e.target;
+
+        if (e.key === "Enter") return;
+
+        if (name === "firstName") {
+            setFirstNameHasError(false);
+        }
+
+        if (name === "lastName") {
+            setLastNameHasError(false);
+        }
+
+        if (name === "email") {
+            setEmailHasError(false);
+        }
+
+        if (name === "password" && userDetails.password.length > 6) {
+            setPasswordHasError(false);
+        } else {
+            setPasswordHasError(true);
+        }
+    };
+
+    const handleOnsubmit = () => {
+        console.log(
+            { firstNameHasError },
+            { lastNameHasError },
+            { emailHasError },
+            { passwordHasError }
+        );
+
+        if (
+            !firstNameHasError &&
+            !lastNameHasError &&
+            !emailHasError &&
+            !passwordHasError
+        ) {
+            dispatch(requestSignUpStart(userDetails));
+        }
+    };
+
+    const handleValidateForm = e => {
+        e.preventDefault();
         const { firstName, lastName, email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
 
@@ -75,14 +117,12 @@ const SignUp = () => {
         //password
         if (password.length <= 6) {
             setPasswordHasError(true);
-            setPasswordErrorMessage("password must be greater than six");
+            setPasswordErrorMessage(
+                "password must be greater than six characters"
+            );
         }
-    };
 
-    const handleOnsubmit = e => {
-        handleValidateForm();
-        e.preventDefault();
-        // dispatch(requestSignUpStart(userDetails));
+        handleOnsubmit();
     };
 
     if (firebase.auth.uid) {
@@ -94,29 +134,29 @@ const SignUp = () => {
             label: "First Name",
             type: "text",
             name: "firstName",
-            inputhasError: firstNameHasError,
-            inputerrorMessage: firstNameErrorMessage
+            inputHasError: firstNameHasError,
+            inputErrorMessage: firstNameErrorMessage
         },
         {
             label: "Last Name",
             type: "text",
             name: "lastName",
-            inputhasError: lastNameHasError,
-            inputerrorMessage: lastNameErrorMessage
+            inputHasError: lastNameHasError,
+            inputErrorMessage: lastNameErrorMessage
         },
         {
             label: "Email",
             type: "email",
             name: "email",
-            inputhasError: emailHasError,
-            inputerrorMessage: emailErrorMessage
+            inputHasError: emailHasError,
+            inputErrorMessage: emailErrorMessage
         },
         {
             label: "Password",
             type: "password",
             name: "password",
-            inputhasError: passwordHasError,
-            inputerrorMessage: passwordErrorMessage
+            inputHasError: passwordHasError,
+            inputErrorMessage: passwordErrorMessage
         }
     ];
 
@@ -126,8 +166,9 @@ const SignUp = () => {
             <SignUpContainer>
                 <form
                     action=""
-                    onSubmit={handleOnsubmit}
+                    onSubmit={handleValidateForm}
                     onChange={handleOnChange}
+                    onKeyDown={handleOnKeyDown}
                     noValidate
                 >
                     <h2>Sign Up</h2>
@@ -137,8 +178,8 @@ const SignUp = () => {
                             label,
                             type,
                             name,
-                            inputhasError,
-                            inputerrorMessage
+                            inputHasError,
+                            inputErrorMessage
                         } = field;
                         return (
                             <Input
@@ -146,8 +187,8 @@ const SignUp = () => {
                                 label={label}
                                 type={type}
                                 name={name}
-                                hasError={inputhasError}
-                                errorMessage={inputerrorMessage}
+                                hasError={inputHasError}
+                                errorMessage={inputErrorMessage}
                             />
                         );
                     })}
