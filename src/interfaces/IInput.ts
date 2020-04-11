@@ -4,4 +4,6 @@ export interface InputProps {
     type?: string;
     required?: boolean;
     name?: string;
+    hasError?: boolean;
+    errorMessage?: string;
 }

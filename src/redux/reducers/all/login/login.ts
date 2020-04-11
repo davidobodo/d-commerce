@@ -1,7 +1,8 @@
 import * as actionTypes from "../../../constants/action_types";
 
 const initState = {
-    loading: false
+    loading: false,
+    error: null
 };
 
 export default (state = initState, action) => {
@@ -9,17 +10,20 @@ export default (state = initState, action) => {
         case actionTypes.REQUEST_LOGIN_START:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: null
             };
         case actionTypes.REQUEST_LOGIN_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                error: null
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                error: action.payload
             };
         default:
             return state;
