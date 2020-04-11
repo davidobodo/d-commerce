@@ -32,4 +32,15 @@ export const InputContainer = styled.div<InputProps>`
         padding: 7px;
         outline: none;
     }
+
+    .error {
+        border: 1px solid #ff0000;
+    }
+
+    .error-message {
+        font-weight: 400;
+        color: #ff0000;
+        margin-bottom: 0;
+        margin-top: 3px;
+    }
 `;
