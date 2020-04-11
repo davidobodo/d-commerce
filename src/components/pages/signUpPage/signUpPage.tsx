@@ -66,13 +66,6 @@ const SignUp = () => {
     };
 
     const handleOnsubmit = () => {
-        console.log(
-            { firstNameHasError },
-            { lastNameHasError },
-            { emailHasError },
-            { passwordHasError }
-        );
-
         if (
             !firstNameHasError &&
             !lastNameHasError &&

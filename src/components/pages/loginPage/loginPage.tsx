@@ -54,9 +54,16 @@ const Login = () => {
         return <Redirect to="/" />;
     }
 
-    const handleValidateForm = () => {
+    const handleOnsubmit = () => {
+        if (!emailHasError && !passwordHasError) {
+            dispatch(requestUserLoginStart(userDetails));
+        }
+    };
+
+    const handleValidateForm = e => {
         const { email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
+        e.preventDefault();
 
         //email
         if (!EmailValidator.validate(email)) {
@@ -67,16 +74,10 @@ const Login = () => {
         //password
         if (password.length <= 6) {
             setPasswordHasError(true);
-            setPasswordErrorMessage(
-                "password must be greater than six characters"
-            );
+            setPasswordErrorMessage("password Incorrect");
         }
-    };
 
-    const handleOnsubmit = e => {
-        handleValidateForm();
-        e.preventDefault();
-        dispatch(requestUserLoginStart(userDetails));
+        handleOnsubmit();
     };
 
     const ipnut_fields = [
@@ -101,7 +102,7 @@ const Login = () => {
             <LoginContainer>
                 <form
                     action=""
-                    onSubmit={handleOnsubmit}
+                    onSubmit={handleValidateForm}
                     onChange={handleOnChange}
                     onKeyDown={handleOnKeyDown}
                     noValidate
