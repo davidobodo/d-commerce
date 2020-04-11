@@ -24,10 +24,10 @@ export const requestSignUpSuccess = payload => {
     };
 };
 
-export const requestSignUpError = error => {
+export const requestSignUpError = payload => {
     return {
         type: REQUEST_SIGNUP_FAIL,
-        error
+        payload
     };
 };
 
@@ -63,9 +63,9 @@ export const signOutSuccess = payload => {
         payload
     };
 };
-export const signOutError = error => {
+export const signOutError = payload => {
     return {
         type: SIGNOUT_FAIL,
-        error
+        payload
     };
 };
