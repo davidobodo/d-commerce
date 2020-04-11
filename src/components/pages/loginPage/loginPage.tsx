@@ -17,10 +17,11 @@ const Login = () => {
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
 
-    const { isLoading, firebase } = useSelector(state => {
+    const { isLoading, firebase, firebaseErrMessage } = useSelector(state => {
         return {
             isLoading: state.login.loading,
-            firebase: state.firebaseReducer
+            firebase: state.firebaseReducer,
+            firebaseErrMessage: state.login.error
         };
     }, shallowEqual);
 
@@ -128,6 +129,9 @@ const Login = () => {
                         );
                     })}
                     <Button blue_small_text>Login</Button>
+                    {!!firebaseErrMessage && (
+                        <div className="firebase-err">{firebaseErrMessage}</div>
+                    )}
                 </form>
             </LoginContainer>
         </Layout>

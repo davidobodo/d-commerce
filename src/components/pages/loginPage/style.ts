@@ -24,6 +24,11 @@ export const LoginContainer = styled.div`
                 width: 100%;
             }
         }
+
+        .firebase-err {
+            color: #ff0000;
+            margin-top: 10px;
+        }
     }
 
     //-------------------------------------------------------------------------

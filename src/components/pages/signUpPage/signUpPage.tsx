@@ -12,12 +12,14 @@ import { requestSignUpStart } from "../../../redux/actions/auth";
 const SignUp = () => {
     const dispatch = useDispatch();
 
-    const { isLoading, firebase } = useSelector(state => {
+    const { isLoading, firebase, firebaseErrMessage } = useSelector(state => {
         return {
             isLoading: state.signup.loading,
-            firebase: state.firebaseReducer
+            firebase: state.firebaseReducer,
+            firebaseErrMessage: state.signup.error
         };
     }, shallowEqual);
+    console.log(firebaseErrMessage);
 
     const [userDetails, setUserDetails] = useState({
         firstName: "",
@@ -186,6 +188,9 @@ const SignUp = () => {
                         );
                     })}
                     <Button blue_small_text>Sign Up</Button>
+                    {!!firebaseErrMessage && (
+                        <div className="firebase-err">{firebaseErrMessage}</div>
+                    )}
                 </form>
             </SignUpContainer>
         </Layout>
