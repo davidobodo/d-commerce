@@ -15,7 +15,6 @@ const CartPageItem: React.FC<cartItemProp> = ({
     item,
     handleDeleteProduct
 }) => {
-    console.log("cartPageItem renders");
     const dispatch = useDispatch();
     const { name, image, price, productSize, productQuantity } = item[1];
     const [quantity, setQuantity] = useState(productQuantity);

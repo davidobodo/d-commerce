@@ -5,6 +5,7 @@ import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Button from "../../shared/button/button";
+import * as EmailValidator from "email-validator";
 
 import { CheckoutPageContainer } from "./style";
 
@@ -40,7 +41,14 @@ const CheckoutPage = () => {
         });
     };
 
-    const handleValidateForm = () => {
+    const handleOnSubmit = () => {
+        userDetails.country = currentCountry;
+        console.log(userDetails);
+        // history.push("/payment");
+    };
+
+    const handleValidateForm = e => {
+        e.preventDefault();
         const {
             firstName,
             lastName,
@@ -56,69 +64,77 @@ const CheckoutPage = () => {
         const letters = /^[A-Za-z]+$/;
 
         //--
-        if (firstName === "") {
-            console.log("Name cannot be empty");
-        }
+        // if (firstName === "") {
+        //     console.log("Name cannot be empty");
+        // }
 
-        if (!firstName.match(letters)) {
-            console.log("please input only letters");
-        }
+        // if (!firstName.match(letters)) {
+        //     console.log("please input only letters");
+        // }
         //--
 
         //--
-        if (lastName === "") {
-            console.log("Name cannot be empty");
-        }
+        // if (lastName === "") {
+        //     console.log("Name cannot be empty");
+        // }
 
-        if (!lastName.match(letters)) {
-            console.log("please input only letters");
-        }
+        // if (!lastName.match(letters)) {
+        //     console.log("please input only letters");
+        // }
         //--
 
         //--
-        if (zip === "") {
-            console.log("Zip cannot be empty");
-        }
+        // if (zip === "") {
+        //     console.log("Zip cannot be empty");
+        // }
 
-        if (zip.length !== 5) {
-            console.log("zip code must be 5 numbers");
-        }
+        // if (zip.length !== 5) {
+        //     console.log("zip code must be 5 numbers");
+        // }
         //--
 
-        if (company === "") {
-            console.log("company cannot be empty");
-        }
+        // if (company === "") {
+        //     console.log("company cannot be empty");
+        // }
 
-        if (streetAddress === "") {
-            console.log("street address cannot be empty");
-        }
+        // if (streetAddress === "") {
+        //     console.log("street address cannot be empty");
+        // }
 
-        if (town === "") {
-            console.log("town cannot be empty");
-        }
+        // if (town === "") {
+        //     console.log("town cannot be empty");
+        // }
 
-        if (state === "") {
-            console.log("state cannot be empty");
-        }
+        // if (state === "") {
+        //     console.log("state cannot be empty");
+        // }
 
-        if (phoneNumber === "") {
-            console.log("phoneNumber cannot be empty");
-        }
+        // if (phoneNumber === "") {
+        //     console.log("phoneNumber cannot be empty");
+        // }
 
-        if (email === "") {
-            console.log("email cannot be empty");
-        }
+        // if (email === "") {
+        //     console.log("email cannot be empty");
+        // }
 
-        if (country === "Choose an option") {
-            console.log("Please select a country");
-        }
-    };
+        // if (country === "Choose an option") {
+        //     console.log("Please select a country");
+        // }
 
-    const handleOnSubmit = e => {
-        handleValidateForm();
-        userDetails.country = currentCountry;
-        console.log(userDetails);
-        // history.push("/payment");
+        if (
+            firstName === "" ||
+            lastName === "" ||
+            zip === "" ||
+            streetAddress === "" ||
+            town === "" ||
+            state === "" ||
+            phoneNumber === "" ||
+            EmailValidator.validate(email) === false
+        ) {
+            alert("Please fill required fields with correct details");
+        } else {
+            handleOnSubmit();
+        }
     };
 
     const renderItemTotalPrice = (price: any, quantity: any) => {
@@ -170,7 +186,7 @@ const CheckoutPage = () => {
                             action=""
                             className="checkout__user-info__form"
                             onChange={handleOnChange}
-                            onSubmit={handleOnSubmit}
+                            onSubmit={handleValidateForm}
                         >
                             <h2>Billing details</h2>
                             <div className="field-input">
@@ -219,7 +235,7 @@ const CheckoutPage = () => {
                             />
 
                             <Input label="Postcode/ZIP" name="zip" required />
-                            <Input label="Phone" name="phone" required />
+                            <Input label="Phone" name="phoneNumber" required />
                             <Input
                                 label="Email address"
                                 name="email"
@@ -271,10 +287,10 @@ const CheckoutPage = () => {
                                     })}
                             </tbody>
                             <tfoot>
-                                <tr>
+                                {/* <tr>
                                     <td>Subtotal:</td>
                                     <td>{renderTotalPrice()}</td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <td>Total:</td>
                                     <td>{renderTotalPrice()}</td>
@@ -282,7 +298,7 @@ const CheckoutPage = () => {
                             </tfoot>
                         </table>
                     </div>
-                    <div className="checkout__btn" onClick={handleOnSubmit}>
+                    <div className="checkout__btn" onClick={handleValidateForm}>
                         <Button blue_small_text>PLACE ORDER</Button>
                     </div>
                 </div>

@@ -153,12 +153,12 @@ const CartPage = () => {
                             <h1>Cart totals</h1>
                             <table>
                                 <tbody>
-                                    <tr>
+                                    {/* <tr>
                                         <td>Subtotal:</td>
                                         <td className="subtotal-value">
                                             {renderTotalPrice() as any}
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                     <tr>
                                         <td>Total:</td>
                                         <td>{renderTotalPrice() as any}</td>
