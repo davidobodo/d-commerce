@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -12,7 +12,7 @@ import { CheckoutPageContainer } from "./style";
 import { countryList } from "../../../constants/AllCountries";
 
 const CheckoutPage = () => {
-    // const history = useHistory();
+    const history = useHistory();
     const cart = useSelector(state => {
         return state.cart;
     }, shallowEqual);
@@ -44,7 +44,7 @@ const CheckoutPage = () => {
     const handleOnSubmit = () => {
         userDetails.country = currentCountry;
         console.log(userDetails);
-        // history.push("/payment");
+        history.push("/payment");
     };
 
     const handleValidateForm = e => {
