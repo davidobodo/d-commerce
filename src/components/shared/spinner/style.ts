@@ -14,7 +14,6 @@ export const SpinnerContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     display: inline-block;
     width: 80px;
     height: 80px;

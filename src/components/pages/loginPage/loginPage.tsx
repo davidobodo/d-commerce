@@ -44,10 +44,9 @@ const Login = () => {
             setEmailHasError(false);
         }
 
+        console.log(userDetails.password.length);
         if (name === "password" && userDetails.password.length > 6) {
             setPasswordHasError(false);
-        } else {
-            setPasswordHasError(true);
         }
     };
 
@@ -97,6 +96,7 @@ const Login = () => {
             inputErrorMessage: passwordErrorMessage
         }
     ];
+
     return (
         <Layout isFooterPresent>
             {isLoading && <Spinner />}

@@ -37,7 +37,7 @@ const Home: React.FC<HomeProps> = () => {
                     {/* <Dropdown options={allSorts} selectedOption={setSorting} /> */}
                     <div className="shop">
                         <h1>Shop</h1>
-                        <h6>Showing 1-12 of 20 results</h6>
+                        {/* <h6>Showing 1-12 of 20 results</h6> */}
                     </div>
                 </div>
                 <section className="products">
