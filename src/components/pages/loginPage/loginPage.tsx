@@ -55,7 +55,10 @@ const Login = () => {
     }
 
     const handleOnsubmit = () => {
+        console.log({ emailHasError }, { passwordHasError });
         if (!emailHasError && !passwordHasError) {
+            console.log("in this level");
+            console.log({ emailHasError }, { passwordHasError });
             dispatch(requestUserLoginStart(userDetails));
         }
     };

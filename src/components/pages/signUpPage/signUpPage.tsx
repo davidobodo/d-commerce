@@ -62,8 +62,6 @@ const SignUp = () => {
 
         if (name === "password" && userDetails.password.length > 6) {
             setPasswordHasError(false);
-        } else {
-            setPasswordHasError(true);
         }
     };
 

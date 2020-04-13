@@ -45,6 +45,11 @@ export const NavbarContainer = styled.div`
                     margin-right: 100px;
                 }
 
+                &__username {
+                    margin-right: 20px;
+                    font-weight: 400;
+                }
+
                 &__auth {
                     display: flex;
                     list-style: none;

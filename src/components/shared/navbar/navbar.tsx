@@ -13,14 +13,21 @@ const Navbar = () => {
         dispatch(signOutStart());
     };
 
+    const { auth, profile } = firebase;
+
     const renderAuthLinks = () => {
-        if (firebase.auth.uid) {
+        if (auth.uid) {
             return (
-                <div className="nav__links__auth">
-                    <Link to="/" onClick={handleSignout}>
-                        Log out
-                    </Link>
-                </div>
+                <>
+                    <h4 className="nav__links__username">
+                        Hi, {profile.firstName}
+                    </h4>
+                    <div className="nav__links__auth">
+                        <Link to="/" onClick={handleSignout}>
+                            Log out
+                        </Link>
+                    </div>
+                </>
             );
         }
         return (
