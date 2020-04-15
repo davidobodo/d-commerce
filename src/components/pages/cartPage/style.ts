@@ -68,9 +68,6 @@ export const CartPageContainer = styled.div`
                     }
                 }
 
-                tbody {
-                }
-
                 .desktop-table-footer {
                     display: none;
 
