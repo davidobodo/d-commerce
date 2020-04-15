@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../shared/layout/layout";
+import Button from "../../shared/button/button";
 import { OrderConfirmationPageContainer } from "./style";
 import checkmark from "../../../assets/img/confirm.svg";
 
@@ -74,6 +76,9 @@ const OrderConfirmationPage = () => {
                         <p>Amount: $76.9</p>
                     </div>
                 </section>
+                <Link to={"/"}>
+                    <Button blue_small_text>Return to Home</Button>
+                </Link>
             </OrderConfirmationPageContainer>
         </Layout>
     );

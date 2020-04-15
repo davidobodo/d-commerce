@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const OrderConfirmationPageContainer = styled.div`
     padding-top: 40px;
+    margin-bottom: 50px;
 
     h4 {
         font-size: 18px;

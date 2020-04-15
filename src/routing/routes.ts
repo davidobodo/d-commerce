@@ -8,11 +8,11 @@ import LoginPage from "../components/pages/loginPage/loginPage";
 import OrderConfirmationPage from "../components/pages/orderConfirmationPage/orderConfirmationPage";
 
 export const Routes = [
-    // {
-    //     component: Home,
-    //     exact: true,
-    //     path: "/"
-    // },
+    {
+        component: Home,
+        exact: true,
+        path: "/"
+    },
     {
         component: ProductPage,
         exact: true,
@@ -46,6 +46,6 @@ export const Routes = [
     {
         component: OrderConfirmationPage,
         exact: true,
-        path: "/"
+        path: "/orderConfirmation"
     }
 ];
