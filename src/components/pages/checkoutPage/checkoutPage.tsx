@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -15,9 +15,13 @@ import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
 const CheckoutPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const cart = useSelector(state => {
-        return state.cart;
+    const { cart, firebase } = useSelector(state => {
+        return {
+            cart: state.cart,
+            firebase: state.firebaseReducer
+        };
     }, shallowEqual);
+
     const [currentCountry, setCurrentCountry] = useState();
 
     const [userDetails, setUserDetails] = useState({
@@ -166,6 +170,10 @@ const CheckoutPage = () => {
             return `$${total}`;
         }
     };
+
+    if (!firebase.auth.uid) {
+        return <Redirect to="/login" />;
+    }
 
     return (
         <Layout isFooterPresent>

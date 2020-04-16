@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -136,6 +136,10 @@ const Login = () => {
                         <div className="firebase-err">{firebaseErrMessage}</div>
                     )}
                 </form>
+
+                <div className="create-account-link">
+                    <Link to="/signup">Create account</Link>
+                </div>
             </LoginContainer>
         </Layout>
     );

@@ -31,6 +31,20 @@ export const LoginContainer = styled.div`
         }
     }
 
+    .create-account-link {
+        text-align: center;
+        margin-top: 10px;
+
+        a {
+            font-style: italic;
+
+            &:hover {
+                text-decoration: underline;
+                color: #2e5c87;
+            }
+        }
+    }
+
     //-------------------------------------------------------------------------
     //resets on some components on this page
     //-------------------------------------------------------------------------

@@ -17,7 +17,6 @@ const OrderConfirmationPage = () => {
         };
     }, shallowEqual);
 
-    console.log({ cart }, { deliveryDetails });
     const {
         email,
         firstName,
