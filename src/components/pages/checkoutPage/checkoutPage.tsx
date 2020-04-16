@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Dropdown from "../../shared/dropdown/dropdown";
@@ -10,9 +10,11 @@ import * as EmailValidator from "email-validator";
 import { CheckoutPageContainer } from "./style";
 
 import { countryList } from "../../../constants/AllCountries";
+import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
 
 const CheckoutPage = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const cart = useSelector(state => {
         return state.cart;
     }, shallowEqual);
@@ -41,14 +43,7 @@ const CheckoutPage = () => {
         });
     };
 
-    const handleOnSubmit = () => {
-        userDetails.country = currentCountry;
-        console.log(userDetails);
-        history.push("/payment");
-    };
-
-    const handleValidateForm = e => {
-        e.preventDefault();
+    const handleValidateForm = () => {
         const {
             firstName,
             lastName,
@@ -132,9 +127,20 @@ const CheckoutPage = () => {
             EmailValidator.validate(email) === false
         ) {
             alert("Please fill required fields with correct details");
-        } else {
-            handleOnSubmit();
+            return true;
         }
+    };
+
+    const handleOnSubmit = e => {
+        e.preventDefault();
+
+        const err = handleValidateForm();
+        userDetails.country = currentCountry;
+        dispatch(setDeliveryDetails(userDetails));
+
+        // if (err) return;
+
+        history.push("/payment");
     };
 
     const renderItemTotalPrice = (price: any, quantity: any) => {
@@ -183,12 +189,12 @@ const CheckoutPage = () => {
                     </div> */}
                     <div className="checkout__user-info">
                         <form
-                            action=""
                             className="checkout__user-info__form"
                             onChange={handleOnChange}
-                            onSubmit={handleValidateForm}
+                            id="delivery-form"
+                            onSubmit={handleOnSubmit}
                         >
-                            <h2>Billing details</h2>
+                            <h2>Delivery details</h2>
                             <div className="field-input">
                                 <Input
                                     label="First name"
@@ -298,8 +304,10 @@ const CheckoutPage = () => {
                             </tfoot>
                         </table>
                     </div>
-                    <div className="checkout__btn" onClick={handleValidateForm}>
-                        <Button blue_small_text>PLACE ORDER</Button>
+                    <div className="checkout__btn">
+                        <Button blue_small_text form="delivery-form">
+                            PLACE ORDER
+                        </Button>
                     </div>
                 </div>
             </CheckoutPageContainer>
