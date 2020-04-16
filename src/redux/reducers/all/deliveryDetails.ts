@@ -10,6 +10,8 @@ export default (state = initState, action) => {
                 ...state,
                 ...payload
             };
+        case actionTypes.CLEAR_ALL_STATE_DATA:
+            return null;
         default:
             return state;
     }

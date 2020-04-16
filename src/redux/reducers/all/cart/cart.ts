@@ -39,6 +39,8 @@ export default (state = initState, action: cartItemInterface) => {
             const clonedState = cloneObject(state);
             delete clonedState[id];
             return clonedState;
+        case actionTypes.CLEAR_ALL_STATE_DATA:
+            return null;
         default:
             return state;
     }

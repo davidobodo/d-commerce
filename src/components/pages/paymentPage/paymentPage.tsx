@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
 import { PaymentPageContainer } from "./style";
+import { Link } from "react-router-dom";
 
 import americanExpress from "../../../assets/img/american-express.svg";
 import mastercard from "../../../assets/img/mastercard.svg";
@@ -44,7 +44,9 @@ const PaymentPage = () => {
                             />
                         </form>
                     </div>
-                    <Button blue_small_text>Pay</Button>
+                    <Link to="/orderconfirmation">
+                        <Button blue_small_text>Pay</Button>
+                    </Link>
                 </section>
                 <section className="note-section">
                     <h4>Note:</h4>
