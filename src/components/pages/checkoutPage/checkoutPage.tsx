@@ -39,12 +39,83 @@ const CheckoutPage = () => {
         orderNotes: ""
     });
 
+    const [firstNameHasError, setFirstNameHasError] = useState(false);
+    const [lastNameHasError, setLastNameHasError] = useState(false);
+    const [countryHasError, setCountryHasError] = useState(false);
+    const [stAddHasError, setStAddHasError] = useState(false);
+    const [townHasError, setTownHasError] = useState(false);
+    const [stateHasError, setStateHasError] = useState(false);
+    const [zipHasError, setZipHasError] = useState(false);
+    const [phoneHasError, setPhoneHasError] = useState(false);
+    const [emailHasError, setEmailHasError] = useState(false);
+
+    const [firstNameHasErrorMessage, setFirstNameHasErrorMessage] = useState(
+        ""
+    );
+    const [lastNameHasErrorMessage, setLastNameHasErrorMessage] = useState("");
+    const [countryHasErrorMessage, setCountryHasErrorMessage] = useState("");
+    const [stAddHasErrorMessage, setStAddHasErrorMessage] = useState("");
+    const [townHasErrorMessage, setTownHasErrorMessage] = useState("");
+    const [stateHasErrorMessage, setStateHasErrorMessage] = useState("");
+    const [zipHasErrorMessage, setZipHasErrorMessage] = useState("");
+    const [phoneHasErrorMessage, setPhoneHasErrorMessage] = useState("");
+    const [emailHasErrorMessage, setEmailHasErrorMessage] = useState("");
+
+    let _firstNameHasError = false;
+    let _lastNameHasError = false;
+    let _countryHasError = false;
+    let _stAddHasError = false;
+    let _townHasError = false;
+    let _stateHasError = false;
+    let _zipHasError = false;
+    let _phoneHasError = false;
+    let _emailHasError = false;
+
     const handleOnChange = e => {
         const { name, value } = e.target;
         setUserDetails({
             ...userDetails,
             [name]: value
         });
+    };
+
+    const handleOnKeyDown = e => {
+        const { name } = e.target;
+        const { zip, email, phoneNumber } = userDetails;
+
+        if (e.key === "Enter") return;
+
+        if (name === "firstName") {
+            setFirstNameHasError(false);
+        }
+
+        if (name === "lastName") {
+            setLastNameHasError(false);
+        }
+
+        if (name === "streetAddress") {
+            setStAddHasError(false);
+        }
+
+        if (name === "town") {
+            setTownHasError(false);
+        }
+
+        if (name === "state") {
+            setStateHasError(false);
+        }
+
+        if (name === "zip" && zip.length === 4) {
+            setZipHasError(false);
+        }
+
+        if (name === "email" && EmailValidator.validate(email)) {
+            setEmailHasError(false);
+        }
+
+        if (name === "phoneNumber" && phoneNumber.length === 10) {
+            setPhoneHasError(false);
+        }
     };
 
     const handleValidateForm = () => {
@@ -63,76 +134,111 @@ const CheckoutPage = () => {
         const letters = /^[A-Za-z]+$/;
 
         //--
-        // if (firstName === "") {
-        //     console.log("Name cannot be empty");
-        // }
+        if (firstName === "") {
+            _firstNameHasError = true;
+            setFirstNameHasError(true);
+            setFirstNameHasErrorMessage("first name cannot be empty");
+        }
 
-        // if (!firstName.match(letters)) {
-        //     console.log("please input only letters");
-        // }
+        if (!firstName.match(letters)) {
+            _firstNameHasError = true;
+            setFirstNameHasError(true);
+            setFirstNameHasErrorMessage("first name must contain only letters");
+        }
         //--
 
         //--
-        // if (lastName === "") {
-        //     console.log("Name cannot be empty");
-        // }
+        if (lastName === "") {
+            _lastNameHasError = true;
+            setLastNameHasError(true);
+            setLastNameHasErrorMessage("last name cannot be empty");
+        }
 
-        // if (!lastName.match(letters)) {
-        //     console.log("please input only letters");
-        // }
+        if (!lastName.match(letters)) {
+            _lastNameHasError = true;
+            setLastNameHasError(true);
+            setLastNameHasErrorMessage("last name cannot be empty");
+        }
         //--
 
         //--
-        // if (zip === "") {
-        //     console.log("Zip cannot be empty");
-        // }
+        if (zip === "") {
+            _zipHasError = true;
+            setZipHasError(true);
+            setZipHasErrorMessage("zip code cannot be empty");
+        }
 
-        // if (zip.length !== 5) {
-        //     console.log("zip code must be 5 numbers");
-        // }
+        if (zip.length !== 5) {
+            _zipHasError = true;
+            setZipHasError(true);
+            setZipHasErrorMessage("zip code must be exactly 5 numbers");
+        }
+
+        if (zip.match(letters)) {
+            _zipHasError = true;
+            setZipHasError(true);
+            setZipHasErrorMessage("zip code must contain only numbers");
+        }
         //--
 
-        // if (company === "") {
-        //     console.log("company cannot be empty");
-        // }
+        if (streetAddress === "") {
+            _stAddHasError = true;
+            setStAddHasError(true);
+            setStAddHasErrorMessage("street address cannot be empty");
+        }
 
-        // if (streetAddress === "") {
-        //     console.log("street address cannot be empty");
-        // }
+        if (town === "") {
+            _townHasError = true;
+            setTownHasError(true);
+            setTownHasErrorMessage("town cannot be empty");
+        }
 
-        // if (town === "") {
-        //     console.log("town cannot be empty");
-        // }
+        if (state === "") {
+            _stateHasError = true;
+            setStateHasError(true);
+            setStateHasErrorMessage("state cannot be empty");
+        }
 
-        // if (state === "") {
-        //     console.log("state cannot be empty");
-        // }
+        if (phoneNumber === "") {
+            _phoneHasError = true;
+            setPhoneHasError(true);
+            setPhoneHasErrorMessage("phone number cannot be empty");
+        }
 
-        // if (phoneNumber === "") {
-        //     console.log("phoneNumber cannot be empty");
-        // }
+        if (phoneNumber.match(letters)) {
+            _phoneHasError = true;
+            setPhoneHasError(true);
+            setPhoneHasErrorMessage("phone number can only be numbers");
+        }
 
-        // if (email === "") {
-        //     console.log("email cannot be empty");
-        // }
+        if (phoneNumber.length === 10) {
+            _phoneHasError = true;
+            setPhoneHasError(true);
+            setPhoneHasErrorMessage("phone number must be 11 characters");
+        }
 
-        // if (country === "Choose an option") {
-        //     console.log("Please select a country");
-        // }
+        if (!EmailValidator.validate(email)) {
+            _emailHasError = true;
+            setEmailHasError(true);
+            setEmailHasErrorMessage("please enter a valid email address");
+        }
+
+        if (country === "Choose an option") {
+            console.log("Please select a country");
+        }
 
         if (
-            firstName === "" ||
-            lastName === "" ||
-            zip === "" ||
-            streetAddress === "" ||
-            town === "" ||
-            state === "" ||
-            phoneNumber === "" ||
-            EmailValidator.validate(email) === false
-        ) {
-            alert("Please fill required fields with correct details");
+            _firstNameHasError ||
+            _lastNameHasError ||
+            _phoneHasError ||
+            _stAddHasError ||
+            _stateHasError ||
+            _townHasError ||
+            _zipHasError ||
+            _phoneHasError ||
+            _emailHasError
+        )
             return true;
-        }
     };
 
     const handleOnSubmit = e => {
@@ -140,10 +246,9 @@ const CheckoutPage = () => {
 
         const err = handleValidateForm();
         userDetails.country = currentCountry;
+
+        if (err) return;
         dispatch(setDeliveryDetails(userDetails));
-
-        // if (err) return;
-
         history.push("/payment");
     };
 
@@ -201,6 +306,7 @@ const CheckoutPage = () => {
                             onChange={handleOnChange}
                             id="delivery-form"
                             onSubmit={handleOnSubmit}
+                            onKeyDown={handleOnKeyDown}
                         >
                             <h2>Delivery details</h2>
                             <div className="field-input">
@@ -208,11 +314,15 @@ const CheckoutPage = () => {
                                     label="First name"
                                     name="firstName"
                                     required
+                                    hasError={firstNameHasError}
+                                    errorMessage={firstNameHasErrorMessage}
                                 />
                                 <Input
                                     label="Last name"
                                     name="lastName"
                                     required
+                                    hasError={lastNameHasError}
+                                    errorMessage={lastNameHasErrorMessage}
                                 />
                             </div>
                             <Input
@@ -234,26 +344,50 @@ const CheckoutPage = () => {
                                     placeholder="House number and street name"
                                     name="streetAddress"
                                     required
+                                    hasError={stAddHasError}
+                                    errorMessage={stAddHasErrorMessage}
                                 />
                                 <Input
                                     placeholder="Apartment, suite, unit etc.(optional)"
                                     name="apartment"
                                 />
                             </div>
-                            <Input label="Town/City" required name="town" />
+                            <Input
+                                label="Town/City"
+                                required
+                                name="town"
+                                hasError={townHasError}
+                                errorMessage={townHasErrorMessage}
+                            />
                             <Input
                                 label="State/County"
                                 placeholder="Select an option..."
                                 name="state"
                                 required
+                                hasError={stateHasError}
+                                errorMessage={stateHasErrorMessage}
                             />
 
-                            <Input label="Postcode/ZIP" name="zip" required />
-                            <Input label="Phone" name="phoneNumber" required />
+                            <Input
+                                label="Postcode/ZIP"
+                                name="zip"
+                                required
+                                hasError={zipHasError}
+                                errorMessage={zipHasErrorMessage}
+                            />
+                            <Input
+                                label="Phone Number"
+                                name="phoneNumber"
+                                required
+                                hasError={phoneHasError}
+                                errorMessage={phoneHasErrorMessage}
+                            />
                             <Input
                                 label="Email address"
                                 name="email"
                                 required
+                                hasError={emailHasError}
+                                errorMessage={emailHasErrorMessage}
                             />
                         </form>
                         <div className="checkout__user-info__add-info">
