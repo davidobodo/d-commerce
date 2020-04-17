@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -11,6 +11,8 @@ import { LoginContainer } from "./style";
 
 const Login = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+    console.log(history);
     const [emailHasError, setEmailHasError] = useState(false);
     const [passwordHasError, setPasswordHasError] = useState(false);
 
@@ -50,10 +52,6 @@ const Login = () => {
         }
     };
 
-    if (firebase.auth.uid) {
-        return <Redirect to="/" />;
-    }
-
     const handleOnsubmit = () => {
         console.log({ emailHasError }, { passwordHasError });
         if (!emailHasError && !passwordHasError) {
@@ -82,6 +80,14 @@ const Login = () => {
 
         handleOnsubmit();
     };
+
+    if (firebase.auth.uid) {
+        if (history.action === "REPLACE") {
+            return <Redirect to="/checkout" />;
+        } else {
+            return <Redirect to="/" />;
+        }
+    }
 
     const ipnut_fields = [
         {
