@@ -42,7 +42,7 @@ const OrderConfirmationPage = () => {
                 .reduce((i: number, j: any) => {
                     return (i + j) as number;
                 }, 0);
-            return `$${total}`;
+            return `$${total.toFixed(2)}`;
         }
     };
 
