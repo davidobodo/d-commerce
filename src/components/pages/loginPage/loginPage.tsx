@@ -19,13 +19,17 @@ const Login = () => {
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
 
-    const { isLoading, firebase, firebaseErrMessage } = useSelector(state => {
-        return {
-            isLoading: state.login.loading,
-            firebase: state.firebaseReducer,
-            firebaseErrMessage: state.login.error
-        };
-    }, shallowEqual);
+    const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
+        state => {
+            return {
+                isLoading: state.login.loading,
+                firebase: state.firebaseReducer,
+                firebaseErrMessage: state.login.error,
+                cart: state.cart
+            };
+        },
+        shallowEqual
+    );
 
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -82,7 +86,7 @@ const Login = () => {
     };
 
     if (firebase.auth.uid) {
-        if (history.action === "REPLACE") {
+        if (history.action === "REPLACE" && !!cart !== false) {
             return <Redirect to="/checkout" />;
         } else {
             return <Redirect to="/" />;
