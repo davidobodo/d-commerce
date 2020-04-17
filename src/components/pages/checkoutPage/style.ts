@@ -150,6 +150,13 @@ export const CheckoutPageContainer = styled.div`
                 border: 1px solid ${props => props.theme.primaryColor};
             }
         }
+
+        .error-message {
+            font-weight: 400;
+            color: #ff0000;
+            margin-bottom: 0;
+            margin-top: 3px;
+        }
     }
 
     .street-address {

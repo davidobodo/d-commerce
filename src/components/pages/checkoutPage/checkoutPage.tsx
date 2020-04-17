@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import Layout from "../../shared/layout/layout";
@@ -73,6 +73,7 @@ const CheckoutPage = () => {
 
     const handleOnChange = e => {
         const { name, value } = e.target;
+        console.log("here", e.target);
         setUserDetails({
             ...userDetails,
             [name]: value
@@ -105,15 +106,15 @@ const CheckoutPage = () => {
             setStateHasError(false);
         }
 
-        if (name === "zip" && zip.length === 4) {
+        if (name === "zip") {
             setZipHasError(false);
         }
 
-        if (name === "email" && EmailValidator.validate(email)) {
+        if (name === "email") {
             setEmailHasError(false);
         }
 
-        if (name === "phoneNumber" && phoneNumber.length === 10) {
+        if (name === "phoneNumber") {
             setPhoneHasError(false);
         }
     };
@@ -211,7 +212,7 @@ const CheckoutPage = () => {
             setPhoneHasErrorMessage("phone number can only be numbers");
         }
 
-        if (phoneNumber.length === 10) {
+        if (phoneNumber.length !== 11) {
             _phoneHasError = true;
             setPhoneHasError(true);
             setPhoneHasErrorMessage("phone number must be 11 characters");
@@ -224,7 +225,9 @@ const CheckoutPage = () => {
         }
 
         if (country === "Choose an option") {
-            console.log("Please select a country");
+            _countryHasError = true;
+            setCountryHasError(true);
+            setCountryHasErrorMessage("please select a country");
         }
 
         if (
@@ -236,7 +239,8 @@ const CheckoutPage = () => {
             _townHasError ||
             _zipHasError ||
             _phoneHasError ||
-            _emailHasError
+            _emailHasError ||
+            _countryHasError
         )
             return true;
     };
@@ -275,6 +279,13 @@ const CheckoutPage = () => {
             return `$${total.toFixed(2)}`;
         }
     };
+
+    useEffect(() => {
+        setUserDetails({
+            ...userDetails,
+            country: currentCountry
+        });
+    }, [currentCountry]);
 
     if (!firebase.auth.uid) {
         return <Redirect to="/login" />;
@@ -337,6 +348,11 @@ const CheckoutPage = () => {
                                     options={countryList}
                                     selectedOption={setCurrentCountry}
                                 />
+                                {countryHasError && (
+                                    <h6 className="error-message">
+                                        {countryHasErrorMessage}
+                                    </h6>
+                                )}
                             </div>
                             <div className="street-address">
                                 <Input
@@ -378,6 +394,8 @@ const CheckoutPage = () => {
                             <Input
                                 label="Phone Number"
                                 name="phoneNumber"
+                                type="tel"
+                                // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 required
                                 hasError={phoneHasError}
                                 errorMessage={phoneHasErrorMessage}

@@ -6,4 +6,5 @@ export interface InputProps {
     name?: string;
     hasError?: boolean;
     errorMessage?: string;
+    pattern?: any;
 }

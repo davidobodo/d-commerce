@@ -14,7 +14,8 @@ const Input: React.FC<InputProps> = ({
     required = false,
     type = "text",
     hasError,
-    errorMessage
+    errorMessage,
+    pattern = null
 }) => {
     const errorClassName = hasError ? "error" : "";
     return (
@@ -29,6 +30,7 @@ const Input: React.FC<InputProps> = ({
                 type={type}
                 placeholder={placeholder}
                 name={name}
+                pattern={pattern}
                 className={errorClassName}
             />
             {hasError && <h6 className="error-message">{errorMessage}</h6>}
