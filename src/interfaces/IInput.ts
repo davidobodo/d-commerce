@@ -7,4 +7,6 @@ export interface InputProps {
     hasError?: boolean;
     errorMessage?: string;
     pattern?: any;
+    value?: any;
+    handleOnChange?: any;
 }

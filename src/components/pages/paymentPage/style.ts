@@ -47,6 +47,10 @@ export const PaymentPageContainer = styled.div`
                     font-size: 14px;
                     font-weight: 400;
                 }
+
+                input {
+                    text-align: center;
+                }
             }
         }
     }

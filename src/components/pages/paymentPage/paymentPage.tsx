@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
@@ -11,6 +11,27 @@ import visa from "../../../assets/img/visa.svg";
 import card from "../../../assets/img/pay.svg";
 
 const PaymentPage = () => {
+    const [cardDetails, setCardDetails] = useState({
+        cardNumber: "",
+        expiryDate: "",
+        cvv: ""
+    });
+
+    const handleOnChange = e => {
+        const { name, value } = e.target;
+
+        if (name === "cardNumber") {
+            const _value = value.match(/(\d{1,4})/g) || [];
+
+            const formattedValue = _value.join(" ");
+
+            if (value.length <= 19) {
+                setCardDetails({ ...cardDetails, [name]: formattedValue });
+            }
+        }
+    };
+
+    const { cardNumber, expiryDate, cvv } = cardDetails;
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
@@ -33,14 +54,27 @@ const PaymentPage = () => {
                                 />
                             </div>
                         </header>
-                        <form action="">
+                        <form>
                             <Input
                                 label="Card Number"
-                                placeholder=".... .... .... ...."
+                                placeholder="XXXX XXXX XXXX XXXX"
+                                name="cardNumber"
+                                value={cardNumber}
+                                handleOnChange={handleOnChange}
                             />
                             <Input
                                 label="Expiry date(mm/yy)"
                                 placeholder="MM/YY"
+                                name="expiryDate"
+                                value={expiryDate}
+                                handleOnChange={handleOnChange}
+                            />
+                            <Input
+                                label="CVV"
+                                placeholder="..."
+                                name="cvv"
+                                value={cvv}
+                                handleOnChange={handleOnChange}
                             />
                         </form>
                     </div>
