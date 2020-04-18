@@ -29,6 +29,16 @@ const PaymentPage = () => {
                 setCardDetails({ ...cardDetails, [name]: formattedValue });
             }
         }
+
+        if (name === "expiryDate") {
+            const _value = value.match(/(\d{1,2})/g) || [];
+
+            const formattedValue = _value.join("/");
+
+            if (value.length <= 5) {
+                setCardDetails({ ...cardDetails, [name]: formattedValue });
+            }
+        }
     };
 
     const { cardNumber, expiryDate, cvv } = cardDetails;
