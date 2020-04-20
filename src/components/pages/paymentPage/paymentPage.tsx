@@ -11,11 +11,28 @@ import visa from "../../../assets/img/visa.svg";
 import card from "../../../assets/img/pay.svg";
 
 const PaymentPage = () => {
-    const [cardDetails, setCardDetails] = useState({
-        cardNumber: "",
-        expiryDate: "",
-        cvv: "",
-        pin: ""
+    const [cardNumber, setCardNumber] = useState({
+        value: "",
+        hasError: false,
+        errorMessage: ""
+    });
+
+    const [expiryDate, setExpiryDate] = useState({
+        value: "",
+        hasError: false,
+        errorMessage: ""
+    });
+
+    const [cvv, setCvv] = useState({
+        value: "",
+        hasError: false,
+        errorMessage: ""
+    });
+
+    const [pin, setPin] = useState({
+        value: "",
+        hasError: false,
+        errorMessage: ""
     });
 
     const handleOnChange = e => {
@@ -27,7 +44,7 @@ const PaymentPage = () => {
             const formattedValue = _value.join(" ");
 
             if (value.length <= 19) {
-                setCardDetails({ ...cardDetails, [name]: formattedValue });
+                setCardNumber({ ...cardNumber, value: formattedValue });
             }
         }
 
@@ -37,7 +54,7 @@ const PaymentPage = () => {
             const formattedValue = _value.join("/");
 
             if (value.length <= 5) {
-                setCardDetails({ ...cardDetails, [name]: formattedValue });
+                setExpiryDate({ ...expiryDate, value: formattedValue });
             }
         }
 
@@ -47,7 +64,7 @@ const PaymentPage = () => {
             const formattedValue = _value.join("");
 
             if (value.length <= 3) {
-                setCardDetails({ ...cardDetails, [name]: formattedValue });
+                setCvv({ ...cvv, value: formattedValue });
             }
         }
 
@@ -57,12 +74,11 @@ const PaymentPage = () => {
             const formattedValue = _value.join("");
 
             if (value.length <= 4) {
-                setCardDetails({ ...cardDetails, [name]: formattedValue });
+                setPin({ ...pin, value: formattedValue });
             }
         }
     };
 
-    const { cardNumber, expiryDate, cvv, pin } = cardDetails;
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
@@ -90,21 +106,21 @@ const PaymentPage = () => {
                                 label="Card Number"
                                 placeholder="XXXX XXXX XXXX XXXX"
                                 name="cardNumber"
-                                value={cardNumber}
+                                value={cardNumber.value}
                                 handleOnChange={handleOnChange}
                             />
                             <Input
                                 label="Expiry date(mm/yy)"
                                 placeholder="MM/YY"
                                 name="expiryDate"
-                                value={expiryDate}
+                                value={expiryDate.value}
                                 handleOnChange={handleOnChange}
                             />
                             <Input
                                 label="CVV"
                                 placeholder="..."
                                 name="cvv"
-                                value={cvv}
+                                value={cvv.value}
                                 handleOnChange={handleOnChange}
                             />
                             <Input
@@ -112,7 +128,7 @@ const PaymentPage = () => {
                                 placeholder="•••"
                                 name="pin"
                                 type="password"
-                                value={pin}
+                                value={pin.value}
                                 handleOnChange={handleOnChange}
                             />
                         </form>
