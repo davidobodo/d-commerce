@@ -14,7 +14,8 @@ const PaymentPage = () => {
     const [cardDetails, setCardDetails] = useState({
         cardNumber: "",
         expiryDate: "",
-        cvv: ""
+        cvv: "",
+        pin: ""
     });
 
     const handleOnChange = e => {
@@ -39,9 +40,29 @@ const PaymentPage = () => {
                 setCardDetails({ ...cardDetails, [name]: formattedValue });
             }
         }
+
+        if (name === "cvv") {
+            const _value = value.match(/(\d{1,3})/g) || [];
+
+            const formattedValue = _value.join("");
+
+            if (value.length <= 3) {
+                setCardDetails({ ...cardDetails, [name]: formattedValue });
+            }
+        }
+
+        if (name === "pin") {
+            const _value = value.match(/(\d{1,4})/g) || [];
+
+            const formattedValue = _value.join("");
+
+            if (value.length <= 4) {
+                setCardDetails({ ...cardDetails, [name]: formattedValue });
+            }
+        }
     };
 
-    const { cardNumber, expiryDate, cvv } = cardDetails;
+    const { cardNumber, expiryDate, cvv, pin } = cardDetails;
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
@@ -84,6 +105,14 @@ const PaymentPage = () => {
                                 placeholder="..."
                                 name="cvv"
                                 value={cvv}
+                                handleOnChange={handleOnChange}
+                            />
+                            <Input
+                                label="Pin"
+                                placeholder="•••"
+                                name="pin"
+                                type="password"
+                                value={pin}
                                 handleOnChange={handleOnChange}
                             />
                         </form>
