@@ -53,6 +53,10 @@ export const PaymentPageContainer = styled.div`
                 }
             }
         }
+
+        &__btn {
+            display: inline-block;
+        }
     }
 
     .note-section {

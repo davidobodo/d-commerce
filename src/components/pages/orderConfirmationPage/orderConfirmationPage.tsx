@@ -7,7 +7,9 @@ import { OrderConfirmationPageContainer } from "./style";
 import checkmark from "../../../assets/img/confirm.svg";
 import { clearAllStateData } from "../../../redux/actions/clearAll";
 
-const OrderConfirmationPage = () => {
+const OrderConfirmationPage = ({ location }) => {
+    console.log(location);
+    const { cardNumber, expiryDate } = location.state;
     const dispatch = useDispatch();
     const history = useHistory();
     const { cart, deliveryDetails } = useSelector(state => {
@@ -132,9 +134,9 @@ const OrderConfirmationPage = () => {
                     </div>
                     <div className="order-confirmation__delivery-details__section">
                         <h5>Credit Card</h5>
-                        <p>Card Number:</p>
-                        <p>Expiry Date: 09/22</p>
-                        <p>Amount: $76.9</p>
+                        <p>Card Number: {cardNumber}</p>
+                        <p>Expiry Date: {expiryDate}</p>
+                        <p>Amount: {renderTotalPrice() as any}</p>
                     </div>
                 </section>
                 <div onClick={handleReturnToHome}>

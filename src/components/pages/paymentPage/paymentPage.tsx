@@ -3,7 +3,7 @@ import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
 import { PaymentPageContainer } from "./style";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import americanExpress from "../../../assets/img/american-express.svg";
 import mastercard from "../../../assets/img/mastercard.svg";
@@ -11,6 +11,7 @@ import visa from "../../../assets/img/visa.svg";
 import card from "../../../assets/img/pay.svg";
 
 const PaymentPage = () => {
+    const history = useHistory();
     const [cardNumber, setCardNumber] = useState({
         value: "",
         hasError: false,
@@ -157,6 +158,11 @@ const PaymentPage = () => {
         }
     };
 
+    // const handleOnSubmit = () => {
+
+    //     history.push("/orderConfirmation");
+    // };
+
     useEffect(() => {
         if (
             !cardNumber.hasError &&
@@ -167,9 +173,19 @@ const PaymentPage = () => {
         ) {
             setErr(false);
         }
-    }, [cardNumber.hasError, expiryDate.hasError, cvv.hasError, pin.hasError]);
+    }, [
+        cardNumber.hasError,
+        expiryDate.hasError,
+        cvv.hasError,
+        pin.hasError,
+        cardNumber
+    ]);
 
-    console.log(err);
+    const cardDetails = {
+        cardNumber: cardNumber.value,
+        expiryDate: expiryDate.value
+    };
+
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
@@ -236,7 +252,17 @@ const PaymentPage = () => {
                             />
                         </form>
                     </div>
-                    <Link to="/orderconfirmation">
+                    {/* <div className="payment__btn" onClick={handleOnSubmit}>
+                        <Button blue_small_text disabled={err}>
+                            Pay
+                        </Button>
+                    </div> */}
+                    <Link
+                        to={{
+                            pathname: "/orderConfirmation",
+                            state: cardDetails
+                        }}
+                    >
                         <Button blue_small_text disabled={err}>
                             Pay
                         </Button>
