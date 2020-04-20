@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
@@ -34,6 +34,8 @@ const PaymentPage = () => {
         hasError: false,
         errorMessage: ""
     });
+
+    const [err, setErr] = useState(true);
 
     const handleOnChange = e => {
         const { name, value } = e.target;
@@ -155,6 +157,19 @@ const PaymentPage = () => {
         }
     };
 
+    useEffect(() => {
+        if (
+            !cardNumber.hasError &&
+            !expiryDate.hasError &&
+            !cvv.hasError &&
+            !pin.hasError &&
+            cardNumber.value.length !== 0
+        ) {
+            setErr(false);
+        }
+    }, [cardNumber.hasError, expiryDate.hasError, cvv.hasError, pin.hasError]);
+
+    console.log(err);
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
@@ -222,7 +237,9 @@ const PaymentPage = () => {
                         </form>
                     </div>
                     <Link to="/orderconfirmation">
-                        <Button blue_small_text>Pay</Button>
+                        <Button blue_small_text disabled={err}>
+                            Pay
+                        </Button>
                     </Link>
                 </section>
                 <section className="note-section">

@@ -12,5 +12,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
     ${({ ash_small_text }) =>
         ash_small_text && "background-color: #eeeeee; color: #000000"};
 
+    ${({ disabled }) => disabled && "cursor: not-allowed; opacity: 0.5"};
+
     font-size: 12px;
 `;

@@ -3,4 +3,5 @@ export interface ButtonProps {
     blue_small_text?: boolean;
     ash_small_text?: boolean;
     form?: string;
+    disabled?: boolean;
 }
