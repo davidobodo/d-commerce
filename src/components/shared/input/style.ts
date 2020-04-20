@@ -27,14 +27,20 @@ export const InputContainer = styled.div<InputProps>`
 
     input {
         width: 100%;
-        border: 1px solid ${props => props.theme.primaryColor};
+        border: 1px solid;
+        border-color: ${props => props.theme.primaryColor};
         font-size: 14px;
         padding: 7px;
         outline: none;
-    }
+        transition: border-color 0.5s ease-in-out;
 
-    .error {
-        border: 1px solid #ff0000;
+        &:focus {
+            border-color: rgba(50, 84, 168, 1);
+        }
+
+        &.error {
+            border-color: #ff0000;
+        }
     }
 
     .error-message {

@@ -9,4 +9,5 @@ export interface InputProps {
     pattern?: any;
     value?: any;
     handleOnChange?: any;
+    handleOnBlur?: any;
 }
