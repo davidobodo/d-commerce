@@ -6,7 +6,7 @@ export const NavbarContainer = styled.div`
     background-color: #faf9f9;
     top: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     padding-left: 20px;
 
     @media ${devices.tablet} {
