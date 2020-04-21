@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import * as EmailValidator from "email-validator";
@@ -19,8 +19,7 @@ const Login = () => {
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
 
-    let _emailHasErr = false;
-    let _passwordHasErr = false;
+    const [err, setErr] = useState(true);
 
     const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
         state => {
@@ -53,40 +52,48 @@ const Login = () => {
             setEmailHasError(false);
         }
 
-        if (name === "password" && userDetails.password.length > 6) {
+        if (name === "password" && userDetails.password.length > 5) {
             setPasswordHasError(false);
         }
     };
 
-    const handleValidateForm = () => {
+    const handleValidateForm = e => {
+        const { name } = e.target;
         const { email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
 
         //email
-        if (!EmailValidator.validate(email)) {
-            _emailHasErr = true;
-            setEmailHasError(true);
-            setEmailErrorMessage("Insert a valid email");
+        if (name === "email") {
+            if (!EmailValidator.validate(email)) {
+                setEmailHasError(true);
+                setEmailErrorMessage("Insert a valid email");
+            }
         }
 
         //password
-        if (password.length <= 6) {
-            _passwordHasErr = true;
-            setPasswordHasError(true);
-            setPasswordErrorMessage("password Incorrect");
+        if (name === "password") {
+            if (password.length <= 6) {
+                setPasswordHasError(true);
+                setPasswordErrorMessage("password Incorrect");
+            }
         }
-
-        if (_emailHasErr || _passwordHasErr) return true;
     };
 
     const handleOnsubmit = e => {
         e.preventDefault();
-
-        const err = handleValidateForm();
-
-        if (err) return;
         dispatch(requestUserLoginStart(userDetails));
     };
+
+    useEffect(() => {
+        if (
+            !emailHasError &&
+            !passwordHasError &&
+            userDetails.email.length !== 0 &&
+            userDetails.password.length !== 0
+        ) {
+            setErr(false);
+        }
+    }, [emailHasError, passwordHasError, userDetails]);
 
     if (firebase.auth.uid) {
         if (history.action === "REPLACE" && !!cart !== false) {
@@ -141,10 +148,13 @@ const Login = () => {
                                 name={name}
                                 hasError={inputHasError}
                                 errorMessage={inputErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
                         );
                     })}
-                    <Button blue_small_text>Login</Button>
+                    <Button blue_small_text disabled={err}>
+                        Login
+                    </Button>
                     {!!firebaseErrMessage && (
                         <div className="firebase-err">{firebaseErrMessage}</div>
                     )}
