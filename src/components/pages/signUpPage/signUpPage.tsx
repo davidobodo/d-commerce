@@ -19,7 +19,6 @@ const SignUp = () => {
             firebaseErrMessage: state.signup.error
         };
     }, shallowEqual);
-    console.log(firebaseErrMessage);
 
     const [userDetails, setUserDetails] = useState({
         firstName: "",
@@ -37,6 +36,11 @@ const SignUp = () => {
     const [lastNameErrorMessage, setLastNameErrorMessage] = useState();
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
+
+    let _firstNameHasErr = false;
+    let _lastNameHasErr = false;
+    let _emailHasErr = false;
+    let _passwordHasErr = false;
 
     const handleOnChange = e => {
         const { name, value } = e.target;
@@ -60,62 +64,70 @@ const SignUp = () => {
             setEmailHasError(false);
         }
 
-        if (name === "password" && userDetails.password.length > 6) {
+        if (name === "password" && userDetails.password.length > 5) {
             setPasswordHasError(false);
         }
     };
 
-    const handleOnsubmit = () => {
-        if (
-            !firstNameHasError &&
-            !lastNameHasError &&
-            !emailHasError &&
-            !passwordHasError
-        ) {
-            dispatch(requestSignUpStart(userDetails));
-        }
-    };
-
-    const handleValidateForm = e => {
-        e.preventDefault();
+    const handleValidateForm = () => {
         const { firstName, lastName, email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
 
         //firstname
         if (firstName === "") {
+            _firstNameHasErr = true;
             setFirstNameHasError(true);
             setFirstNameErrorMessage("firstName cannot be empty");
         }
         if (!firstName.match(letters)) {
+            _firstNameHasErr = true;
             setFirstNameHasError(true);
             setFirstNameErrorMessage("firstName must include only letters");
         }
 
         // lastname;
         if (lastName === "") {
+            _lastNameHasErr = true;
             setLastNameHasError(true);
             setLastNameErrorMessage("lastName cannot be empty");
         }
         if (!lastName.match(letters)) {
+            _lastNameHasErr = true;
             setLastNameHasError(true);
             setLastNameErrorMessage("lastName must include only letters");
         }
 
         //email
         if (!EmailValidator.validate(email)) {
+            _emailHasErr = true;
             setEmailHasError(true);
             setEmailErrorMessage("Insert a valid email");
         }
 
         //password
-        if (password.length <= 6) {
+        if (password.length < 6) {
+            _passwordHasErr = true;
             setPasswordHasError(true);
             setPasswordErrorMessage(
                 "password must be greater than six characters"
             );
         }
 
-        handleOnsubmit();
+        if (
+            _firstNameHasErr ||
+            _lastNameHasErr ||
+            _emailHasErr ||
+            _passwordHasErr
+        )
+            return true;
+    };
+
+    const handleOnsubmit = e => {
+        e.preventDefault();
+        const err = handleValidateForm();
+
+        if (err) return;
+        dispatch(requestSignUpStart(userDetails));
     };
 
     if (firebase.auth.uid) {
@@ -159,7 +171,7 @@ const SignUp = () => {
             <SignUpContainer>
                 <form
                     action=""
-                    onSubmit={handleValidateForm}
+                    onSubmit={handleOnsubmit}
                     onChange={handleOnChange}
                     onKeyDown={handleOnKeyDown}
                     noValidate
