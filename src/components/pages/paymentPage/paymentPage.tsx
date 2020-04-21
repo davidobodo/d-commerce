@@ -3,7 +3,7 @@ import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
 import { PaymentPageContainer } from "./style";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import americanExpress from "../../../assets/img/american-express.svg";
 import mastercard from "../../../assets/img/mastercard.svg";
@@ -11,7 +11,6 @@ import visa from "../../../assets/img/visa.svg";
 import card from "../../../assets/img/pay.svg";
 
 const PaymentPage = () => {
-    const history = useHistory();
     const [cardNumber, setCardNumber] = useState({
         value: "",
         hasError: false,
@@ -158,18 +157,16 @@ const PaymentPage = () => {
         }
     };
 
-    // const handleOnSubmit = () => {
-
-    //     history.push("/orderConfirmation");
-    // };
-
     useEffect(() => {
         if (
             !cardNumber.hasError &&
             !expiryDate.hasError &&
             !cvv.hasError &&
             !pin.hasError &&
-            cardNumber.value.length !== 0
+            cardNumber.value.length !== 0 &&
+            expiryDate.value.length !== 0 &&
+            cvv.value.length !== 0 &&
+            pin.value.length !== 0
         ) {
             setErr(false);
         }
@@ -178,13 +175,18 @@ const PaymentPage = () => {
         expiryDate.hasError,
         cvv.hasError,
         pin.hasError,
-        cardNumber
+        cardNumber,
+        expiryDate,
+        cvv,
+        pin
     ]);
 
     const cardDetails = {
         cardNumber: cardNumber.value,
         expiryDate: expiryDate.value
     };
+
+    console.log(err);
 
     return (
         <Layout isFooterPresent>
@@ -252,11 +254,6 @@ const PaymentPage = () => {
                             />
                         </form>
                     </div>
-                    {/* <div className="payment__btn" onClick={handleOnSubmit}>
-                        <Button blue_small_text disabled={err}>
-                            Pay
-                        </Button>
-                    </div> */}
                     <Link
                         to={{
                             pathname: "/orderConfirmation",

@@ -87,7 +87,10 @@ const OrderConfirmationPage = ({ location }) => {
                                 productQuantity
                             } = item;
                             return (
-                                <div className="order-confirmation__summary__item">
+                                <div
+                                    className="order-confirmation__summary__item"
+                                    key={i}
+                                >
                                     <div className="left-column">
                                         <img src={image} alt={image} />
                                     </div>

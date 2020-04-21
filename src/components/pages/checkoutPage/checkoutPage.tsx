@@ -73,7 +73,6 @@ const CheckoutPage = () => {
 
     const handleOnChange = e => {
         const { name, value } = e.target;
-        console.log("here", e.target);
         setUserDetails({
             ...userDetails,
             [name]: value
