@@ -162,7 +162,7 @@ export const myproducts = [
         name: "Black Carks men's wear",
         rating: 5,
         price: "$1200",
-        category: ["sports", "male", "black"],
+        category: ["cooperate-shoe", "male", "black"],
         description:
             "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
     },
@@ -172,7 +172,7 @@ export const myproducts = [
         name: "Brown luxers",
         rating: 5,
         price: "$600",
-        category: ["sports", "male", "black"],
+        category: ["cooperate-shoe", "male", "black"],
         description:
             "A shoe is an item of footwear intended to protect and comfort the human foot. Shoes are also used as an item of decoration and fashion. The design of shoes has varied enormously through time "
     },

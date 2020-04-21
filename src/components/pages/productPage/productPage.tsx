@@ -13,37 +13,19 @@ import { updateCart } from "../../../redux/actions/cart";
 
 import { v4 as uuidv4 } from "uuid";
 
-const related_products = [
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    },
-    {
-        image: banner,
-        name: "Racer T-shirt",
-        rating: 5,
-        price: "$20.98"
-    }
-];
+import { myproducts } from "../../../constants/AllProducts";
 
 const ProductPage = ({ location }) => {
     const [productSize, setProductSize] = useState();
     const [productQuantity, setProductQuantity] = useState();
-    const { image, name, price, description, sizes } = location.state.product;
+    const {
+        image,
+        name,
+        price,
+        description,
+        sizes,
+        category: mainItemCategories
+    } = location.state.product;
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -65,6 +47,28 @@ const ProductPage = ({ location }) => {
         );
         history.push("/cart");
     };
+
+    console.log(mainItemCategories);
+
+    const relatedProducts = myproducts.filter(product => {
+        const { category: otherItemCategories } = product;
+        function check(first, second) {
+            var commonValuesLength = 0;
+            for (let i = 0; i < first.length; i++) {
+                for (let j = 0; j < second.length; j++) {
+                    if (first[i] === second[j]) {
+                        commonValuesLength += 1;
+                    }
+                }
+            }
+            return commonValuesLength;
+        }
+
+        return check(mainItemCategories, otherItemCategories) >= 2;
+    });
+
+    console.log(relatedProducts);
+
     return (
         <Layout isFooterPresent>
             <ProductPageContainer>
@@ -119,7 +123,7 @@ const ProductPage = ({ location }) => {
                     <div className="related-products">
                         <h1>Related products</h1>
                         <div className="related-products__products-wrapper">
-                            {related_products.map((product, i) => {
+                            {relatedProducts.slice(0, 4).map((product, i) => {
                                 return (
                                     <ProductCard product={product} key={i} />
                                 );
