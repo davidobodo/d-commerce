@@ -12,12 +12,15 @@ import { LoginContainer } from "./style";
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(history);
+
     const [emailHasError, setEmailHasError] = useState(false);
     const [passwordHasError, setPasswordHasError] = useState(false);
 
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
+
+    let _emailHasErr = false;
+    let _passwordHasErr = false;
 
     const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
         state => {
@@ -50,39 +53,39 @@ const Login = () => {
             setEmailHasError(false);
         }
 
-        console.log(userDetails.password.length);
         if (name === "password" && userDetails.password.length > 6) {
             setPasswordHasError(false);
         }
     };
 
-    const handleOnsubmit = () => {
-        console.log({ emailHasError }, { passwordHasError });
-        if (!emailHasError && !passwordHasError) {
-            console.log("in this level");
-            console.log({ emailHasError }, { passwordHasError });
-            dispatch(requestUserLoginStart(userDetails));
-        }
-    };
-
-    const handleValidateForm = e => {
+    const handleValidateForm = () => {
         const { email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
-        e.preventDefault();
 
         //email
         if (!EmailValidator.validate(email)) {
+            _emailHasErr = true;
             setEmailHasError(true);
             setEmailErrorMessage("Insert a valid email");
         }
 
         //password
         if (password.length <= 6) {
+            _passwordHasErr = true;
             setPasswordHasError(true);
             setPasswordErrorMessage("password Incorrect");
         }
 
-        handleOnsubmit();
+        if (_emailHasErr || _passwordHasErr) return true;
+    };
+
+    const handleOnsubmit = e => {
+        e.preventDefault();
+
+        const err = handleValidateForm();
+
+        if (err) return;
+        dispatch(requestUserLoginStart(userDetails));
     };
 
     if (firebase.auth.uid) {
@@ -116,7 +119,7 @@ const Login = () => {
             <LoginContainer>
                 <form
                     action=""
-                    onSubmit={handleValidateForm}
+                    onSubmit={handleOnsubmit}
                     onChange={handleOnChange}
                     onKeyDown={handleOnKeyDown}
                     noValidate
