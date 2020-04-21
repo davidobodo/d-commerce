@@ -8,7 +8,6 @@ import checkmark from "../../../assets/img/confirm.svg";
 import { clearAllStateData } from "../../../redux/actions/clearAll";
 
 const OrderConfirmationPage = ({ location }) => {
-    console.log(location);
     const { cardNumber, expiryDate } = location.state;
     const dispatch = useDispatch();
     const history = useHistory();

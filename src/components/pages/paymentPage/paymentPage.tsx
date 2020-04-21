@@ -186,8 +186,6 @@ const PaymentPage = () => {
         expiryDate: expiryDate.value
     };
 
-    console.log(err);
-
     return (
         <Layout isFooterPresent>
             <PaymentPageContainer>
