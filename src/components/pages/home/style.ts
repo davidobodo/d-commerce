@@ -17,16 +17,32 @@ export const HomeContainer = styled.div<HomeProps>`
             margin-top: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid ${props => props.theme.primaryColor};
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
             @media ${devices.tablet} {
                 margin-bottom: 0;
                 padding-bottom: 0;
                 border-bottom: 0;
+                width: 100%;
             }
 
             h1 {
                 font-weight: 400;
                 margin-bottom: 15px;
+            }
+
+            .sorting-input {
+                font-size: 16px;
+                border: 1px solid ${props => props.theme.primaryColor};
+                border-radius: 5px;
+                padding: 10px;
+                outline: none;
+
+                &:focus {
+                    border-color: #2e5c87;
+                }
             }
 
             h6 {

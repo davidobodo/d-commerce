@@ -20,6 +20,21 @@ const allSorts = [
 
 const Home: React.FC<HomeProps> = () => {
     const [sorting, setSorting] = useState();
+    const [currentProducts, setCurrentProducts] = useState(myproducts);
+
+    const handleSearchProduct = e => {
+        const wordToMatch = e.target.value;
+        const regex = new RegExp(wordToMatch, "gi");
+        const searchedProducts = myproducts.filter(product => {
+            const { category } = product;
+            for (let i = 0; i < category.length; i++) {
+                if (category[i].match(regex)) return product;
+            }
+        });
+
+        setCurrentProducts(searchedProducts);
+    };
+
     return (
         <Layout isFooterPresent>
             <HomeContainer>
@@ -37,13 +52,23 @@ const Home: React.FC<HomeProps> = () => {
                     {/* <Dropdown options={allSorts} selectedOption={setSorting} /> */}
                     <div className="shop">
                         <h1>Shop</h1>
+                        <input
+                            type="text"
+                            placeholder="search"
+                            className="sorting-input"
+                            onChange={handleSearchProduct}
+                        />
                         {/* <h6>Showing 1-12 of 20 results</h6> */}
                     </div>
                 </div>
                 <section className="products">
-                    {myproducts.map((product, i) => {
-                        return <ProductCard product={product} key={i} />;
-                    })}
+                    {currentProducts.length > 0 ? (
+                        currentProducts.map((product, i) => {
+                            return <ProductCard product={product} key={i} />;
+                        })
+                    ) : (
+                        <p>Sorry we dont have such product</p>
+                    )}
                 </section>
             </HomeContainer>
         </Layout>
