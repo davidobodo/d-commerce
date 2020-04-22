@@ -48,8 +48,6 @@ const ProductPage = ({ location }) => {
         history.push("/cart");
     };
 
-    console.log(mainItemCategories);
-
     const relatedProducts = myproducts.filter(product => {
         const { category: otherItemCategories } = product;
         function check(first, second) {
@@ -66,8 +64,6 @@ const ProductPage = ({ location }) => {
 
         return check(mainItemCategories, otherItemCategories) >= 2;
     });
-
-    console.log(relatedProducts);
 
     return (
         <Layout isFooterPresent>

@@ -88,10 +88,12 @@ const Login = () => {
         if (
             !emailHasError &&
             !passwordHasError &&
-            userDetails.email.length !== 0 &&
-            userDetails.password.length !== 0
+            EmailValidator.validate(userDetails.email) &&
+            userDetails.password.length >= 6
         ) {
             setErr(false);
+        } else {
+            setErr(true);
         }
     }, [emailHasError, passwordHasError, userDetails]);
 

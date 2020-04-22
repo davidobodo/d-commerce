@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -11,14 +11,19 @@ import { requestSignUpStart } from "../../../redux/actions/auth";
 
 const SignUp = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const { isLoading, firebase, firebaseErrMessage } = useSelector(state => {
-        return {
-            isLoading: state.signup.loading,
-            firebase: state.firebaseReducer,
-            firebaseErrMessage: state.signup.error
-        };
-    }, shallowEqual);
+    const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
+        state => {
+            return {
+                isLoading: state.signup.loading,
+                firebase: state.firebaseReducer,
+                firebaseErrMessage: state.signup.error,
+                cart: state.cart
+            };
+        },
+        shallowEqual
+    );
 
     const [userDetails, setUserDetails] = useState({
         firstName: "",
@@ -37,10 +42,7 @@ const SignUp = () => {
     const [emailErrorMessage, setEmailErrorMessage] = useState();
     const [passwordErrorMessage, setPasswordErrorMessage] = useState();
 
-    let _firstNameHasErr = false;
-    let _lastNameHasErr = false;
-    let _emailHasErr = false;
-    let _passwordHasErr = false;
+    const [err, setErr] = useState(true);
 
     const handleOnChange = e => {
         const { name, value } = e.target;
@@ -69,69 +71,88 @@ const SignUp = () => {
         }
     };
 
-    const handleValidateForm = () => {
+    const handleValidateForm = e => {
+        const { name } = e.target;
         const { firstName, lastName, email, password } = userDetails;
         const letters = /^[A-Za-z]+$/;
 
         //firstname
-        if (firstName === "") {
-            _firstNameHasErr = true;
-            setFirstNameHasError(true);
-            setFirstNameErrorMessage("firstName cannot be empty");
-        }
-        if (!firstName.match(letters)) {
-            _firstNameHasErr = true;
-            setFirstNameHasError(true);
-            setFirstNameErrorMessage("firstName must include only letters");
+        if (name === "firstName") {
+            if (firstName === "") {
+                setFirstNameHasError(true);
+                setFirstNameErrorMessage("firstName cannot be empty");
+            }
+            if (!firstName.match(letters) && firstName !== "") {
+                setFirstNameHasError(true);
+                setFirstNameErrorMessage("firstName must include only letters");
+            }
         }
 
         // lastname;
-        if (lastName === "") {
-            _lastNameHasErr = true;
-            setLastNameHasError(true);
-            setLastNameErrorMessage("lastName cannot be empty");
-        }
-        if (!lastName.match(letters)) {
-            _lastNameHasErr = true;
-            setLastNameHasError(true);
-            setLastNameErrorMessage("lastName must include only letters");
+        if (name === "lastName") {
+            if (lastName === "") {
+                setLastNameHasError(true);
+                setLastNameErrorMessage("lastName cannot be empty");
+            }
+            if (!lastName.match(letters) && lastName !== "") {
+                setLastNameHasError(true);
+                setLastNameErrorMessage("lastName must include only letters");
+            }
         }
 
         //email
-        if (!EmailValidator.validate(email)) {
-            _emailHasErr = true;
-            setEmailHasError(true);
-            setEmailErrorMessage("Insert a valid email");
+        if (name === "email") {
+            if (!EmailValidator.validate(email)) {
+                setEmailHasError(true);
+                setEmailErrorMessage("Insert a valid email");
+            }
         }
 
         //password
-        if (password.length < 6) {
-            _passwordHasErr = true;
-            setPasswordHasError(true);
-            setPasswordErrorMessage(
-                "password must be greater than six characters"
-            );
+        if (name === "password") {
+            if (password.length < 6) {
+                setPasswordHasError(true);
+                setPasswordErrorMessage(
+                    "password must be greater than six characters"
+                );
+            }
         }
-
-        if (
-            _firstNameHasErr ||
-            _lastNameHasErr ||
-            _emailHasErr ||
-            _passwordHasErr
-        )
-            return true;
     };
 
     const handleOnsubmit = e => {
         e.preventDefault();
-        const err = handleValidateForm();
-
-        if (err) return;
         dispatch(requestSignUpStart(userDetails));
     };
 
+    useEffect(() => {
+        if (
+            !firstNameHasError &&
+            !lastNameHasError &&
+            !emailHasError &&
+            !passwordHasError &&
+            userDetails.firstName.length >= 2 &&
+            userDetails.lastName.length >= 2 &&
+            EmailValidator.validate(userDetails.email) &&
+            userDetails.password.length >= 6
+        ) {
+            setErr(false);
+        } else {
+            setErr(true);
+        }
+    }, [
+        firstNameHasError,
+        lastNameHasError,
+        emailHasError,
+        passwordHasError,
+        userDetails
+    ]);
+
     if (firebase.auth.uid) {
-        return <Redirect to="/" />;
+        if (history.action === "REPLACE" && !!cart !== false) {
+            return <Redirect to="/checkout" />;
+        } else {
+            return <Redirect to="/" />;
+        }
     }
 
     const ipnut_fields = [
@@ -194,10 +215,13 @@ const SignUp = () => {
                                 name={name}
                                 hasError={inputHasError}
                                 errorMessage={inputErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
                         );
                     })}
-                    <Button blue_small_text>Sign Up</Button>
+                    <Button blue_small_text disabled={err}>
+                        Sign Up
+                    </Button>
                     {!!firebaseErrMessage && (
                         <div className="firebase-err">{firebaseErrMessage}</div>
                     )}
