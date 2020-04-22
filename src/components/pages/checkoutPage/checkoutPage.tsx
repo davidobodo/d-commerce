@@ -11,6 +11,7 @@ import { CheckoutPageContainer } from "./style";
 
 import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
+import { cloneNode } from "@babel/types";
 
 const CheckoutPage = () => {
     const history = useHistory();
@@ -60,6 +61,8 @@ const CheckoutPage = () => {
     const [zipHasErrorMessage, setZipHasErrorMessage] = useState("");
     const [phoneHasErrorMessage, setPhoneHasErrorMessage] = useState("");
     const [emailHasErrorMessage, setEmailHasErrorMessage] = useState("");
+
+    const [err, setErr] = useState(true);
 
     let _firstNameHasError = false;
     let _lastNameHasError = false;
@@ -118,7 +121,8 @@ const CheckoutPage = () => {
         }
     };
 
-    const handleValidateForm = () => {
+    const handleValidateForm = e => {
+        const { name } = e.target;
         const {
             firstName,
             lastName,
@@ -134,93 +138,114 @@ const CheckoutPage = () => {
         const letters = /^[A-Za-z]+$/;
 
         //--
-        if (firstName === "") {
-            _firstNameHasError = true;
-            setFirstNameHasError(true);
-            setFirstNameHasErrorMessage("first name cannot be empty");
+        if (name === "firstName") {
+            if (firstName === "") {
+                _firstNameHasError = true;
+                setFirstNameHasError(true);
+                setFirstNameHasErrorMessage("first name cannot be empty");
+            }
+
+            if (!firstName.match(letters)) {
+                _firstNameHasError = true;
+                setFirstNameHasError(true);
+                setFirstNameHasErrorMessage(
+                    "first name must contain only letters"
+                );
+            }
         }
 
-        if (!firstName.match(letters)) {
-            _firstNameHasError = true;
-            setFirstNameHasError(true);
-            setFirstNameHasErrorMessage("first name must contain only letters");
-        }
         //--
 
         //--
-        if (lastName === "") {
-            _lastNameHasError = true;
-            setLastNameHasError(true);
-            setLastNameHasErrorMessage("last name cannot be empty");
+        if (name === "lastName") {
+            if (lastName === "") {
+                _lastNameHasError = true;
+                setLastNameHasError(true);
+                setLastNameHasErrorMessage("last name cannot be empty");
+            }
+
+            if (!lastName.match(letters)) {
+                _lastNameHasError = true;
+                setLastNameHasError(true);
+                setLastNameHasErrorMessage("last name cannot be empty");
+            }
         }
 
-        if (!lastName.match(letters)) {
-            _lastNameHasError = true;
-            setLastNameHasError(true);
-            setLastNameHasErrorMessage("last name cannot be empty");
-        }
         //--
 
         //--
-        if (zip === "") {
-            _zipHasError = true;
-            setZipHasError(true);
-            setZipHasErrorMessage("zip code cannot be empty");
+        if (name === "zip") {
+            if (zip === "") {
+                _zipHasError = true;
+                setZipHasError(true);
+                setZipHasErrorMessage("zip code cannot be empty");
+            }
+
+            if (zip.length !== 5) {
+                _zipHasError = true;
+                setZipHasError(true);
+                setZipHasErrorMessage("zip code must be exactly 5 numbers");
+            }
+
+            if (zip.match(letters)) {
+                _zipHasError = true;
+                setZipHasError(true);
+                setZipHasErrorMessage("zip code must contain only numbers");
+            }
         }
 
-        if (zip.length !== 5) {
-            _zipHasError = true;
-            setZipHasError(true);
-            setZipHasErrorMessage("zip code must be exactly 5 numbers");
-        }
-
-        if (zip.match(letters)) {
-            _zipHasError = true;
-            setZipHasError(true);
-            setZipHasErrorMessage("zip code must contain only numbers");
-        }
         //--
 
-        if (streetAddress === "") {
-            _stAddHasError = true;
-            setStAddHasError(true);
-            setStAddHasErrorMessage("street address cannot be empty");
+        if (name === "streetAddress") {
+            if (streetAddress === "") {
+                _stAddHasError = true;
+                setStAddHasError(true);
+                setStAddHasErrorMessage("street address cannot be empty");
+            }
         }
 
-        if (town === "") {
-            _townHasError = true;
-            setTownHasError(true);
-            setTownHasErrorMessage("town cannot be empty");
+        if (name === "town") {
+            if (town === "") {
+                _townHasError = true;
+                setTownHasError(true);
+                setTownHasErrorMessage("town cannot be empty");
+            }
         }
 
-        if (state === "") {
-            _stateHasError = true;
-            setStateHasError(true);
-            setStateHasErrorMessage("state cannot be empty");
+        if (name === "state") {
+            if (state === "") {
+                _stateHasError = true;
+                setStateHasError(true);
+                setStateHasErrorMessage("state cannot be empty");
+            }
         }
 
-        if (phoneNumber === "") {
-            _phoneHasError = true;
-            setPhoneHasError(true);
-            setPhoneHasErrorMessage("phone number cannot be empty");
+        if (name === "phoneNumber") {
+            if (phoneNumber === "") {
+                _phoneHasError = true;
+                setPhoneHasError(true);
+                setPhoneHasErrorMessage("phone number cannot be empty");
+            }
+
+            if (phoneNumber.match(letters)) {
+                _phoneHasError = true;
+                setPhoneHasError(true);
+                setPhoneHasErrorMessage("phone number can only be numbers");
+            }
+
+            if (phoneNumber.length !== 11) {
+                _phoneHasError = true;
+                setPhoneHasError(true);
+                setPhoneHasErrorMessage("phone number must be 11 characters");
+            }
         }
 
-        if (phoneNumber.match(letters)) {
-            _phoneHasError = true;
-            setPhoneHasError(true);
-            setPhoneHasErrorMessage("phone number can only be numbers");
-        }
-
-        if (phoneNumber.length !== 11) {
-            _phoneHasError = true;
-            setPhoneHasError(true);
-            setPhoneHasErrorMessage("phone number must be 11 characters");
-        }
-
-        if (!EmailValidator.validate(email)) {
-            _emailHasError = true;
-            setEmailHasError(true);
-            setEmailHasErrorMessage("please enter a valid email address");
+        if (name === "email") {
+            if (!EmailValidator.validate(email)) {
+                _emailHasError = true;
+                setEmailHasError(true);
+                setEmailHasErrorMessage("please enter a valid email address");
+            }
         }
 
         if (country === "Choose an option") {
@@ -247,10 +272,6 @@ const CheckoutPage = () => {
     const handleOnSubmit = e => {
         e.preventDefault();
 
-        const err = handleValidateForm();
-        userDetails.country = currentCountry;
-
-        if (err) return;
         dispatch(setDeliveryDetails(userDetails));
         history.push("/payment");
     };
@@ -285,6 +306,35 @@ const CheckoutPage = () => {
             country: currentCountry
         });
     }, [currentCountry]);
+
+    useEffect(() => {
+        const {
+            firstName,
+            lastName,
+            country,
+            streetAddress,
+            town,
+            state,
+            zip,
+            phoneNumber,
+            email
+        } = userDetails;
+        if (
+            firstName.length > 0 &&
+            lastName.length > 0 &&
+            country !== "Choose an option" &&
+            streetAddress.length > 0 &&
+            town.length > 0 &&
+            state.length > 0 &&
+            zip.length > 0 &&
+            phoneNumber.length === 11 &&
+            EmailValidator.validate(email)
+        ) {
+            setErr(false);
+        } else {
+            setErr(true);
+        }
+    }, [userDetails]);
 
     if (!firebase.auth.uid) {
         return <Redirect to="/login" />;
@@ -326,6 +376,7 @@ const CheckoutPage = () => {
                                     required
                                     hasError={firstNameHasError}
                                     errorMessage={firstNameHasErrorMessage}
+                                    handleOnBlur={handleValidateForm}
                                 />
                                 <Input
                                     label="Last name"
@@ -333,6 +384,7 @@ const CheckoutPage = () => {
                                     required
                                     hasError={lastNameHasError}
                                     errorMessage={lastNameHasErrorMessage}
+                                    handleOnBlur={handleValidateForm}
                                 />
                             </div>
                             <Input
@@ -361,6 +413,7 @@ const CheckoutPage = () => {
                                     required
                                     hasError={stAddHasError}
                                     errorMessage={stAddHasErrorMessage}
+                                    handleOnBlur={handleValidateForm}
                                 />
                                 <Input
                                     placeholder="Apartment, suite, unit etc.(optional)"
@@ -373,6 +426,7 @@ const CheckoutPage = () => {
                                 name="town"
                                 hasError={townHasError}
                                 errorMessage={townHasErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
                             <Input
                                 label="State/County"
@@ -381,6 +435,7 @@ const CheckoutPage = () => {
                                 required
                                 hasError={stateHasError}
                                 errorMessage={stateHasErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
 
                             <Input
@@ -389,12 +444,13 @@ const CheckoutPage = () => {
                                 required
                                 hasError={zipHasError}
                                 errorMessage={zipHasErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
                             <Input
                                 label="Phone Number"
                                 name="phoneNumber"
                                 type="tel"
-                                // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                handleOnBlur={handleValidateForm}
                                 required
                                 hasError={phoneHasError}
                                 errorMessage={phoneHasErrorMessage}
@@ -405,6 +461,7 @@ const CheckoutPage = () => {
                                 required
                                 hasError={emailHasError}
                                 errorMessage={emailHasErrorMessage}
+                                handleOnBlur={handleValidateForm}
                             />
                         </form>
                         <div className="checkout__user-info__add-info">
@@ -464,7 +521,11 @@ const CheckoutPage = () => {
                         </table>
                     </div>
                     <div className="checkout__btn">
-                        <Button blue_small_text form="delivery-form">
+                        <Button
+                            blue_small_text
+                            form="delivery-form"
+                            disabled={err}
+                        >
                             PLACE ORDER
                         </Button>
                     </div>
