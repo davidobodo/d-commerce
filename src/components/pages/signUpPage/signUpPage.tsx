@@ -86,6 +86,12 @@ const SignUp = () => {
                 setFirstNameHasError(true);
                 setFirstNameErrorMessage("firstName must include only letters");
             }
+            if (firstName.length < 3 && firstName !== "") {
+                setFirstNameHasError(true);
+                setFirstNameErrorMessage(
+                    "firstName must be more than 2 letters"
+                );
+            }
         }
 
         // lastname;
@@ -97,6 +103,10 @@ const SignUp = () => {
             if (!lastName.match(letters) && lastName !== "") {
                 setLastNameHasError(true);
                 setLastNameErrorMessage("lastName must include only letters");
+            }
+            if (lastName.length < 3 && lastName !== "") {
+                setLastNameHasError(true);
+                setLastNameErrorMessage("lastName must be more than 2 letters");
             }
         }
 
