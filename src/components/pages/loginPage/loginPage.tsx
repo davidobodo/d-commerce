@@ -98,7 +98,7 @@ const Login = () => {
     }, [emailHasError, passwordHasError, userDetails]);
 
     if (firebase.auth.uid) {
-        if (history.action === "REPLACE" && !!cart !== false) {
+        if (!!cart !== false) {
             return <Redirect to="/checkout" />;
         } else {
             return <Redirect to="/" />;
