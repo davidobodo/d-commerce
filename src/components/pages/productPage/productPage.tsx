@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Counter from "../../shared/counter/counter";
 import Tabs from "../../shared/tabs/tabs";
 import { ProductPageContainer } from "./style";
 import ProductCard from "../../shared/productCard/productCard";
-import banner from "../../../assets/img/banner.png";
 
 import { useDispatch } from "react-redux";
-import { updateCart } from "../../../redux/actions/cart";
+import { updateCart, editItemQuantity } from "../../../redux/actions/cart";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -29,12 +29,37 @@ const ProductPage = ({ location }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const cart = useSelector(state => state.cart);
+
     const handleUpdateCart = () => {
         if (productSize === "Choose an option") {
             alert("please select a size");
             return;
         }
         const cartProductId = uuidv4();
+
+        if (!!cart) {
+            const getCurrentProduct: any = Object.entries(cart).find(
+                (item: any) => {
+                    return item[1].name === name;
+                }
+            );
+            console.log(getCurrentProduct);
+            if (getCurrentProduct) {
+                const getCurrentProductQuantity =
+                    getCurrentProduct[1].productQuantity;
+                const getCurrentProductId = getCurrentProduct[0];
+
+                const newProductQuantity =
+                    getCurrentProductQuantity + productQuantity;
+
+                dispatch(
+                    editItemQuantity(getCurrentProductId, newProductQuantity)
+                );
+                history.push("/cart");
+                return;
+            }
+        }
         dispatch(
             updateCart(
                 cartProductId,
@@ -45,6 +70,7 @@ const ProductPage = ({ location }) => {
                 productQuantity
             )
         );
+
         history.push("/cart");
     };
 
