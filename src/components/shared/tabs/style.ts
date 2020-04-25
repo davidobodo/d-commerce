@@ -136,6 +136,11 @@ export const TabsContainer = styled.div`
                         margin-right: 10px;
                     }
                 }
+
+                .reviews-note {
+                    color: #ff0000;
+                    margin-left: 10px;
+                }
             }
         }
     }

@@ -80,12 +80,13 @@ const Footer = () => {
                     </div>
                     <div className="footer__details__section ">
                         <h2>Resources</h2>
-                        <ul>
+                        <p>Just explore our wonderful site</p>
+                        {/* <ul>
                             <li>Home</li>
                             <li>Cart</li>
                             <li>Contact Us</li>
                             <li>My Account</li>
-                        </ul>
+                        </ul> */}
                     </div>
                 </section>
                 <section className="footer__copyright">
