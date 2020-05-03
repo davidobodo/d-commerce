@@ -1,5 +1,5 @@
 export interface BackdropProps {
-    isNavbarOpen?: boolean;
+    showBackdrop: boolean;
     blackBackdrop?: boolean;
     whiteBackdrop?: boolean;
     behaviour?: string;

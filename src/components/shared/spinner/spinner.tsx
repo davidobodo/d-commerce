@@ -5,7 +5,7 @@ import Backdrop from '../backdrop/backdrop';
 const Spinner = () => {
     return (
         <>
-            <Backdrop whiteBackdrop={true} />
+            <Backdrop whiteBackdrop={true} showBackdrop={true} />
             {/* <WhiteBackdrop></WhiteBackdrop> */}
             <SpinnerContainer>
                 <div></div>

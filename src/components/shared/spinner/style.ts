@@ -17,6 +17,7 @@ export const SpinnerContainer = styled.div`
     display: inline-block;
     width: 80px;
     height: 80px;
+    z-index: 10;
 
     div {
         transform-origin: 40px 40px;

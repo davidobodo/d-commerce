@@ -124,8 +124,7 @@ const Login = () => {
 
     return (
         <Layout isFooterPresent>
-            {/* {isLoading && <Spinner />} */}
-            <Spinner />
+            {isLoading && <Spinner />}
             <LoginContainer>
                 <form
                     action=""
