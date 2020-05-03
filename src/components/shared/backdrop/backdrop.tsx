@@ -6,12 +6,11 @@ import { BackdropContainer } from './style';
 
 
 
-const Backdrop: React.FC<BackdropProps> = ({ showBackdrop, blackBackdrop, whiteBackdrop, behaviour }) => {
+const Backdrop: React.FC<BackdropProps> = ({ showBackdrop, behaviour, color }) => {
     return <BackdropContainer
         showBackdrop={showBackdrop}
-        blackBackdrop={blackBackdrop}
-        whiteBackdrop={whiteBackdrop}
         behaviour={behaviour}
+        color={color}
     >
     </BackdropContainer>;
 };
