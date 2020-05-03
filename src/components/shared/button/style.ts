@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ButtonProps } from "../../../interfaces/IButton";
+import { ButtonProps } from "./IButton";
 
 export const ButtonContainer = styled.button<ButtonProps>`
     border: none;

@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonContainer } from "./style";
-import { ButtonProps } from "../../../interfaces/IButton";
+import { ButtonProps } from "./IButton";
 
 const Button: React.FC<ButtonProps> = ({
     children,
