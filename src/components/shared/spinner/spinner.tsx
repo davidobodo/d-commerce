@@ -1,10 +1,12 @@
 import React from "react";
 import { SpinnerContainer, WhiteBackdrop } from "./style";
+import Backdrop from '../backdrop/backdrop';
 
 const Spinner = () => {
     return (
         <>
-            <WhiteBackdrop></WhiteBackdrop>
+            <Backdrop whiteBackdrop={true} />
+            {/* <WhiteBackdrop></WhiteBackdrop> */}
             <SpinnerContainer>
                 <div></div>
                 <div></div>
