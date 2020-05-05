@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -11,7 +11,6 @@ import { requestSignUpStart } from "../../../redux/actions/auth";
 
 const SignUp = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
         state => {

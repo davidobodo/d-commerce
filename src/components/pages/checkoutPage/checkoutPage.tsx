@@ -124,7 +124,6 @@ const CheckoutPage = () => {
         const {
             firstName,
             lastName,
-            company,
             country,
             streetAddress,
             town,
@@ -303,7 +302,7 @@ const CheckoutPage = () => {
             ...userDetails,
             country: currentCountry
         });
-    }, [currentCountry]);
+    }, [currentCountry, userDetails]);
 
     useEffect(() => {
         const {
