@@ -71,14 +71,14 @@ const CartPage = () => {
                                     <h4>Sorry you have no item in your cart</h4>
                                 </div>
                             ) : (
-                                <div className="first-section">
-                                    <FontAwesomeIcon icon={faCheck} />
-                                    <h4>
-                                        <span>{renderLastCartItem()}</span> has
-                                        been added to your cart
+                                    <div className="first-section">
+                                        <FontAwesomeIcon icon={faCheck} />
+                                        <h4>
+                                            <span>{renderLastCartItem()}</span> has
+                                            been added to your cart
                                     </h4>
-                                </div>
-                            )}
+                                    </div>
+                                )}
                             <div className="second-section">
                                 <Link to="/">
                                     <Button blue_small_text>

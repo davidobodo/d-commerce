@@ -44,7 +44,10 @@ const Layout: React.FunctionComponent<Props> = ({
 
     return (
         <LayoutContainer>
-            <Backdrop isNavbarOpen={isNavbarOpen} />
+            <Backdrop
+                showBackdrop={isNavbarOpen}
+                color='black'
+                behaviour='right2left' />
             <Hamburger
                 handleShowNavbar={handleShowNavbar}
                 isNavbarOpen={isNavbarOpen}
