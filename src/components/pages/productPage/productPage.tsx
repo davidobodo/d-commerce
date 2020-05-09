@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector } from "react-redux";
 import Layout from "../../shared/layout/layout";
 import Dropdown from "../../shared/dropdown/dropdown";
 import Counter from "../../shared/counter/counter";

@@ -2,24 +2,23 @@ import React, { useState } from "react";
 import Layout from "../../shared/layout/layout";
 
 import ProductCard from "../../shared/productCard/productCard";
-import Dropdown from "../../shared/dropdown/dropdown";
 
 import { HomeContainer } from "./style";
 import { HomeProps } from "../../../interfaces/IHome";
 
 import { myproducts } from "../../../constants/AllProducts";
 
-const allSorts = [
-    "Default sorting",
-    "Sort by popularity",
-    "Sort by average rating",
-    "Sort by latest",
-    "Sort by price: low to high",
-    "Sort by price: high to low"
-];
+// const allSorts = [
+//     "Default sorting",
+//     "Sort by popularity",
+//     "Sort by average rating",
+//     "Sort by latest",
+//     "Sort by price: low to high",
+//     "Sort by price: high to low"
+// ];
 
 const Home: React.FC<HomeProps> = () => {
-    const [sorting, setSorting] = useState();
+    // const [sorting, setSorting] = useState();
     const [currentProducts, setCurrentProducts] = useState(myproducts);
 
     const handleSearchProduct = e => {
@@ -30,6 +29,7 @@ const Home: React.FC<HomeProps> = () => {
             for (let i = 0; i < category.length; i++) {
                 if (category[i].match(regex)) return product;
             }
+
         });
 
         setCurrentProducts(searchedProducts);
@@ -67,8 +67,8 @@ const Home: React.FC<HomeProps> = () => {
                             return <ProductCard product={product} key={i} />;
                         })
                     ) : (
-                        <p>Sorry we dont have such product</p>
-                    )}
+                            <p>Sorry we dont have such product</p>
+                        )}
                 </section>
             </HomeContainer>
         </Layout>

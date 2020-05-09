@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -11,7 +11,6 @@ import { LoginContainer } from "./style";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [emailHasError, setEmailHasError] = useState(false);
     const [passwordHasError, setPasswordHasError] = useState(false);
@@ -60,7 +59,6 @@ const Login = () => {
     const handleValidateForm = e => {
         const { name } = e.target;
         const { email, password } = userDetails;
-        const letters = /^[A-Za-z]+$/;
 
         //email
         if (name === "email") {

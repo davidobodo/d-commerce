@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { CartPageContainer } from "./style";
 import Layout from "../../shared/layout/layout";
 import Button from "../../shared/button/button";
-import Counter from "../../shared/counter/counter";
 import CartPageItem from "../../shared/cartPageItem/cartPageItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faFrown } from "@fortawesome/free-solid-svg-icons";
+import { faFrown } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
@@ -14,7 +13,6 @@ import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterfac
 import { deleteCartItem } from "../../../redux/actions/cart";
 
 const CartPage = () => {
-    const [quantity, setQuantity] = useState();
 
     const cart = useSelector(state => state.cart, shallowEqual);
 
@@ -65,7 +63,7 @@ const CartPage = () => {
                             <h1>Cart</h1>
                         </div>
                         <div className="cart__alert">
-                            {renderCartLength() == 0 || cart == null ? (
+                            {renderCartLength() === 0 || cart == null ? (
                                 <div className="first-section">
                                     <FontAwesomeIcon icon={faFrown} />
                                     <h4>Sorry you have no item in your cart</h4>

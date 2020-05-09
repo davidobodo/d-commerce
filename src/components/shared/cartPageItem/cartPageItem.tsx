@@ -7,7 +7,6 @@ import { CartPageItemContainer } from "./style";
 import { editItemQuantity } from "../../../redux/actions/cart";
 
 import {
-    cartItemInterface,
     cartItemProp
 } from "../../../redux/reducers/all/cart/cartInterface";
 
@@ -19,7 +18,7 @@ const CartPageItem: React.FC<cartItemProp> = ({
     const { name, image, price, productSize, productQuantity } = item[1];
     const [quantity, setQuantity] = useState(productQuantity);
     const cartProductId = item[0];
-    const renderItemTotalPrice = (price: any, quantity: any) => {
+    const renderItemTotalPrice = (price: string, quantity: number): string => {
         const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
             2
         )}`;
@@ -28,7 +27,7 @@ const CartPageItem: React.FC<cartItemProp> = ({
 
     useEffect(() => {
         dispatch(editItemQuantity(cartProductId, quantity));
-    }, [quantity]);
+    }, [quantity, cartProductId, dispatch]);
     return (
         <CartPageItemContainer>
             <td className="col-cancel">

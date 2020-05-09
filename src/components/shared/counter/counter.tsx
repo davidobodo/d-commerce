@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CounterProps } from "../../../interfaces/ICounter";
+import { CounterProps } from "./ICounter";
 import { CounterContainer } from "./style";
 
 const Counter: React.FC<CounterProps> = ({

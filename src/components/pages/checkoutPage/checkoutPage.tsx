@@ -11,7 +11,6 @@ import { CheckoutPageContainer } from "./style";
 
 import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
-import { cloneNode } from "@babel/types";
 
 const CheckoutPage = () => {
     const history = useHistory();
@@ -84,7 +83,6 @@ const CheckoutPage = () => {
 
     const handleOnKeyDown = e => {
         const { name } = e.target;
-        const { zip, email, phoneNumber } = userDetails;
 
         if (e.key === "Enter") return;
 
@@ -126,7 +124,6 @@ const CheckoutPage = () => {
         const {
             firstName,
             lastName,
-            company,
             country,
             streetAddress,
             town,
