@@ -302,7 +302,7 @@ const CheckoutPage = () => {
             ...userDetails,
             country: currentCountry
         });
-    }, [currentCountry, userDetails]);
+    }, [currentCountry]);
 
     useEffect(() => {
         const {
