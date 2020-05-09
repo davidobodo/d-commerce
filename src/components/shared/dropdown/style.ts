@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { devices } from "../../../styling/devices";
-import { DropdownProps } from "../../../interfaces/IDropdown";
+import { DropdownProps } from "./IDropdown";
 
-export const DropdownContainer = styled.div<DropdownProps>`
+export const DropdownContainer = styled.div<Partial<DropdownProps>>`
     border: 1px solid rgba(0, 0, 0, 0.5);
     outline: none;
     border-radius: 0px;
@@ -37,6 +37,13 @@ export const DropdownContainer = styled.div<DropdownProps>`
         border-right: 5px solid transparent;
         right: 10px;
         top: 20px;
+    }
+
+    input{
+        border: none;
+        width: 100%;
+        outline: transparent;
+        font-size: 14px;
     }
 
     ul {

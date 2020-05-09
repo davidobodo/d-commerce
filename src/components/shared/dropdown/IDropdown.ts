@@ -1,5 +1,5 @@
 export interface DropdownProps {
-    options?: string[];
+    options: string[];
     showDropdown?: boolean;
-    selectedOption?: Function;
+    selectedOption: Function;
 }
