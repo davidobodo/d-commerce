@@ -39,6 +39,13 @@ export const DropdownContainer = styled.div<DropdownProps>`
         top: 20px;
     }
 
+    input{
+        border: none;
+        width: 100%;
+        outline: transparent;
+        font-size: 14px;
+    }
+
     ul {
         list-style: none;
         position: absolute;

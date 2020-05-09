@@ -24,7 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
             onClick={handleShowDropdown}
             showDropdown={showDropdown}
         >
-            {currentOption}
+            <input value={currentOption} />
             <ul onClick={handleSelectOption}>
                 {allOptions.map(option => {
                     return (
