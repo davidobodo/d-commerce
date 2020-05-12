@@ -15,7 +15,7 @@ import ReduxSagaFirebase from "redux-saga-firebase";
 //store
 //---------------------------------------------------
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store, { persistedStore } from "./redux/store";
 
 //---------------------------------------------------
 //firebase config
@@ -23,6 +23,8 @@ import store from "./redux/store";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+
+import { PersistGate } from 'redux-persist/integration/react';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_apiKey,
@@ -54,7 +56,9 @@ const rrfProps = {
 const Root = (
     <Provider store={store}>
         <ReactReduxFirebaseProvider {...rrfProps}>
-            <App />
+            <PersistGate persistor={persistedStore} loading={null}>
+                <App />
+            </PersistGate>
         </ReactReduxFirebaseProvider>
     </Provider>
 );
