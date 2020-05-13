@@ -16,6 +16,8 @@ const CartPage = () => {
 
     const cart = useSelector(state => state.cart, shallowEqual);
 
+    // localStorage.setItem('cart', Object.entries(cart) as any);
+
     const dispatch = useDispatch();
 
     const handleDeleteProduct = id => {
