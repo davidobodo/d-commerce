@@ -10,7 +10,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const persitConfig = {
     key: 'd-commerce',
-    storage,
+    storage: storage,
+    whitelist: ['cart']
 };
 
 const allMiddlewares = middleware => {
