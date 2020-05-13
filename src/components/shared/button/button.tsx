@@ -15,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
             ash_small_text={ash_small_text}
             form={form}
             disabled={disabled}
+            data-testid='button'
         >
             {children}
         </ButtonContainer>
