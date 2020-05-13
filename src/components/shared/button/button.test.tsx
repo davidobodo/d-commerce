@@ -28,3 +28,12 @@ it('Button should be disabled', () => {
     const { queryByText } = render(<Button {...props} />)
     expect(queryByText('submit')).toBeDisabled();
 })
+
+it('Button Cursor should be not-allowed when disabled', () => {
+    const props = {
+        children: 'submit',
+        disabled: true
+    }
+    const { queryByText } = render(<Button {...props} />)
+    expect(queryByText('submit')).toHaveStyle('cursor: not-allowed')
+})
