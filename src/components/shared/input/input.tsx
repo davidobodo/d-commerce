@@ -6,7 +6,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { InputContainer } from "./style";
 import { InputProps } from "../../../interfaces/IInput";
 
-// text-field
 const Input: React.FC<InputProps> = ({
     label,
     placeholder,

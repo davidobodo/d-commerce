@@ -44,7 +44,6 @@ const ProductPage = ({ location }) => {
                     return item[1].name === name;
                 }
             );
-            console.log(getCurrentProduct);
             if (getCurrentProduct) {
                 const getCurrentProductQuantity =
                     getCurrentProduct[1].productQuantity;
