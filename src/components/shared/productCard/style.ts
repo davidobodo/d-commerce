@@ -30,14 +30,6 @@ export const ProductCardContainer = styled.div<Partial<ProductProps>>`
         opacity: 0.7;
     }
 
-    .stars {
-        margin-bottom: 15px;
-
-        .checked {
-            color: #ffa500;
-        }
-    }
-
     .price {
         margin-bottom: 15px;
         opacity: 0.7;
