@@ -1,22 +1,16 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState } from "react";
 
 import Navbar from "../navbar/navbar";
 import Sidebar from "../sidebar/sidebar";
 import Footer from "../footer/footer";
 
 import { LayoutContainer, Body } from './style';
+import { LayoutProps } from './ILayout';
 
 import Hamburger from "../hamburger/hamburger";
 import Backdrop from "../backdrop/backdrop";
 
-
-
-interface Props {
-    children: ReactNode;
-    isFooterPresent: boolean;
-}
-
-const Layout: React.FunctionComponent<Props> = ({
+const Layout: React.FunctionComponent<LayoutProps> = ({
     children,
     isFooterPresent
 }) => {
