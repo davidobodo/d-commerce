@@ -24,12 +24,15 @@ const Home: React.FC<HomeProps> = () => {
     const handleSearchProduct = e => {
         const wordToMatch = e.target.value;
         const regex = new RegExp(wordToMatch, "gi");
+
         const searchedProducts = myproducts.filter(product => {
             const { category } = product;
             for (let i = 0; i < category.length; i++) {
-                if (category[i].match(regex)) return product;
+                if (category[i].match(regex)) {
+                    return product
+                }
             }
-
+            return null;
         });
 
         setCurrentProducts(searchedProducts);
