@@ -6,7 +6,7 @@ import { Routes } from "./routing/routes";
 
 import { GlobalStyles } from "./styling/GlobalStyles";
 import { theme } from "./styling/themes";
-import ScrollToTop from "./components/shared/scrollToTop/scrollToTop";
+import ScrollToTop from "./utils/scrollToTop/scrollToTop";
 
 const App = () => {
     return (

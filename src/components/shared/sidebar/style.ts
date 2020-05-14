@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SidebarProps } from "../../../interfaces/ISidebar";
+import { SidebarProps } from "./ISidebar";
 
 export const SidebarContainer = styled.div<SidebarProps>`
     width: 100%;
