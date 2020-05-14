@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ProductProps } from "../../../interfaces/IProductCard";
+import { ProductCardProps } from "./IProductCard";
 
-export const ProductCardContainer = styled.div<Partial<ProductProps>>`
+export const ProductCardContainer = styled.div<Partial<ProductCardProps>>`
     border: 1px solid ${props => props.theme.primaryColor};
     display: flex;
     flex-direction: column;

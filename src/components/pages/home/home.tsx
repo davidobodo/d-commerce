@@ -66,8 +66,17 @@ const Home: React.FC<HomeProps> = () => {
                 </div>
                 <section className="products">
                     {currentProducts.length > 0 ? (
-                        currentProducts.map((product, i) => {
-                            return <ProductCard product={product} key={product.id} />;
+                        currentProducts.map((product) => {
+                            const { name, image, rating, price, id, category, description } = product;
+                            return <ProductCard
+                                name={name}
+                                image={image}
+                                rating={rating}
+                                price={price}
+                                id={id}
+                                key={id}
+                                category={category}
+                                description={description} />;
                         })
                     ) : (
                             <p>Sorry we dont have such product</p>

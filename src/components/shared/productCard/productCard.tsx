@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ProductCardContainer } from "./style";
 
-import { ProductCardProps } from "../../../interfaces/IProductCard";
+import { ProductCardProps } from "./IProductCard";
 import StarRating from "../starRating/starRating";
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const { image, name, rating, price } = product;
+const ProductCard: React.FC<ProductCardProps> = ({ image, name, rating, price, id, category, description }) => {
     return (
-        <Link to={{ pathname: "/product/" + name, state: { product } }}>
+        <Link to={{ pathname: "/product/" + name, state: { name, image, rating, price, id, category, description } }}>
             <ProductCardContainer image={image}>
                 <div className="img-wrapper">
                     <div className="image"></div>
