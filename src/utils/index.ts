@@ -10,7 +10,7 @@ export const getRand = (a: number, b = 1) => {
 
 export const shuffleArray = () => { };
 
-const calculateItemTotalPrice = (price: string, quantity: number) => {
+export const calculateItemTotalPrice = (price: string, quantity: number) => {
     return (parseFloat(price.slice(1)) * quantity).toFixed(2)
 }
 
