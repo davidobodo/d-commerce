@@ -7,6 +7,10 @@ import { OrderConfirmationPageContainer } from "./style";
 import checkmark from "../../../assets/img/confirm.svg";
 import { clearAllStateData } from "../../../redux/actions/clearAll";
 
+
+import { renderItemTotalPrice } from '../../../utils/index';
+
+
 const OrderConfirmationPage = ({ location }) => {
     const { cardNumber, expiryDate } = location.state;
     const dispatch = useDispatch();
@@ -45,13 +49,6 @@ const OrderConfirmationPage = ({ location }) => {
                 }, 0);
             return `$${total.toFixed(2)}`;
         }
-    };
-
-    const renderItemTotalPrice = (price: any, quantity: any) => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
     };
 
     const handleReturnToHome = () => {

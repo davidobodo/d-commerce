@@ -8,6 +8,7 @@ import Button from "../../shared/button/button";
 import * as EmailValidator from "email-validator";
 
 import { CheckoutPageContainer } from "./style";
+import { renderItemTotalPrice } from '../../../utils/index';
 
 import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
@@ -273,12 +274,6 @@ const CheckoutPage = () => {
         history.push("/payment");
     };
 
-    const renderItemTotalPrice = (price: any, quantity: any) => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
-    };
 
     const renderTotalPrice = () => {
         if (!!cart) {
