@@ -1,3 +1,5 @@
+import { cartItemType } from '../interfaces/ICart';
+
 export const cloneObject = <T>(source: T): T => {
     return JSON.parse(JSON.stringify(source)) as T;
 };
@@ -16,14 +18,12 @@ export const renderItemTotalPrice = (price: string, quantity: number): string =>
     return totalPrice;
 };
 
-export const renderTotalPrice = (cart) => {
+export const renderTotalPrice = (cart: {}) => {
     if (!!cart) {
         const total = Object.values(cart)
-            .map((item: any) => {
+            .map((item: cartItemType) => {
                 const { price, productQuantity } = item;
-                const item_total_price = (
-                    parseFloat(price.slice(1)) * parseInt(productQuantity)
-                ).toFixed(2);
+                const item_total_price = (parseFloat(price.slice(1)) * productQuantity).toFixed(2);
                 return parseFloat(item_total_price);
             })
             .reduce((i: number, j: any) => {

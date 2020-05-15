@@ -9,7 +9,7 @@ import { faFrown } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
+import { cartItemInterface } from "../../../interfaces/ICart";
 import { deleteCartItem } from "../../../redux/actions/cart";
 
 import { renderTotalPrice } from '../../../utils/index';

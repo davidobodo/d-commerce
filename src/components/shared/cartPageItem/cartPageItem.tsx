@@ -9,7 +9,7 @@ import { renderItemTotalPrice } from '../../../utils/index';
 
 import {
     cartItemProp
-} from "../../../redux/reducers/all/cart/cartInterface";
+} from "../../../interfaces/ICart";
 
 const CartPageItem: React.FC<cartItemProp> = ({
     item,
