@@ -1,24 +1,28 @@
 import React from 'react';
 
 type ErrorState = {
-    hasError: boolean;
+    error: string;
+    errorInfo: {}
 }
 
 class ErrorBoundary extends React.Component<{}, ErrorState> {
     constructor(props) {
         super(props);
 
-        this.state = { hasError: false }
+        this.state = { error: null, errorInfo: null }
     }
 
-    componentDidCatch(error, info) {
-        this.setState({ hasError: true })
+    componentDidCatch(error, errorInfo) {
+        this.setState({
+            error: error,
+            errorInfo: errorInfo
+        })
         // logToMyService(error, info)
     }
 
 
     render() {
-        if (this.state.hasError) {
+        if (this.state.errorInfo) {
             return (
                 <h1>There was an error from error boundary</h1>
             )

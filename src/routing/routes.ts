@@ -6,7 +6,7 @@ import PaymentPage from "../components/pages/paymentPage/paymentPage";
 import SignUpPage from "../components/pages/signUpPage/signUpPage";
 import LoginPage from "../components/pages/loginPage/loginPage";
 import OrderConfirmationPage from "../components/pages/orderConfirmationPage/orderConfirmationPage";
-import ErrorPage from "../components/pages/error/error";
+import ErrorPageUrl from "../components/pages/errorPageUrl/errorPageUrl";
 
 export const Routes = [
     {
@@ -50,6 +50,6 @@ export const Routes = [
         path: "/orderConfirmation"
     },
     {
-        component: ErrorPage
+        component: ErrorPageUrl
     }
 ];
