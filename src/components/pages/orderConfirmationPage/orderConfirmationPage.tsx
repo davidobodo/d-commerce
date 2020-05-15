@@ -7,6 +7,10 @@ import { OrderConfirmationPageContainer } from "./style";
 import checkmark from "../../../assets/img/confirm.svg";
 import { clearAllStateData } from "../../../redux/actions/clearAll";
 
+
+import { renderItemTotalPrice, renderTotalPrice } from '../../../utils/index';
+
+
 const OrderConfirmationPage = ({ location }) => {
     const { cardNumber, expiryDate } = location.state;
     const dispatch = useDispatch();
@@ -30,29 +34,6 @@ const OrderConfirmationPage = ({ location }) => {
         country
     } = deliveryDetails;
 
-    const renderTotalPrice = () => {
-        if (!!cart) {
-            const total = Object.values(cart)
-                .map((item: any) => {
-                    const { price, productQuantity } = item;
-                    const item_total_price = (
-                        parseFloat(price.slice(1)) * parseInt(productQuantity)
-                    ).toFixed(2);
-                    return parseFloat(item_total_price);
-                })
-                .reduce((i: number, j: any) => {
-                    return (i + j) as number;
-                }, 0);
-            return `$${total.toFixed(2)}`;
-        }
-    };
-
-    const renderItemTotalPrice = (price: any, quantity: any) => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
-    };
 
     const handleReturnToHome = () => {
         dispatch(clearAllStateData());
@@ -111,7 +92,7 @@ const OrderConfirmationPage = ({ location }) => {
                         })}
                     <div className="order-confirmation__summary__total">
                         <span>Total:</span>
-                        <span>{renderTotalPrice() as any}</span>
+                        <span>{renderTotalPrice(cart) as any}</span>
                     </div>
                 </section>
                 <section className="order-confirmation__delivery-details">
@@ -138,7 +119,7 @@ const OrderConfirmationPage = ({ location }) => {
                         <h5>Credit Card</h5>
                         <p>Card Number: {cardNumber}</p>
                         <p>Expiry Date: {expiryDate}</p>
-                        <p>Amount: {renderTotalPrice() as any}</p>
+                        <p>Amount: {renderTotalPrice(cart) as any}</p>
                     </div>
                 </section>
                 <div onClick={handleReturnToHome}>

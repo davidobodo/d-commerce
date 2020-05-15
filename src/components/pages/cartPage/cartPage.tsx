@@ -9,8 +9,10 @@ import { faFrown } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 
-import { cartItemInterface } from "../../../redux/reducers/all/cart/cartInterface";
+import { cartItemInterface } from "../../../interfaces/ICart";
 import { deleteCartItem } from "../../../redux/actions/cart";
+
+import { renderTotalPrice } from '../../../utils/index';
 
 const CartPage = () => {
 
@@ -24,22 +26,6 @@ const CartPage = () => {
         dispatch(deleteCartItem(id));
     };
 
-    const renderTotalPrice = () => {
-        if (!!cart) {
-            const total = Object.values(cart)
-                .map((item: cartItemInterface) => {
-                    const { price, productQuantity } = item;
-                    const item_total_price = (
-                        parseFloat(price.slice(1)) * parseInt(productQuantity)
-                    ).toFixed(2);
-                    return parseFloat(item_total_price);
-                })
-                .reduce((i: number, j: any) => {
-                    return (i + j) as number;
-                }, 0);
-            return `$${total.toFixed(2)}`;
-        }
-    };
 
     const renderCartLength = () => {
         if (!!cart) {
@@ -161,7 +147,7 @@ const CartPage = () => {
                                     </tr> */}
                                     <tr>
                                         <td>Total:</td>
-                                        <td>{renderTotalPrice() as any}</td>
+                                        <td>{renderTotalPrice(cart) as any}</td>
                                     </tr>
                                 </tbody>
                             </table>

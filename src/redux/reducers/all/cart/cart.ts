@@ -1,5 +1,5 @@
 import * as actionTypes from "../../../constants/action_types";
-import { cartItemInterface } from "./cartInterface";
+import { cartItemInterface } from "../../../../interfaces/ICart";
 import { cloneObject } from "../../../../utils";
 
 const initState = null;

@@ -14,3 +14,10 @@ export interface cartItemProp {
     handleDeleteProduct: any;
     handleEditItemQuantity?: any;
 }
+
+export interface cartItemType {
+    name: string;
+    image: string;
+    price: string;
+    productQuantity: number
+}

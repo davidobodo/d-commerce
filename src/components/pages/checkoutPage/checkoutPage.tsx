@@ -8,6 +8,7 @@ import Button from "../../shared/button/button";
 import * as EmailValidator from "email-validator";
 
 import { CheckoutPageContainer } from "./style";
+import { renderItemTotalPrice, renderTotalPrice } from '../../../utils/index';
 
 import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
@@ -273,29 +274,6 @@ const CheckoutPage = () => {
         history.push("/payment");
     };
 
-    const renderItemTotalPrice = (price: any, quantity: any) => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
-    };
-
-    const renderTotalPrice = () => {
-        if (!!cart) {
-            const total = Object.values(cart)
-                .map((item: any) => {
-                    const { price, productQuantity } = item;
-                    const item_total_price = (
-                        parseFloat(price.slice(1)) * parseInt(productQuantity)
-                    ).toFixed(2);
-                    return parseFloat(item_total_price);
-                })
-                .reduce((i: number, j: any) => {
-                    return (i + j) as number;
-                }, 0);
-            return `$${total.toFixed(2)}`;
-        }
-    };
 
     useEffect(() => {
         setUserDetails({
@@ -512,7 +490,7 @@ const CheckoutPage = () => {
                                 </tr> */}
                                 <tr>
                                     <td>Total:</td>
-                                    <td>{renderTotalPrice()}</td>
+                                    <td>{renderTotalPrice(cart)}</td>
                                 </tr>
                             </tfoot>
                         </table>

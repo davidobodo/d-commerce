@@ -5,10 +5,11 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Counter from "../../shared/counter/counter";
 import { CartPageItemContainer } from "./style";
 import { editItemQuantity } from "../../../redux/actions/cart";
+import { renderItemTotalPrice } from '../../../utils/index';
 
 import {
     cartItemProp
-} from "../../../redux/reducers/all/cart/cartInterface";
+} from "../../../interfaces/ICart";
 
 const CartPageItem: React.FC<cartItemProp> = ({
     item,
@@ -18,16 +19,11 @@ const CartPageItem: React.FC<cartItemProp> = ({
     const { name, image, price, productSize, productQuantity } = item[1];
     const [quantity, setQuantity] = useState(productQuantity);
     const cartProductId = item[0];
-    const renderItemTotalPrice = (price: string, quantity: number): string => {
-        const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-            2
-        )}`;
-        return totalPrice;
-    };
 
     useEffect(() => {
         dispatch(editItemQuantity(cartProductId, quantity));
     }, [quantity, cartProductId, dispatch]);
+
     return (
         <CartPageItemContainer>
             <td className="col-cancel">
