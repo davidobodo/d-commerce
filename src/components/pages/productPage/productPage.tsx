@@ -25,7 +25,7 @@ const ProductPage = ({ location }) => {
         description,
         sizes,
         category: mainItemCategories
-    } = location.state.product;
+    } = location.state;
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -44,7 +44,6 @@ const ProductPage = ({ location }) => {
                     return item[1].name === name;
                 }
             );
-            console.log(getCurrentProduct);
             if (getCurrentProduct) {
                 const getCurrentProductQuantity =
                     getCurrentProduct[1].productQuantity;
@@ -145,10 +144,17 @@ const ProductPage = ({ location }) => {
                     <div className="related-products">
                         <h1>Related products</h1>
                         <div className="related-products__products-wrapper">
-                            {relatedProducts.slice(0, 4).map((product, i) => {
-                                return (
-                                    <ProductCard product={product} key={i} />
-                                );
+                            {relatedProducts.slice(0, 4).map((product) => {
+                                const { name, image, rating, price, id, category, description } = product;
+                                return <ProductCard
+                                    name={name}
+                                    image={image}
+                                    rating={rating}
+                                    price={price}
+                                    id={id}
+                                    key={id}
+                                    category={category}
+                                    description={description} />;
                             })}
                         </div>
                     </div>

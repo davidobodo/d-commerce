@@ -6,6 +6,7 @@ import PaymentPage from "../components/pages/paymentPage/paymentPage";
 import SignUpPage from "../components/pages/signUpPage/signUpPage";
 import LoginPage from "../components/pages/loginPage/loginPage";
 import OrderConfirmationPage from "../components/pages/orderConfirmationPage/orderConfirmationPage";
+import ErrorPageUrl from "../components/pages/errorPageUrl/errorPageUrl";
 
 export const Routes = [
     {
@@ -47,5 +48,8 @@ export const Routes = [
         component: OrderConfirmationPage,
         exact: true,
         path: "/orderConfirmation"
+    },
+    {
+        component: ErrorPageUrl
     }
 ];

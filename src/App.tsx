@@ -4,9 +4,11 @@ import { ThemeProvider } from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Routes } from "./routing/routes";
 
+
 import { GlobalStyles } from "./styling/GlobalStyles";
 import { theme } from "./styling/themes";
-import ScrollToTop from "./components/shared/scrollToTop/scrollToTop";
+import ScrollToTop from "./utils/scrollToTop/scrollToTop";
+import ErrorBoundary from './utils/errorBoundary/erroBoundary';
 
 const App = () => {
     return (
@@ -15,17 +17,19 @@ const App = () => {
             <Router>
                 <ScrollToTop />
                 <Switch>
-                    {Routes.map((route, i) => {
-                        const { component, exact, path } = route;
-                        return (
-                            <Route
-                                key={path}
-                                exact={exact}
-                                path={path}
-                                component={component}
-                            />
-                        );
-                    })}
+                    <ErrorBoundary>
+                        {Routes.map((route, i) => {
+                            const { component, exact, path } = route;
+                            return (
+                                <Route
+                                    key={i}
+                                    exact={exact}
+                                    path={path}
+                                    component={component}
+                                />
+                            );
+                        })}
+                    </ErrorBoundary>
                 </Switch>
             </Router>
         </ThemeProvider>

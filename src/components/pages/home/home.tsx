@@ -24,12 +24,15 @@ const Home: React.FC<HomeProps> = () => {
     const handleSearchProduct = e => {
         const wordToMatch = e.target.value;
         const regex = new RegExp(wordToMatch, "gi");
+
         const searchedProducts = myproducts.filter(product => {
             const { category } = product;
             for (let i = 0; i < category.length; i++) {
-                if (category[i].match(regex)) return product;
+                if (category[i].match(regex)) {
+                    return product
+                }
             }
-
+            return null;
         });
 
         setCurrentProducts(searchedProducts);
@@ -63,8 +66,17 @@ const Home: React.FC<HomeProps> = () => {
                 </div>
                 <section className="products">
                     {currentProducts.length > 0 ? (
-                        currentProducts.map((product, i) => {
-                            return <ProductCard product={product} key={i} />;
+                        currentProducts.map((product) => {
+                            const { name, image, rating, price, id, category, description } = product;
+                            return <ProductCard
+                                name={name}
+                                image={image}
+                                rating={rating}
+                                price={price}
+                                id={id}
+                                key={id}
+                                category={category}
+                                description={description} />;
                         })
                     ) : (
                             <p>Sorry we dont have such product</p>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { SidebarProps } from "../../../interfaces/ISidebar";
+import { SidebarProps } from "./ISidebar";
 import { SidebarContainer } from "./style";
 import { signOutStart } from "../../../redux/actions/auth";
 

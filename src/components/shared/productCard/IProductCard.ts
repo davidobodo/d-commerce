@@ -1,11 +1,11 @@
 export interface ProductCardProps {
-    product: any;
-}
-
-export interface ProductProps {
-    id: number;
+    id: number | string;
     image: any;
     name: string;
     rating: number | undefined;
     price: string;
+    category: string[];
+    description: string
 }
+
+

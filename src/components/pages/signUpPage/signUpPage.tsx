@@ -36,10 +36,10 @@ const SignUp = () => {
     const [emailHasError, setEmailHasError] = useState(false);
     const [passwordHasError, setPasswordHasError] = useState(false);
 
-    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState();
-    const [lastNameErrorMessage, setLastNameErrorMessage] = useState();
-    const [emailErrorMessage, setEmailErrorMessage] = useState();
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState();
+    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState('');
+    const [lastNameErrorMessage, setLastNameErrorMessage] = useState('');
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
     const [err, setErr] = useState(true);
 

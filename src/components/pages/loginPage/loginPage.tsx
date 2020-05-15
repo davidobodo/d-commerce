@@ -15,8 +15,8 @@ const Login = () => {
     const [emailHasError, setEmailHasError] = useState(false);
     const [passwordHasError, setPasswordHasError] = useState(false);
 
-    const [emailErrorMessage, setEmailErrorMessage] = useState();
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState();
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
     const [err, setErr] = useState(true);
 
