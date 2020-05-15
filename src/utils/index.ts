@@ -10,25 +10,21 @@ export const getRand = (a: number, b = 1) => {
 
 export const shuffleArray = () => { };
 
+const calculateItemTotalPrice = (price: string, quantity: number) => {
+    return (parseFloat(price.slice(1)) * quantity).toFixed(2)
+}
 
 export const renderItemTotalPrice = (price: string, quantity: number): string => {
-    const totalPrice = `$${(parseFloat(price.slice(1)) * quantity).toFixed(
-        2
-    )}`;
-    return totalPrice;
+    return `$${calculateItemTotalPrice(price, quantity)}`;
 };
 
 export const renderTotalPrice = (cart: {}) => {
     if (!!cart) {
         const total = Object.values(cart)
             .map((item: cartItemType) => {
-                const { price, productQuantity } = item;
-                const item_total_price = (parseFloat(price.slice(1)) * productQuantity).toFixed(2);
-                return parseFloat(item_total_price);
+                return parseFloat(calculateItemTotalPrice(item.price, item.productQuantity));
             })
-            .reduce((i: number, j: any) => {
-                return (i + j) as number;
-            }, 0);
+            .reduce((i: number, j: number) => i + j, 0);
         return `$${total.toFixed(2)}`;
     }
 };
