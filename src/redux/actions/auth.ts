@@ -7,8 +7,27 @@ import {
     REQUEST_LOGIN_FAIL,
     SIGNOUT_START,
     SIGNOUT_SUCCESS,
-    SIGNOUT_FAIL
+    SIGNOUT_FAIL,
+    CHECK_AUTH_STATE
 } from "../constants/action_types";
+
+export const checkAuthState = () => {
+    // const token = localStorage.getItem('token');
+    // if (!token) {
+    //     signOutStart();
+    // }
+    // else {
+    //     const tokenExpirationDate = new Date(localStorage.getItem('expirationDate'))
+    //     if (tokenExpirationDate <= new Date()) {
+    //         signOutStart();
+    //     } else {
+
+    //     }
+    // }
+    return {
+        type: CHECK_AUTH_STATE,
+    }
+}
 
 
 export const requestSignUpStart = payload => {
