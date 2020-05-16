@@ -8,7 +8,6 @@ import { Routes } from "./routing/routes";
 import { GlobalStyles } from "./styling/GlobalStyles";
 import { theme } from "./styling/themes";
 import ScrollToTop from "./utils/scrollToTop/scrollToTop";
-import ErrorBoundary from './utils/errorBoundary/erroBoundary';
 
 const App = () => {
     return (
@@ -17,19 +16,17 @@ const App = () => {
             <Router>
                 <ScrollToTop />
                 <Switch>
-                    <ErrorBoundary>
-                        {Routes.map((route, i) => {
-                            const { component, exact, path } = route;
-                            return (
-                                <Route
-                                    key={i}
-                                    exact={exact}
-                                    path={path}
-                                    component={component}
-                                />
-                            );
-                        })}
-                    </ErrorBoundary>
+                    {Routes.map((route, i) => {
+                        const { component, exact, path } = route;
+                        return (
+                            <Route
+                                key={i}
+                                exact={exact}
+                                path={path}
+                                component={component}
+                            />
+                        );
+                    })}
                 </Switch>
             </Router>
         </ThemeProvider>

@@ -20,11 +20,10 @@ export default (state = initState, action) => {
                 error: null
             };
         case actionTypes.REQUEST_SIGNUP_FAIL:
-            console.log(action.payload);
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.error.message
             };
         default:
             return state;

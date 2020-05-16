@@ -24,10 +24,10 @@ export const requestSignUpSuccess = payload => {
     };
 };
 
-export const requestSignUpError = payload => {
+export const requestSignUpError = ({ error }) => {
     return {
         type: REQUEST_SIGNUP_FAIL,
-        payload
+        error
     };
 };
 
