@@ -10,6 +10,7 @@ import {
     SIGNOUT_FAIL
 } from "../constants/action_types";
 
+
 export const requestSignUpStart = payload => {
     return {
         type: REQUEST_SIGNUP_START,
@@ -17,10 +18,14 @@ export const requestSignUpStart = payload => {
     };
 };
 
-export const requestSignUpSuccess = payload => {
+export const requestSignUpSuccess = data => {
+    const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000)
+    localStorage.setItem('token', data.idToken)
+    localStorage.setItem('userId', data.localId)
+    localStorage.setItem('expirationDate', JSON.stringify(expirationDate))
     return {
         type: REQUEST_SIGNUP_SUCCESS,
-        payload
+        data
     };
 };
 
