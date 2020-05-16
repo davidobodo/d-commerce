@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { NavbarContainer } from "./style";
 import { signOutStart } from "../../../redux/actions/auth";
+import { userInfo } from "os";
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
-
+    const userInfo = useSelector(state => state.signup.data)
     const handleSignout = () => {
         dispatch(signOutStart());
     };
@@ -16,19 +17,21 @@ const Navbar = () => {
     const { auth, profile } = firebase;
 
     const renderAuthLinks = () => {
-        if (auth.uid) {
-            return (
-                <>
-                    <h4 className="nav__links__username">
-                        Hi, {profile.firstName}
-                    </h4>
-                    <div className="nav__links__auth">
-                        <Link to="/" onClick={handleSignout}>
-                            Log out
+        if (userInfo) {
+            if (userInfo.localId) {
+                return (
+                    <>
+                        <h4 className="nav__links__username">
+                            Hi, {profile.firstName}
+                        </h4>
+                        <div className="nav__links__auth">
+                            <Link to="/" onClick={handleSignout}>
+                                Log out
                         </Link>
-                    </div>
-                </>
-            );
+                        </div>
+                    </>
+                );
+            }
         }
         return (
             <div className="nav__links__auth">

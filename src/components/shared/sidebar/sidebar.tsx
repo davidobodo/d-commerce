@@ -8,20 +8,23 @@ import { signOutStart } from "../../../redux/actions/auth";
 const Sidebar: React.FC<SidebarProps> = ({ isNavbarOpen }) => {
     const dispatch = useDispatch();
     const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
-
+    const userInfo = useSelector(state => state.signup.data)
     const handleSignout = () => {
         dispatch(signOutStart());
     };
 
     const renderAuthLinks = () => {
-        if (firebase.auth.uid) {
-            return (
-                <div className="sideNav__authLinks">
-                    <Link to="/" onClick={handleSignout}>
-                        Log out
+        if (userInfo) {
+
+            if (userInfo.localId) {
+                return (
+                    <div className="sideNav__authLinks">
+                        <Link to="/" onClick={handleSignout}>
+                            Log out
                     </Link>
-                </div>
-            );
+                    </div>
+                );
+            }
         }
         return (
             <div className="sideNav__authLinks">

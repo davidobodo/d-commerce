@@ -2,7 +2,8 @@ import * as actionTypes from "../../../constants/action_types";
 
 const initState = {
     loading: false,
-    error: null
+    error: null,
+    data: null
 };
 
 export default (state = initState, action) => {
@@ -11,13 +12,16 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 loading: true,
-                erro: null
+                erro: null,
+                data: null
             };
         case actionTypes.REQUEST_SIGNUP_SUCCESS:
+            console.log(action.data, 'action')
             return {
                 ...state,
                 loading: false,
-                error: null
+                error: null,
+                data: action.data
             };
         case actionTypes.REQUEST_SIGNUP_FAIL:
             return {

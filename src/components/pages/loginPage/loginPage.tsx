@@ -20,13 +20,14 @@ const Login = () => {
 
     const [err, setErr] = useState(true);
 
-    const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
+    const { isLoading, firebase, firebaseErrMessage, cart, userInfo } = useSelector(
         state => {
             return {
                 isLoading: state.login.loading,
                 firebase: state.firebaseReducer,
                 firebaseErrMessage: state.login.error,
-                cart: state.cart
+                cart: state.cart,
+                userInfo: state.signup.data
             };
         },
         shallowEqual
@@ -95,11 +96,14 @@ const Login = () => {
         }
     }, [emailHasError, passwordHasError, userDetails]);
 
-    if (firebase.auth.uid) {
-        if (!!cart !== false) {
-            return <Redirect to="/checkout" />;
-        } else {
-            return <Redirect to="/" />;
+    if (userInfo) {
+
+        if (userInfo.localId) {
+            if (!!cart !== false) {
+                return <Redirect to="/checkout" />;
+            } else {
+                return <Redirect to="/" />;
+            }
         }
     }
 
