@@ -12,11 +12,10 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 loading: true,
-                erro: null,
+                error: null,
                 data: null
             };
         case actionTypes.REQUEST_SIGNUP_SUCCESS:
-            console.log(action.data, 'action')
             return {
                 ...state,
                 loading: false,
@@ -37,13 +36,15 @@ export default (state = initState, action) => {
                 data: null
             };
         case actionTypes.REQUEST_LOGIN_SUCCESS:
+            console.log('success')
             return {
                 ...state,
                 loading: false,
                 error: null,
-                data: action.data
+                data: action.payload
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
+            console.log('fail')
             return {
                 ...state,
                 loading: false,

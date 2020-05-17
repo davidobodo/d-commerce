@@ -6,6 +6,7 @@ import * as actions from "../../actions/auth";
 //worker saga: fired on each REQUEST_LOGIN_START action
 function* handleUserLogin({ payload }) {
     const { email, password } = payload;
+    console.log(payload, 'saga')
     const SIGNIN_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_apiKey}`
 
     const bodyPayload = {

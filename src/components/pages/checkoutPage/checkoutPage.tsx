@@ -14,14 +14,13 @@ import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
 
 const CheckoutPage = () => {
+    console.log('here')
     const history = useHistory();
     const dispatch = useDispatch();
-    const { cart, firebase } = useSelector(state => {
-        return {
-            cart: state.cart,
-            firebase: state.firebaseReducer
-        };
-    }, shallowEqual);
+
+    const cart = useSelector(state => state.cart);
+    const firebase = useSelector(state => state.firebaseReducer)
+    const userInfo = useSelector(state => state.auth.data)
 
     const [currentCountry, setCurrentCountry] = useState();
 
@@ -311,8 +310,8 @@ const CheckoutPage = () => {
         }
     }, [userDetails]);
 
-    if (!firebase.auth.uid) {
-        return <Redirect to="/login" />;
+    if (!userInfo) {
+        return <Redirect to='/login' />
     }
 
     return (

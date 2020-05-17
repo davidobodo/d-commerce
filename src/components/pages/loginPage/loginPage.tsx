@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import * as EmailValidator from "email-validator";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
@@ -20,18 +20,14 @@ const Login = () => {
 
     const [err, setErr] = useState(true);
 
-    const { isLoading, firebase, firebaseErrMessage, cart, userInfo } = useSelector(
-        state => {
-            return {
-                isLoading: state.auth.loading,
-                firebase: state.firebaseReducer,
-                firebaseErrMessage: state.auth.error,
-                cart: state.cart,
-                userInfo: state.auth.data
-            };
-        },
-        shallowEqual
-    );
+
+    const userInfo = useSelector(state => state.auth.data)
+    const cart = useSelector(state => state.cart)
+    const isLoading = useSelector(state => state.auth.loading)
+    const firebase = useSelector(state => state.firebaseReducer)
+    const firebaseErrMessage = useSelector(state => state.auth.error)
+
+    console.log(userInfo)
 
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -97,13 +93,10 @@ const Login = () => {
     }, [emailHasError, passwordHasError, userDetails]);
 
     if (userInfo) {
-
-        if (userInfo.localId) {
-            if (!!cart !== false) {
-                return <Redirect to="/checkout" />;
-            } else {
-                return <Redirect to="/" />;
-            }
+        if (!!cart !== false) {
+            return <Redirect to="/checkout" />;
+        } else {
+            return <Redirect to="/" />;
         }
     }
 

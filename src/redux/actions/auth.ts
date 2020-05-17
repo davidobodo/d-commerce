@@ -31,6 +31,7 @@ export const checkAuthState = () => {
 
 
 export const requestSignUpStart = payload => {
+    console.log(payload, 'reducer')
     return {
         type: REQUEST_SIGNUP_START,
         payload
@@ -63,6 +64,7 @@ export const requestUserLoginStart = payload => {
 };
 
 export const requestUserLoginSuccess = payload => {
+    console.log(payload, 'action success')
     return {
         type: REQUEST_LOGIN_SUCCESS,
         payload
