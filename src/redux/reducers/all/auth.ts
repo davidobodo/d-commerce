@@ -50,20 +50,10 @@ export default (state = initState, action) => {
                 loading: false,
                 error: action.error.message
             };
-        case actionTypes.SIGNOUT_START:
+        case actionTypes.SIGNOUT:
             return {
                 ...state,
-                loading: true
-            };
-        case actionTypes.SIGNOUT_SUCCESS:
-            return {
-                ...state,
-                loading: false
-            };
-        case actionTypes.SIGNOUT_FAIL:
-            return {
-                ...state,
-                loading: false
+                data: null
             };
         default:
             return state;
