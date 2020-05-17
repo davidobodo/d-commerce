@@ -15,7 +15,6 @@ const Navbar = () => {
     const handleSignout = () => {
         dispatch(signOutStart());
     };
-    console.log(allUsers, 'all users')
 
 
     let loggedInUser;
@@ -23,7 +22,6 @@ const Navbar = () => {
         loggedInUser = allUsers.filter(user => userInfo.localId === user.id)
     }
 
-    console.log(loggedInUser)
 
     // const { auth, profile } = firebase;
 

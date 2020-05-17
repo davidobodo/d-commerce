@@ -14,7 +14,6 @@ import { countryList } from "../../../constants/AllCountries";
 import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
 
 const CheckoutPage = () => {
-    console.log('here')
     const history = useHistory();
     const dispatch = useDispatch();
 

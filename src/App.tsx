@@ -16,14 +16,20 @@ const App = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        const expirationDate = localStorage.getItem('expirationDate');
         if (!token) {
             dispatch(signOutStart())
         } else {
-            const localId = localStorage.getItem('userId')
-            const userData = {
-                localId
+            console.log(expirationDate)
+            console.log(JSON.stringify(new Date()))
+            if (expirationDate > JSON.stringify(new Date())) {
+
+                const localId = localStorage.getItem('userId')
+                const userData = {
+                    localId
+                }
+                dispatch(requestUserLoginSuccess(userData));
             }
-            dispatch(requestUserLoginSuccess(userData));
         }
     })
     return (

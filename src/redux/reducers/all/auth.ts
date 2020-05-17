@@ -30,7 +30,6 @@ export default (state = initState, action) => {
                 loading: true,
             };
         case actionTypes.REQUEST_LOGIN_SUCCESS:
-            console.log('another success')
             return {
                 ...state,
                 loading: false,
@@ -38,7 +37,6 @@ export default (state = initState, action) => {
                 data: action.payload,
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
-            console.log('fail')
             return {
                 ...state,
                 loading: false,

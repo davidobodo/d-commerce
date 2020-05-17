@@ -12,7 +12,6 @@ import {
 
 
 export const requestSignUpStart = payload => {
-    console.log(payload, 'reducer')
     return {
         type: REQUEST_SIGNUP_START,
         payload
@@ -40,8 +39,7 @@ export const requestUserLoginStart = payload => {
 };
 
 export const requestUserLoginSuccess = payload => {
-    console.log(payload, 'action success')
-    const expirationDate = new Date(new Date().getTime() + payload.expiresIn * 1000)
+    const expirationDate = new Date(new Date().getTime() + payload.expiresIn)
     localStorage.setItem('token', payload.idToken)
     localStorage.setItem('userId', payload.localId)
     localStorage.setItem('expirationDate', JSON.stringify(expirationDate))

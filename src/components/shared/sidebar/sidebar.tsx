@@ -13,7 +13,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isNavbarOpen }) => {
         dispatch(signOutStart());
     };
 
-    console.log(userInfo)
 
     const renderAuthLinks = () => {
         if (userInfo) {

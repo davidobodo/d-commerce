@@ -27,7 +27,6 @@ const Login = () => {
     const firebase = useSelector(state => state.firebaseReducer)
     const firebaseErrMessage = useSelector(state => state.auth.error)
 
-    console.log(userInfo)
 
     const [userDetails, setUserDetails] = useState({
         email: "",
