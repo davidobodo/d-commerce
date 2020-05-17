@@ -31,7 +31,8 @@ function* handleuserSignUp({ payload }) {
                     firstName: firstName,
                     lastName: lastName
                 });
-            yield put(actions.requestSignUpSuccess(data))
+            yield put(actions.requestSignUpSuccess())
+            yield put(actions.requestUserLoginStart({ email, password }))
         } else {
             const err = yield res.json()
             yield put(actions.requestSignUpError(err));

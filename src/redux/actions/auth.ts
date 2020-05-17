@@ -19,14 +19,9 @@ export const requestSignUpStart = payload => {
     };
 };
 
-export const requestSignUpSuccess = data => {
-    const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000)
-    localStorage.setItem('token', data.idToken)
-    localStorage.setItem('userId', data.localId)
-    localStorage.setItem('expirationDate', JSON.stringify(expirationDate))
+export const requestSignUpSuccess = () => {
     return {
         type: REQUEST_SIGNUP_SUCCESS,
-        data
     };
 };
 
@@ -46,6 +41,10 @@ export const requestUserLoginStart = payload => {
 
 export const requestUserLoginSuccess = payload => {
     console.log(payload, 'action success')
+    const expirationDate = new Date(new Date().getTime() + payload.expiresIn * 1000)
+    localStorage.setItem('token', payload.idToken)
+    localStorage.setItem('userId', payload.localId)
+    localStorage.setItem('expirationDate', JSON.stringify(expirationDate))
     return {
         type: REQUEST_LOGIN_SUCCESS,
         payload
