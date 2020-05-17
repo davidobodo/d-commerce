@@ -9,13 +9,22 @@ import { useDispatch } from 'react-redux';
 import { GlobalStyles } from "./styling/GlobalStyles";
 import { theme } from "./styling/themes";
 import ScrollToTop from "./utils/scrollToTop/scrollToTop";
-import { checkAuthState } from './redux/actions/auth';
+import { signOutStart, requestUserLoginSuccess } from './redux/actions/auth';
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(checkAuthState())
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(signOutStart())
+        } else {
+            const localId = localStorage.getItem('userId')
+            const userData = {
+                localId
+            }
+            dispatch(requestUserLoginSuccess(userData));
+        }
     })
     return (
         <ThemeProvider theme={theme}>

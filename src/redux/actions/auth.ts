@@ -9,23 +9,6 @@ import {
     CHECK_AUTH_STATE
 } from "../constants/action_types";
 
-export const checkAuthState = () => {
-    // const token = localStorage.getItem('token');
-    // if (!token) {
-    //     signOutStart();
-    // }
-    // else {
-    //     const tokenExpirationDate = new Date(localStorage.getItem('expirationDate'))
-    //     if (tokenExpirationDate <= new Date()) {
-    //         signOutStart();
-    //     } else {
-
-    //     }
-    // }
-    return {
-        type: CHECK_AUTH_STATE,
-    }
-}
 
 
 export const requestSignUpStart = payload => {
@@ -77,6 +60,9 @@ export const requestUserLoginError = ({ error }) => {
 };
 
 export const signOutStart = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('expirationDate');
     return {
         type: SIGNOUT
     };

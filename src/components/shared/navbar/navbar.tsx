@@ -15,11 +15,15 @@ const Navbar = () => {
     const handleSignout = () => {
         dispatch(signOutStart());
     };
+    console.log(allUsers, 'all users')
+
 
     let loggedInUser;
     if (allUsers && userInfo) {
         loggedInUser = allUsers.filter(user => userInfo.localId === user.id)
     }
+
+    console.log(loggedInUser)
 
     // const { auth, profile } = firebase;
 
@@ -29,7 +33,7 @@ const Navbar = () => {
                 return (
                     <>
                         <h4 className="nav__links__username">
-                            Hi, {loggedInUser[0] && loggedInUser[0].firstName}
+                            Hi, {loggedInUser && loggedInUser[0].firstName}
                         </h4>
                         <div className="nav__links__auth">
                             <Link to="/" onClick={handleSignout}>
