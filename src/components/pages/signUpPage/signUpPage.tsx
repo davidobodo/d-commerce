@@ -16,11 +16,11 @@ const SignUp = () => {
     const { isLoading, firebase, firebaseErrMessage, cart, userInfo } = useSelector(
         state => {
             return {
-                isLoading: state.signup.loading,
+                isLoading: state.auth.loading,
                 firebase: state.firebaseReducer,
-                firebaseErrMessage: state.signup.error,
+                firebaseErrMessage: state.auth.error,
                 cart: state.cart,
-                userInfo: state.signup.data
+                userInfo: state.auth.data
             };
         },
         shallowEqual

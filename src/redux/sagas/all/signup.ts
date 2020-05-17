@@ -37,7 +37,7 @@ function* handleuserSignUp({ payload }) {
             yield put(actions.requestSignUpError(err));
         }
     } catch (err) {
-        yield put(actions.requestSignUpError(err.message));
+        yield put(actions.requestSignUpError(err));
     }
 }
 

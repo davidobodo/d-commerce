@@ -10,7 +10,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 const Navbar = () => {
     const dispatch = useDispatch();
     // const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
-    const userInfo = useSelector(state => state.signup.data)
+    const userInfo = useSelector(state => state.auth.data)
     const allUsers = useSelector(state => state.firestoreReducer.ordered.users);
     const handleSignout = () => {
         dispatch(signOutStart());

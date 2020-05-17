@@ -8,7 +8,7 @@ import { signOutStart } from "../../../redux/actions/auth";
 const Sidebar: React.FC<SidebarProps> = ({ isNavbarOpen }) => {
     const dispatch = useDispatch();
     const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
-    const userInfo = useSelector(state => state.signup.data)
+    const userInfo = useSelector(state => state.auth.data)
     const handleSignout = () => {
         dispatch(signOutStart());
     };

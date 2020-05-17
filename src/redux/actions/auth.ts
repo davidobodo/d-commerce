@@ -69,10 +69,10 @@ export const requestUserLoginSuccess = payload => {
     };
 };
 
-export const requestUserLoginError = payload => {
+export const requestUserLoginError = ({ error }) => {
     return {
         type: REQUEST_LOGIN_FAIL,
-        payload
+        error
     };
 };
 

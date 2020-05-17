@@ -23,11 +23,11 @@ const Login = () => {
     const { isLoading, firebase, firebaseErrMessage, cart, userInfo } = useSelector(
         state => {
             return {
-                isLoading: state.login.loading,
+                isLoading: state.auth.loading,
                 firebase: state.firebaseReducer,
-                firebaseErrMessage: state.login.error,
+                firebaseErrMessage: state.auth.error,
                 cart: state.cart,
-                userInfo: state.signup.data
+                userInfo: state.auth.data
             };
         },
         shallowEqual
