@@ -39,7 +39,7 @@ export const requestUserLoginStart = payload => {
 };
 
 export const requestUserLoginSuccess = payload => {
-    const expirationDate = new Date(new Date().getTime() + payload.expiresIn)
+    const expirationDate = new Date().getTime() + 20000;
     localStorage.setItem('token', payload.idToken)
     localStorage.setItem('userId', payload.localId)
     localStorage.setItem('expirationDate', JSON.stringify(expirationDate))

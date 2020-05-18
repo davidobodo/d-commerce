@@ -3,7 +3,8 @@ import * as actionTypes from "../../constants/action_types";
 const initState = {
     loading: false,
     error: null,
-    data: null,
+    userId: null,
+    idToken: null
 };
 
 export default (state = initState, action) => {
@@ -34,7 +35,8 @@ export default (state = initState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                data: action.payload,
+                userId: action.payload.localId,
+                idToken: action.payload.idToken
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
             return {

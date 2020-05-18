@@ -21,7 +21,7 @@ const Login = () => {
     const [err, setErr] = useState(true);
 
 
-    const userInfo = useSelector(state => state.auth.data)
+    const userId = useSelector(state => state.auth.userId)
     const cart = useSelector(state => state.cart)
     const isLoading = useSelector(state => state.auth.loading)
     const firebase = useSelector(state => state.firebaseReducer)
@@ -91,7 +91,7 @@ const Login = () => {
         }
     }, [emailHasError, passwordHasError, userDetails]);
 
-    if (userInfo) {
+    if (userId) {
         if (!!cart !== false) {
             return <Redirect to="/checkout" />;
         } else {

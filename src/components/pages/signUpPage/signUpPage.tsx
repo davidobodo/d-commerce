@@ -13,14 +13,14 @@ import { userInfo } from "os";
 const SignUp = () => {
     const dispatch = useDispatch();
 
-    const { isLoading, firebase, firebaseErrMessage, cart, userInfo } = useSelector(
+    const { isLoading, firebase, firebaseErrMessage, cart, userId } = useSelector(
         state => {
             return {
                 isLoading: state.auth.loading,
                 firebase: state.firebaseReducer,
                 firebaseErrMessage: state.auth.error,
                 cart: state.cart,
-                userInfo: state.auth.data
+                userId: state.auth.userId
             };
         },
         shallowEqual
@@ -158,14 +158,12 @@ const SignUp = () => {
         userDetails
     ]);
 
-    if (userInfo) {
 
-        if (userInfo.localId) {
-            if (!!cart !== false) {
-                return <Redirect to="/checkout" />;
-            } else {
-                return <Redirect to="/" />;
-            }
+    if (userId) {
+        if (!!cart !== false) {
+            return <Redirect to="/checkout" />;
+        } else {
+            return <Redirect to="/" />;
         }
     }
 

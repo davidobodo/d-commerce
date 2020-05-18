@@ -14,23 +14,37 @@ import { signOutStart, requestUserLoginSuccess } from './redux/actions/auth';
 const App = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        const expirationDate = localStorage.getItem('expirationDate');
-        if (!token) {
-            dispatch(signOutStart())
-        } else {
-            console.log(expirationDate)
-            console.log(JSON.stringify(new Date()))
-            if (expirationDate > JSON.stringify(new Date())) {
+    const token = localStorage.getItem('token');
+    const expirationTime = localStorage.getItem('expirationDate');
 
-                const localId = localStorage.getItem('userId')
-                const userData = {
-                    localId
-                }
-                dispatch(requestUserLoginSuccess(userData));
-            }
-        }
+    console.log(expirationTime)
+    console.log(parseInt(expirationTime))
+    console.log(new Date().getTime())
+    // useEffect(() => {
+    //     if (!token) {
+    //         dispatch(signOutStart())
+    //     } else if (token && expirationTime < JSON.stringify(new Date().getTime())) {
+    //         dispatch(signOutStart())
+    //     } else {
+    //         if (expirationTime > JSON.stringify(new Date())) {
+
+    //             const localId = localStorage.getItem('userId')
+    //             const userData = {
+    //                 localId
+    //             }
+    //             dispatch(requestUserLoginSuccess(userData));
+    //         }
+    //     }
+
+    //     setTimeout(() => {
+    //         // console.log('it is working yes yes yes')
+    //     }, parseInt(expirationTime) - new Date().getTime())
+    // })
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(signOutStart())
+        }, parseInt(expirationTime) * 1000)
     })
     return (
         <ThemeProvider theme={theme}>
