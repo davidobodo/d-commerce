@@ -16,34 +16,35 @@ const App = () => {
 
     const token = localStorage.getItem('token');
     const expirationTime = localStorage.getItem('expirationDate');
+    const userId = localStorage.getItem('userId')
 
     console.log(expirationTime)
     console.log(parseInt(expirationTime))
     console.log(new Date().getTime())
-    // useEffect(() => {
-    //     if (!token) {
-    //         dispatch(signOutStart())
-    //     } else if (token && expirationTime < JSON.stringify(new Date().getTime())) {
-    //         dispatch(signOutStart())
-    //     } else {
-    //         if (expirationTime > JSON.stringify(new Date())) {
+    useEffect(() => {
+        if (!token) {
+            dispatch(signOutStart())
+        } else if (token && expirationTime < JSON.stringify(new Date().getTime())) {
+            // dispatch(signOutStart())
+        } else {
+            // if (expirationTime > JSON.stringify(new Date())) {
 
-    //             const localId = localStorage.getItem('userId')
-    //             const userData = {
-    //                 localId
-    //             }
-    //             dispatch(requestUserLoginSuccess(userData));
-    //         }
-    //     }
+            const userData = {
+                localId: userId,
+                idToken: token
+            }
+            dispatch(requestUserLoginSuccess(userData));
+            // }
+        }
 
-    //     setTimeout(() => {
-    //         // console.log('it is working yes yes yes')
-    //     }, parseInt(expirationTime) - new Date().getTime())
-    // })
+        setTimeout(() => {
+            // console.log('it is working yes yes yes')
+        }, parseInt(expirationTime) - new Date().getTime())
+    })
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(signOutStart())
+            // dispatch(signOutStart())
         }, parseInt(expirationTime) * 1000)
     })
     return (
