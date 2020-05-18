@@ -47,7 +47,8 @@ export default (state = initState, action) => {
         case actionTypes.SIGNOUT:
             return {
                 ...state,
-                data: null,
+                userId: null,
+                idToken: null
             };
         default:
             return state;
