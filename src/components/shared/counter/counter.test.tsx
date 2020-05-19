@@ -14,6 +14,6 @@ const defaultProps = {
 
 it('counter should match snapshot', () => {
     const { container } = render(<Counter {...defaultProps} />)
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 })
 
