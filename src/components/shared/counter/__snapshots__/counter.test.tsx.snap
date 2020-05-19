@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`counter should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-AxjAm eoxFJy"
+  >
+    <div
+      class="counter"
+    >
+      1
+    </div>
+    <div
+      class="editor"
+    >
+      <div
+        class="increase btn"
+        id="+"
+      >
+        +
+      </div>
+      <div
+        class="decrease btn"
+        id="-"
+      >
+        -
+      </div>
+    </div>
+  </div>
+</div>
+`;
