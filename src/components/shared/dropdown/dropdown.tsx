@@ -34,7 +34,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
 
     useEffect(() => {
         selectedOption(searchOption);
-    }, [searchOption]);
+    }, [searchOption, selectedOption]);
 
 
     return (
