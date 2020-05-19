@@ -8,7 +8,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
     const [_allOptions, set_allOptions] = useState(allOptions)
 
     const [showDropdown, setShowDropdown] = useState(false);
-    const [searchOption, setSearchOption] = useState('');
+    const [searchOption, setSearchOption] = useState(allOptions[0]);
 
 
     const handleShowDropdown = () => {
