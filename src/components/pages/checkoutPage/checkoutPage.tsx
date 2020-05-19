@@ -276,9 +276,11 @@ const CheckoutPage = () => {
 
 
     useEffect(() => {
-        setUserDetails({
-            ...userDetails,
-            country: currentCountry
+        setUserDetails((userDetails) => {
+            return {
+                ...userDetails,
+                country: currentCountry
+            }
         });
     }, [currentCountry]);
 
