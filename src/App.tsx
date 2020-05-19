@@ -18,34 +18,34 @@ const App = () => {
     const expirationTime = localStorage.getItem('expirationDate');
     const userId = localStorage.getItem('userId')
 
-    console.log(expirationTime)
-    console.log(parseInt(expirationTime))
-    console.log(new Date().getTime())
     useEffect(() => {
         if (!token) {
+            console.log('dispatched when token doesnt exist')
             dispatch(signOutStart())
-        } else if (token && expirationTime < JSON.stringify(new Date().getTime())) {
-            // dispatch(signOutStart())
         } else {
-            // if (expirationTime > JSON.stringify(new Date())) {
-
             const userData = {
                 localId: userId,
-                idToken: token
+                idToken: token,
+                sessionActive: true
             }
             dispatch(requestUserLoginSuccess(userData));
-            // }
         }
 
-        setTimeout(() => {
-            // console.log('it is working yes yes yes')
-        }, parseInt(expirationTime) - new Date().getTime())
+
     })
 
     useEffect(() => {
-        setTimeout(() => {
-            // dispatch(signOutStart())
-        }, parseInt(expirationTime) * 1000)
+        const delay = parseInt(expirationTime) - new Date().getTime();
+        console.log(new Date().getTime(), 'current time')
+        console.log(parseInt(expirationTime), 'local storage time')
+        console.log(delay)
+        console.log(expirationTime)
+        if (expirationTime) {
+            setTimeout(() => {
+                console.log('dispatched when timing was up')
+                dispatch(signOutStart())
+            }, delay)
+        }
     })
     return (
         <ThemeProvider theme={theme}>
