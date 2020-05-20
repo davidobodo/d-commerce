@@ -8,7 +8,7 @@ exports[`counter should match snapshot 1`] = `
     class="counter"
     data-testid="count"
   >
-    1
+    4
   </div>
   <div
     class="editor"

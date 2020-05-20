@@ -3,12 +3,11 @@ import { CounterProps } from "./ICounter";
 import { CounterContainer } from "./style";
 
 const Counter: React.FC<CounterProps> = ({
-    maxValue,
+    maxValue = 10,
     setValue,
     initialCount = 1
 }) => {
     const [count, setCount] = useState(initialCount);
-    maxValue = 10;
 
     const handleSetCount = e => {
         if (e.target.id === "+") {
