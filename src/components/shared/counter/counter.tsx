@@ -25,12 +25,12 @@ const Counter: React.FC<CounterProps> = ({
     }, [count, setValue]);
     return (
         <CounterContainer>
-            <div className="counter">{count}</div>
+            <div className="counter" data-testid='count'>{count}</div>
             <div className="editor" onClick={handleSetCount}>
-                <div id="+" className="increase btn">
+                <div id="+" className="increase btn" data-testid='+'>
                     +
                 </div>
-                <div id="-" className="decrease btn">
+                <div id="-" className="decrease btn" data-testid='-'>
                     -
                 </div>
             </div>
