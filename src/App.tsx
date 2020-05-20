@@ -10,6 +10,11 @@ import { theme } from "./styling/themes";
 import ScrollToTop from "./utils/scrollToTop/scrollToTop";
 import ErrorBoundary from './utils/errorBoundary/erroBoundary';
 
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+    <Route {...rest} render={(props) =>} />
+}
+
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
