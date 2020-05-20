@@ -3,12 +3,11 @@ import { CounterProps } from "./ICounter";
 import { CounterContainer } from "./style";
 
 const Counter: React.FC<CounterProps> = ({
-    maxValue,
+    maxValue = 10,
     setValue,
     initialCount = 1
 }) => {
     const [count, setCount] = useState(initialCount);
-    maxValue = 10;
 
     const handleSetCount = e => {
         if (e.target.id === "+") {
@@ -25,12 +24,12 @@ const Counter: React.FC<CounterProps> = ({
     }, [count, setValue]);
     return (
         <CounterContainer>
-            <div className="counter">{count}</div>
+            <div className="counter" data-testid='count'>{count}</div>
             <div className="editor" onClick={handleSetCount}>
-                <div id="+" className="increase btn">
+                <div id="+" className="increase btn" data-testid='+'>
                     +
                 </div>
-                <div id="-" className="decrease btn">
+                <div id="-" className="decrease btn" data-testid='-'>
                     -
                 </div>
             </div>
