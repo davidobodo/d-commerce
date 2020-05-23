@@ -42,7 +42,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
             onClick={handleShowDropdown}
             showDropdown={showDropdown}
         >
-            <input value={searchOption} onChange={handleFindMatches} />
+            <input value={searchOption} onChange={handleFindMatches} aria-label='input-field' />
             <ul onClick={handleSelectOption}>
                 {_allOptions.map(option => {
                     return (

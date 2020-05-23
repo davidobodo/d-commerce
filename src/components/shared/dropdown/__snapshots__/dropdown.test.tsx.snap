@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dropdown should match snapshot 1`] = `
+<div
+  class="sc-AxjAm emNQGb"
+>
+  <input
+    aria-label="input-field"
+    value="Choose an option"
+  />
+  <ul>
+    <li
+      id="Choose an option"
+    >
+      Choose an option
+    </li>
+  </ul>
+</div>
+`;
