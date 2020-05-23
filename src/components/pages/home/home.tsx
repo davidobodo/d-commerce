@@ -23,17 +23,13 @@ const Home: React.FC<HomeProps> = () => {
     const [currentProducts, setCurrentProducts] = useState(myproducts);
 
     const [searchedProduct, setSearchedProduct] = useState('');
-
     const _searchedProduct = useDebounce(searchedProduct, 500);
 
     useEffect(() => {
-        if (_searchedProduct) {
-            handleSearchProduct(_searchedProduct)
-        }
+        handleSearchProduct(_searchedProduct)
     }, [_searchedProduct])
 
     const handleSearchProduct = wordToMatch => {
-        console.log(wordToMatch)
         const regex = new RegExp(wordToMatch, "gi");
 
         const searchedProducts = myproducts.filter(product => {
@@ -48,6 +44,8 @@ const Home: React.FC<HomeProps> = () => {
 
         setCurrentProducts(searchedProducts);
     };
+
+    console.log(currentProducts, 'all current products')
 
     return (
         <Layout isFooterPresent>
@@ -70,6 +68,7 @@ const Home: React.FC<HomeProps> = () => {
                             type="text"
                             placeholder="search"
                             className="sorting-input"
+                            value={searchedProduct}
                             onChange={(e) => setSearchedProduct(e.target.value)}
                         />
                         {/* <h6>Showing 1-12 of 20 results</h6> */}
