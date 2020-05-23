@@ -9,6 +9,8 @@ import { LayoutProps } from './ILayout';
 
 import Hamburger from "../hamburger/hamburger";
 import Backdrop from "../backdrop/backdrop";
+import ErrorBoundary from '../../../utils/errorBoundary/erroBoundary';
+
 
 const Layout: React.FunctionComponent<LayoutProps> = ({
     children,
@@ -21,20 +23,23 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
     };
 
     return (
-        <LayoutContainer>
-            <Backdrop
-                showBackdrop={isNavbarOpen}
-                color='black'
-                behaviour='right2left' />
-            <Hamburger
-                handleShowNavbar={handleShowNavbar}
-                isNavbarOpen={isNavbarOpen}
-            />
-            <Navbar />
-            <Sidebar isNavbarOpen={isNavbarOpen} />
-            <Body>{children}</Body>
-            {isFooterPresent && <Footer />}
-        </LayoutContainer>
+        <ErrorBoundary>
+
+            <LayoutContainer>
+                <Backdrop
+                    showBackdrop={isNavbarOpen}
+                    color='black'
+                    behaviour='right2left' />
+                <Hamburger
+                    handleShowNavbar={handleShowNavbar}
+                    isNavbarOpen={isNavbarOpen}
+                />
+                <Navbar />
+                <Sidebar isNavbarOpen={isNavbarOpen} />
+                <Body>{children}</Body>
+                {isFooterPresent && <Footer />}
+            </LayoutContainer>
+        </ErrorBoundary>
     );
 };
 
