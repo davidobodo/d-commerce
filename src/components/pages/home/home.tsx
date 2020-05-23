@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../shared/layout/layout";
 
 import ProductCard from "../../shared/productCard/productCard";
@@ -7,6 +7,7 @@ import { HomeContainer } from "./style";
 import { HomeProps } from "../../../interfaces/IHome";
 
 import { myproducts } from "../../../constants/AllProducts";
+import useDebounce from '../../../utils/customHooks/useDebounce';
 
 // const allSorts = [
 //     "Default sorting",
@@ -21,8 +22,18 @@ const Home: React.FC<HomeProps> = () => {
     // const [sorting, setSorting] = useState();
     const [currentProducts, setCurrentProducts] = useState(myproducts);
 
-    const handleSearchProduct = e => {
-        const wordToMatch = e.target.value;
+    const [searchedProduct, setSearchedProduct] = useState('');
+
+    const _searchedProduct = useDebounce(searchedProduct, 500);
+
+    useEffect(() => {
+        if (_searchedProduct) {
+            handleSearchProduct(_searchedProduct)
+        }
+    }, [_searchedProduct])
+
+    const handleSearchProduct = wordToMatch => {
+        console.log(wordToMatch)
         const regex = new RegExp(wordToMatch, "gi");
 
         const searchedProducts = myproducts.filter(product => {
@@ -59,7 +70,7 @@ const Home: React.FC<HomeProps> = () => {
                             type="text"
                             placeholder="search"
                             className="sorting-input"
-                            onChange={handleSearchProduct}
+                            onChange={(e) => setSearchedProduct(e.target.value)}
                         />
                         {/* <h6>Showing 1-12 of 20 results</h6> */}
                     </div>
