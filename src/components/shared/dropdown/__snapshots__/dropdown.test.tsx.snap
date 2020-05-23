@@ -3,12 +3,15 @@
 exports[`dropdown should match snapshot 1`] = `
 <div
   class="sc-AxjAm emNQGb"
+  data-testid="dropdown"
 >
   <input
     aria-label="input-field"
     value="Choose an option"
   />
-  <ul>
+  <ul
+    data-testid="options"
+  >
     <li
       id="Choose an option"
     >

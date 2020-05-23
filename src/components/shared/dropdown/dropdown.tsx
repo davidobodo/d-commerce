@@ -41,9 +41,10 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
         <DropdownContainer
             onClick={handleShowDropdown}
             showDropdown={showDropdown}
+            data-testid='dropdown'
         >
             <input value={searchOption} onChange={handleFindMatches} aria-label='input-field' />
-            <ul onClick={handleSelectOption}>
+            <ul onClick={handleSelectOption} data-testid='options'>
                 {_allOptions.map(option => {
                     return (
                         <li key={option} id={option}>
