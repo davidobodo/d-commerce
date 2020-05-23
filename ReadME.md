@@ -1,3 +1,3 @@
 ## Active upgrades
-- firebase auth rest
 - protected routes
+- test-input-component

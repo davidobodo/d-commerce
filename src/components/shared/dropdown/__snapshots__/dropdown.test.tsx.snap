@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dropdown should match snapshot 1`] = `
+<div
+  class="sc-AxjAm emNQGb"
+  data-testid="dropdown"
+>
+  <input
+    data-testid="input-field"
+    value="Choose an option"
+  />
+  <ul
+    data-testid="options"
+  >
+    <li
+      data-testid="Choose an option"
+      id="Choose an option"
+    >
+      Choose an option
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`should select a clicked option 1`] = `
+<div
+  class="sc-AxjAm emNQGb"
+  data-testid="dropdown"
+>
+  <input
+    data-testid="input-field"
+    value="Choose an option"
+  />
+  <ul
+    data-testid="options"
+  >
+    <li
+      data-testid="Choose an option"
+      id="Choose an option"
+    >
+      Choose an option
+    </li>
+    <li
+      data-testid="david"
+      id="david"
+    >
+      david
+    </li>
+    <li
+      data-testid="obodo"
+      id="obodo"
+    >
+      obodo
+    </li>
+    <li
+      data-testid="rukeme"
+      id="rukeme"
+    >
+      rukeme
+    </li>
+    <li
+      data-testid="phitGeek"
+      id="phitGeek"
+    >
+      phitGeek
+    </li>
+    <li
+      data-testid="morning-star"
+      id="morning-star"
+    >
+      morning-star
+    </li>
+  </ul>
+</div>
+`;

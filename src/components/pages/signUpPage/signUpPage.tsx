@@ -8,17 +8,19 @@ import Button from "../../shared/button/button";
 import Spinner from "../../shared/spinner/spinner";
 import { SignUpContainer } from "./style";
 import { requestSignUpStart } from "../../../redux/actions/auth";
+import { userInfo } from "os";
 
 const SignUp = () => {
     const dispatch = useDispatch();
 
-    const { isLoading, firebase, firebaseErrMessage, cart } = useSelector(
+    const { isLoading, firebase, firebaseErrMessage, cart, userId } = useSelector(
         state => {
             return {
-                isLoading: state.signup.loading,
+                isLoading: state.auth.loading,
                 firebase: state.firebaseReducer,
-                firebaseErrMessage: state.signup.error,
-                cart: state.cart
+                firebaseErrMessage: state.auth.error,
+                cart: state.cart,
+                userId: state.auth.userId
             };
         },
         shallowEqual
@@ -156,7 +158,8 @@ const SignUp = () => {
         userDetails
     ]);
 
-    if (firebase.auth.uid) {
+
+    if (userId) {
         if (!!cart !== false) {
             return <Redirect to="/checkout" />;
         } else {
