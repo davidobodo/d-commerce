@@ -16,12 +16,10 @@ import { setDeliveryDetails } from "../../../redux/actions/deliveryDetails";
 const CheckoutPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const { cart, firebase } = useSelector(state => {
-        return {
-            cart: state.cart,
-            firebase: state.firebaseReducer
-        };
-    }, shallowEqual);
+
+    const cart = useSelector(state => state.cart);
+    const firebase = useSelector(state => state.firebaseReducer)
+    const userId = useSelector(state => state.auth.userId)
 
     const [currentCountry, setCurrentCountry] = useState();
 
@@ -313,8 +311,8 @@ const CheckoutPage = () => {
         }
     }, [userDetails]);
 
-    if (!firebase.auth.uid) {
-        return <Redirect to="/login" />;
+    if (!userId) {
+        return <Redirect to='/login' />
     }
 
     return (

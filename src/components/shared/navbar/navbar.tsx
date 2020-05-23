@@ -1,26 +1,36 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { Link } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { NavbarContainer } from "./style";
 import { signOutStart } from "../../../redux/actions/auth";
+import { firestoreConnect } from 'react-redux-firebase'
+
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
-
+    // const firebase = useSelector(state => state.firebaseReducer, shallowEqual);
+    const userId = useSelector(state => state.auth.userId)
+    const allUsers = useSelector(state => state.firestoreReducer.ordered.users);
     const handleSignout = () => {
         dispatch(signOutStart());
     };
 
-    const { auth, profile } = firebase;
+
+    let loggedInUser;
+    if (allUsers && userId) {
+        loggedInUser = allUsers.filter(user => userId === user.id)
+    }
+
+
+    // const { auth, profile } = firebase;
 
     const renderAuthLinks = () => {
-        if (auth.uid) {
+        if (userId) {
             return (
                 <>
                     <h4 className="nav__links__username">
-                        Hi, {profile.firstName}
+                        Hi, {loggedInUser && loggedInUser[0].firstName}
                     </h4>
                     <div className="nav__links__auth">
                         <Link to="/" onClick={handleSignout}>
@@ -57,4 +67,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default firestoreConnect([{ collection: 'users' }])(Navbar) as any;

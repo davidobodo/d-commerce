@@ -5,10 +5,11 @@ import {
     REQUEST_LOGIN_START,
     REQUEST_LOGIN_SUCCESS,
     REQUEST_LOGIN_FAIL,
-    SIGNOUT_START,
-    SIGNOUT_SUCCESS,
-    SIGNOUT_FAIL
+    SIGNOUT,
+    CHECK_AUTH_STATE
 } from "../constants/action_types";
+
+
 
 export const requestSignUpStart = payload => {
     return {
@@ -17,17 +18,16 @@ export const requestSignUpStart = payload => {
     };
 };
 
-export const requestSignUpSuccess = payload => {
+export const requestSignUpSuccess = () => {
     return {
         type: REQUEST_SIGNUP_SUCCESS,
-        payload
     };
 };
 
-export const requestSignUpError = payload => {
+export const requestSignUpError = ({ error }) => {
     return {
         type: REQUEST_SIGNUP_FAIL,
-        payload
+        error
     };
 };
 
@@ -39,33 +39,34 @@ export const requestUserLoginStart = payload => {
 };
 
 export const requestUserLoginSuccess = payload => {
+    let expirationDate;
+    if (payload.sessionActive) {
+        expirationDate = JSON.parse(localStorage.getItem('expirationDate'));
+    } else {
+        expirationDate = new Date().getTime() + 3600 * 1000;
+    }
+    localStorage.setItem('token', payload.idToken)
+    localStorage.setItem('userId', payload.localId)
+    localStorage.setItem('expirationDate', JSON.stringify(expirationDate))
     return {
         type: REQUEST_LOGIN_SUCCESS,
         payload
     };
 };
 
-export const requestUserLoginError = payload => {
+export const requestUserLoginError = ({ error }) => {
     return {
         type: REQUEST_LOGIN_FAIL,
-        payload
+        error
     };
 };
 
 export const signOutStart = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('expirationDate');
     return {
-        type: SIGNOUT_START
+        type: SIGNOUT
     };
 };
-export const signOutSuccess = payload => {
-    return {
-        type: SIGNOUT_SUCCESS,
-        payload
-    };
-};
-export const signOutError = payload => {
-    return {
-        type: SIGNOUT_FAIL,
-        payload
-    };
-};
+
