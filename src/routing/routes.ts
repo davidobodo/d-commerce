@@ -49,7 +49,7 @@ export const Routes = [
         exact: true,
         path: "/orderConfirmation"
     },
-    {
-        component: ErrorPageUrl
-    }
+    // {
+    //     component: ErrorPageUrl
+    // }
 ];

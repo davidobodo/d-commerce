@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { ButtonContainer } from "./style";
 import { ButtonProps } from "./IButton";
 
@@ -22,4 +22,4 @@ const Button: React.FC<ButtonProps> = ({
     );
 };
 
-export default Button;
+export default memo(Button);

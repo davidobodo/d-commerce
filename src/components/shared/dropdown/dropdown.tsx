@@ -8,7 +8,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
     const [_allOptions, set_allOptions] = useState(allOptions)
 
     const [showDropdown, setShowDropdown] = useState(false);
-    const [searchOption, setSearchOption] = useState('');
+    const [searchOption, setSearchOption] = useState(allOptions[0]);
 
 
     const handleShowDropdown = () => {
@@ -34,19 +34,20 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
 
     useEffect(() => {
         selectedOption(searchOption);
-    }, [searchOption]);
+    }, [searchOption, selectedOption]);
 
 
     return (
         <DropdownContainer
             onClick={handleShowDropdown}
             showDropdown={showDropdown}
+            data-testid='dropdown'
         >
-            <input value={searchOption} onChange={handleFindMatches} />
-            <ul onClick={handleSelectOption}>
+            <input value={searchOption} onChange={handleFindMatches} data-testid='input-field' />
+            <ul onClick={handleSelectOption} data-testid='options'>
                 {_allOptions.map(option => {
                     return (
-                        <li key={option} id={option}>
+                        <li key={option} id={option} data-testid={option}>
                             {option}
                         </li>
                     );
