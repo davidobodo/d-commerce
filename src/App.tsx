@@ -20,7 +20,6 @@ const App = () => {
 
     useEffect(() => {
         if (!token) {
-            console.log('dispatched when token doesnt exist')
             dispatch(signOutStart())
         } else {
             const userData = {
@@ -36,13 +35,8 @@ const App = () => {
 
     useEffect(() => {
         const delay = parseInt(expirationTime) - new Date().getTime();
-        console.log(new Date().getTime(), 'current time')
-        console.log(parseInt(expirationTime), 'local storage time')
-        console.log(delay)
-        console.log(expirationTime)
         if (expirationTime) {
             setTimeout(() => {
-                console.log('dispatched when timing was up')
                 dispatch(signOutStart())
             }, delay)
         }
