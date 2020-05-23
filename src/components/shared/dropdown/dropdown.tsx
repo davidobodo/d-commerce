@@ -43,11 +43,11 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption }) => {
             showDropdown={showDropdown}
             data-testid='dropdown'
         >
-            <input value={searchOption} onChange={handleFindMatches} aria-label='input-field' />
+            <input value={searchOption} onChange={handleFindMatches} data-testid='input-field' />
             <ul onClick={handleSelectOption} data-testid='options'>
                 {_allOptions.map(option => {
                     return (
-                        <li key={option} id={option}>
+                        <li key={option} id={option} data-testid={option}>
                             {option}
                         </li>
                     );
