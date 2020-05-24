@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "./routing/routes";
 import { useDispatch } from 'react-redux';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 
 import { GlobalStyles } from "./styling/GlobalStyles";
 import { theme } from "./styling/themes";
 import ScrollToTop from "./utils/scrollToTop/scrollToTop";
 import { signOutStart, requestUserLoginSuccess } from './redux/actions/auth';
+
+
+
+
 
 const App = () => {
     const dispatch = useDispatch();
@@ -48,15 +53,22 @@ const App = () => {
                 <ScrollToTop />
                 <Switch>
                     {Routes.map((route, i) => {
-                        const { component, exact, path } = route;
-                        return (
+                        const { component, exact, path, protected: _protected } = route;
+                        return _protected === false
+                            ?
                             <Route
                                 key={i}
                                 exact={exact}
                                 path={path}
                                 component={component}
                             />
-                        );
+                            :
+                            <ProtectedRoute
+                                key={i}
+                                exact={exact}
+                                path={path}
+                                component={component}
+                            />
                     })}
                 </Switch>
             </Router>

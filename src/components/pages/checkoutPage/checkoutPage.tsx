@@ -19,7 +19,6 @@ const CheckoutPage = () => {
 
     const cart = useSelector(state => state.cart);
     const firebase = useSelector(state => state.firebaseReducer)
-    const userId = useSelector(state => state.auth.userId)
 
     const [currentCountry, setCurrentCountry] = useState();
 
@@ -311,9 +310,7 @@ const CheckoutPage = () => {
         }
     }, [userDetails]);
 
-    if (!userId) {
-        return <Redirect to='/login' />
-    }
+
 
     return (
         <Layout isFooterPresent>

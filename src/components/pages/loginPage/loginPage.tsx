@@ -9,7 +9,7 @@ import Spinner from "../../shared/spinner/spinner";
 import { requestUserLoginStart } from "../../../redux/actions/auth";
 import { LoginContainer } from "./style";
 
-const Login = () => {
+const Login = (props) => {
     const dispatch = useDispatch();
 
     const [emailHasError, setEmailHasError] = useState(false);
@@ -90,6 +90,12 @@ const Login = () => {
             setErr(true);
         }
     }, [emailHasError, passwordHasError, userDetails]);
+
+    // const { from } = props.location.state || { from: { pathname: '/' } }
+
+    // if (userId) {
+    //     return <Redirect to={from} />
+    // }
 
     if (userId) {
         if (!!cart !== false) {
