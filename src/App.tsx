@@ -3,7 +3,8 @@ import { ThemeProvider } from "styled-components";
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "./routing/routes";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 
 import { GlobalStyles } from "./styling/GlobalStyles";
@@ -13,10 +14,7 @@ import { signOutStart, requestUserLoginSuccess } from './redux/actions/auth';
 
 
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const userId = useSelector(state => state.auth.userId)
-    return <Route {...rest} render={(props) => (!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)} />
-}
+
 
 const App = () => {
     const dispatch = useDispatch();
