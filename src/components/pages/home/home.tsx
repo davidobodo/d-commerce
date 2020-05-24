@@ -45,7 +45,6 @@ const Home: React.FC<HomeProps> = () => {
         setCurrentProducts(searchedProducts);
     };
 
-    console.log(currentProducts, 'all current products')
 
     return (
         <Layout isFooterPresent>

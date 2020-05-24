@@ -12,42 +12,51 @@ export const Routes = [
     {
         component: Home,
         exact: true,
-        path: "/"
+        path: "/",
+        protected: false
     },
     {
         component: ProductPage,
         exact: true,
-        path: "/product/:id"
+        path: "/product/:id",
+        protected: false
     },
     {
         component: CartPage,
         exact: true,
-        path: "/cart"
+        path: "/cart",
+        protected: false
     },
     {
         component: CheckoutPage,
         exact: true,
-        path: "/checkout"
+        path: "/checkout",
+        protected: true
+
     },
     {
         component: PaymentPage,
         exact: true,
-        path: "/payment"
+        path: "/payment",
+        protected: true
     },
     {
         component: SignUpPage,
         excat: true,
-        path: "/signup"
+        path: "/signup",
+        protected: false
     },
     {
         component: LoginPage,
         excat: true,
-        path: "/login"
+        path: "/login",
+        protected: false
     },
     {
         component: OrderConfirmationPage,
         exact: true,
-        path: "/orderConfirmation"
+        path: "/orderConfirmation",
+        protected: true
     },
     // {
     //     component: ErrorPageUrl

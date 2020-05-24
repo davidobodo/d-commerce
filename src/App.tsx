@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "./routing/routes";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 import { GlobalStyles } from "./styling/GlobalStyles";
@@ -12,8 +12,10 @@ import ScrollToTop from "./utils/scrollToTop/scrollToTop";
 import { signOutStart, requestUserLoginSuccess } from './redux/actions/auth';
 
 
+
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-    <Route {...rest} render={(props) =>} />
+    const userId = useSelector(state => state.auth.userId)
+    return <Route {...rest} render={(props) => (!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)} />
 }
 
 const App = () => {
@@ -53,15 +55,22 @@ const App = () => {
                 <ScrollToTop />
                 <Switch>
                     {Routes.map((route, i) => {
-                        const { component, exact, path } = route;
-                        return (
+                        const { component, exact, path, protected: _protected } = route;
+                        return _protected === false
+                            ?
                             <Route
                                 key={i}
                                 exact={exact}
                                 path={path}
                                 component={component}
                             />
-                        );
+                            :
+                            <ProtectedRoute
+                                key={i}
+                                exact={exact}
+                                path={path}
+                                component={component}
+                            />
                     })}
                 </Switch>
             </Router>
