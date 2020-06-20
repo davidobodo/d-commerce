@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { InputContainer } from "./style";
-import { InputProps } from "../../../interfaces/IInput";
+import { InputProps } from "./IInput";
 
 const Input: React.FC<InputProps> = ({
     label,
@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({
     pattern = null,
     value,
     handleOnChange,
-    handleOnBlur
+    handleOnBlur,
 }) => {
     const errorClassName = hasError ? "error" : "";
     return (

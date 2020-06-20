@@ -10,4 +10,12 @@ export const DashboardPageContainer = styled.div`
             font-size: 38px;
         }
     }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid ${(props) => props.theme.primaryColor};
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
 `;

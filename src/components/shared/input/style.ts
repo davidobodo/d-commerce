@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InputProps } from "../../../interfaces/IInput";
+import { InputProps } from "./IInput";
 import { devices } from "../../../styling/devices";
 
 export const InputContainer = styled.div<InputProps>`
@@ -28,7 +28,7 @@ export const InputContainer = styled.div<InputProps>`
     input {
         width: 100%;
         border: 1px solid;
-        border-color: ${props => props.theme.primaryColor};
+        border-color: ${(props) => props.theme.primaryColor};
         font-size: 14px;
         padding: 7px;
         outline: none;
