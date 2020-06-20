@@ -31,12 +31,18 @@ export const updateEmailStart = (payload) => ({
     payload,
 });
 
-export const updateEmailSuccess = (payload) => ({
-    type: actionTypes.UPDATE_EMAIL_START,
-    payload,
-});
+export const updateEmailSuccess = (payload) => {
+    console.log("success");
+    return {
+        type: actionTypes.UPDATE_EMAIL_SUCCESS,
+        payload,
+    };
+};
 
-export const updateEmailFail = (payload) => ({
-    type: actionTypes.UPDATE_EMAIL_FAIL,
-    payload,
-});
+export const updateEmailFail = (payload) => {
+    console.log("failed");
+    return {
+        type: actionTypes.UPDATE_EMAIL_FAIL,
+        payload,
+    };
+};

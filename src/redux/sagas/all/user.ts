@@ -33,6 +33,7 @@ function* handleGetFirebaseUserProfile({ payload }) {
 }
 
 function* handleUpdateEmail({ payload }) {
+    console.log("firing saga action");
     const { idToken, newEmail } = payload;
     const bodyPayload = {
         idToken,
@@ -49,13 +50,14 @@ function* handleUpdateEmail({ payload }) {
             },
             method: "POST",
         });
-
+        console.log(res);
         if (res.ok) {
             const data = yield res.json();
+            console.log(data);
             yield put(actions.updateEmailSuccess("Email updated successfully"));
         } else {
             const err = yield res.json();
-            throw err;
+            yield put(actions.updateEmailFail(err));
         }
     } catch (err) {
         yield put(actions.updateEmailFail(err));
@@ -63,15 +65,12 @@ function* handleUpdateEmail({ payload }) {
 }
 
 function* handleGetUserDocument({ payload }) {
-    console.log(payload);
     const docRef = firestore.collection("users").doc(`${payload}`);
 
     try {
         const doc = yield docRef.get();
 
-        console.log(doc);
         if (doc.exists) {
-            console.log(doc.data(), "it exists");
             yield put(actions.getUserDocumentSuccess(doc.data()));
         } else {
             throw "No such document";
@@ -79,21 +78,8 @@ function* handleGetUserDocument({ payload }) {
     } catch (err) {
         yield put(actions.getUserDocumentFail(err));
     }
-
-    // docRef.get()
-    //     .then(function (doc) {
-    //     if (doc.exists) {
-    //         console.log("Document data:", doc.data());
-    //     } else {
-    //         // doc.data() will be undefined in this case
-    //         console.log("No such document!");
-    //     }
-    // }).catch(function (error) {
-    //     console.log("Error getting document:", error);
-    // });
 }
 
-//watcher saga: watches for which action is fired
 function* watchUserRequest() {
     yield takeEvery(
         action_types.GET_FIREBASE_USER_DATA_START as any,

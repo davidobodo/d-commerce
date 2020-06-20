@@ -28,7 +28,6 @@ const userReducer = (state = initialState, action: Action) => {
         case actionTypes.GET_USER_DOCUMENT_START:
             return {
                 ...state,
-                isLoading: true,
             };
         case actionTypes.GET_USER_DOCUMENT_SUCCESS:
             return {
@@ -58,7 +57,6 @@ const userReducer = (state = initialState, action: Action) => {
                 updateEmailFailMsg: "",
             };
         case actionTypes.UPDATE_EMAIL_FAIL:
-            console.log(action.payload);
             return {
                 ...state,
                 isLoading: false,
