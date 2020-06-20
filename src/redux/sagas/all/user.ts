@@ -52,14 +52,14 @@ function* handleUpdateEmail({ payload }) {
 
         if (res.ok) {
             const data = yield res.json();
-            // yield put(actions.updateEmailSuccess())
-            // yield put(requestUserLoginSuccess())
-            console.log(data);
+            yield put(actions.updateEmailSuccess("Email updated successfully"));
         } else {
             const err = yield res.json();
-            console.log(err);
+            throw err;
         }
-    } catch (err) {}
+    } catch (err) {
+        yield put(actions.updateEmailFail(err));
+    }
 }
 
 function* handleGetUserDocument({ payload }) {

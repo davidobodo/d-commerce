@@ -4,17 +4,21 @@ interface UserState {
     isLoading: boolean;
     error: unknown;
     data: unknown;
+    updateEmailSuccessMsg: string;
+    updateEmailFailMsg: string;
 }
 
 interface Action {
     type: string;
-    payload: unknown;
+    payload: any;
 }
 
 const initialState: UserState = {
     isLoading: false,
     error: null,
     data: null,
+    updateEmailSuccessMsg: "",
+    updateEmailFailMsg: "",
 };
 
 const userReducer = (state = initialState, action: Action) => {
@@ -42,12 +46,24 @@ const userReducer = (state = initialState, action: Action) => {
             return {
                 ...state,
                 isLoading: true,
+                updateEmailSuccessMsg: "",
+                updateEmailFailMsg: "",
             };
         case actionTypes.UPDATE_EMAIL_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 error: null,
+                updateEmailSuccessMsg: action.payload,
+                updateEmailFailMsg: "",
+            };
+        case actionTypes.UPDATE_EMAIL_FAIL:
+            console.log(action.payload);
+            return {
+                ...state,
+                isLoading: false,
+                updateEmailFailMsg: action.payload.error.message,
+                updateEmailSuccessMsg: "",
             };
         default:
             return state;

@@ -19,7 +19,12 @@ const DashboardPage = () => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const isLoading = useSelector((state) => state.user.isloading);
-    console.log(user);
+    const updateEmailSuccessMsg = useSelector(
+        (state) => state.user.updateEmailSuccessMsg
+    );
+    const updateEmailFailMsg = useSelector(
+        (state) => state.user.updateEmailFailMsg
+    );
 
     const handleOnChange = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -91,7 +96,15 @@ const DashboardPage = () => {
                             }
                         />
                     </div>
-                    <Button>Update Email</Button>
+                    <Button blue_small_text disabled={isLoading ? true : false}>
+                        {isLoading ? "Updating Email ..." : "Update Email"}
+                    </Button>
+                    {updateEmailSuccessMsg && (
+                        <h5 className="msg success">{updateEmailSuccessMsg}</h5>
+                    )}
+                    {updateEmailFailMsg && (
+                        <h5 className="msg fail">{updateEmailFailMsg}</h5>
+                    )}
                 </form>
                 <form className="section three">
                     <div>

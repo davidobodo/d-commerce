@@ -31,6 +31,12 @@ export const updateEmailStart = (payload) => ({
     payload,
 });
 
-export const updateEmailSuccess = () => ({
+export const updateEmailSuccess = (payload) => ({
     type: actionTypes.UPDATE_EMAIL_START,
+    payload,
+});
+
+export const updateEmailFail = (payload) => ({
+    type: actionTypes.UPDATE_EMAIL_FAIL,
+    payload,
 });

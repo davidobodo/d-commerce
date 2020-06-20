@@ -24,5 +24,18 @@ export const DashboardPageContainer = styled.div`
                 margin-right: 20px;
             }
         }
+
+        .msg {
+            font-style: italic;
+            margin-top: 10px;
+
+            &.fail {
+                color: #ff0000;
+            }
+
+            &.success {
+                color: #2e5c87;
+            }
+        }
     }
 `;
