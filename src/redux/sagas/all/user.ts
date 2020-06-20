@@ -54,7 +54,7 @@ function* handleUpdateEmail({ payload }) {
         if (res.ok) {
             const data = yield res.json();
             console.log(data);
-            yield put(actions.updateEmailSuccess("Email updated successfully"));
+            yield put(actions.updateEmailSuccess(data));
         } else {
             const err = yield res.json();
             yield put(actions.updateEmailFail(err));

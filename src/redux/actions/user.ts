@@ -1,4 +1,5 @@
 import * as actionTypes from "../constants/action_types";
+import { setLocalStorage } from "../../utils/localStorage";
 
 export const getUserDataStart = (payload) => ({
     type: actionTypes.GET_FIREBASE_USER_DATA_START,
@@ -32,7 +33,8 @@ export const updateEmailStart = (payload) => ({
 });
 
 export const updateEmailSuccess = (payload) => {
-    console.log("success");
+    console.log(payload);
+    setLocalStorage(payload);
     return {
         type: actionTypes.UPDATE_EMAIL_SUCCESS,
         payload,
@@ -40,7 +42,6 @@ export const updateEmailSuccess = (payload) => {
 };
 
 export const updateEmailFail = (payload) => {
-    console.log("failed");
     return {
         type: actionTypes.UPDATE_EMAIL_FAIL,
         payload,

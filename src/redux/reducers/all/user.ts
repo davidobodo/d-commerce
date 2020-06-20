@@ -53,7 +53,7 @@ const userReducer = (state = initialState, action: Action) => {
                 ...state,
                 isLoading: false,
                 error: null,
-                updateEmailSuccessMsg: action.payload,
+                updateEmailSuccessMsg: "Email updated Successfully",
                 updateEmailFailMsg: "",
             };
         case actionTypes.UPDATE_EMAIL_FAIL:
