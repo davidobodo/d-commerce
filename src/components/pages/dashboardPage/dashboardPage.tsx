@@ -48,22 +48,25 @@ const DashboardPage = () => {
                         <Input value={user[0].lastName} readOnly={true} />
                     </div>
                 </form>
-                {FORM_FIELDS.map((field) => {
-                    const { old_title, new_title, btn_text } = field;
-                    return (
-                        <form key={new_title} className="section two">
-                            <div>
-                                <span>{old_title}</span>
-                                <Input />
-                            </div>
-                            <div>
-                                <span>{new_title}</span>
-                                <Input />
-                            </div>
-                            <Button>{btn_text}</Button>
-                        </form>
-                    );
-                })}
+
+                <form className="section two">
+                    <div>
+                        <span>New Email</span>
+                        <Input />
+                    </div>
+                    <Button>Update Email</Button>
+                </form>
+                <form className="section three">
+                    <div>
+                        <span>Old Password</span>
+                        <Input />
+                    </div>
+                    <div>
+                        <span>New Password</span>
+                        <Input />
+                    </div>
+                    <Button>Update Password</Button>
+                </form>
             </DashboardPageContainer>
         </Layout>
     );
