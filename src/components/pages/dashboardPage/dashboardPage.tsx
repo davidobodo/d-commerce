@@ -18,13 +18,15 @@ const DashboardPage = () => {
     const [newEmail, setNewEmail] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
-    const isLoading = useSelector((state) => state.user.isloading);
+    const isLoading = useSelector((state) => state.user.isLoading);
     const updateEmailSuccessMsg = useSelector(
         (state) => state.user.updateEmailSuccessMsg
     );
     const updateEmailFailMsg = useSelector(
         (state) => state.user.updateEmailFailMsg
     );
+
+    console.log(isLoading);
 
     const handleOnChange = (
         e: React.ChangeEvent<HTMLInputElement>,
