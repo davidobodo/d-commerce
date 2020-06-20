@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import Layout from "../../shared/layout/layout";
+import { useDispatch, useSelector } from "react-redux";
 
+import { useGetUserDetails } from "../../../utils/customHooks/useGetUserDetails";
+import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
 
@@ -23,11 +24,13 @@ const FORM_FIELDS = [
 
 const DashboardPage = () => {
     const dispatch = useDispatch();
+    const user = useGetUserDetails();
+    console.log(user);
 
-    useEffect(() => {
-        const idToken = localStorage.getItem("token");
-        dispatch(getUserDataStart(idToken));
-    }, []);
+    // useEffect(() => {
+    //     const idToken = localStorage.getItem("token");
+    //     dispatch(getUserDataStart(idToken));
+    // }, []);
 
     return (
         <Layout isFooterPresent={true}>
@@ -38,11 +41,11 @@ const DashboardPage = () => {
                 <form className="section one">
                     <div>
                         <span>First Name</span>
-                        <Input />
+                        <Input value={user[0].firstName} readOnly={true} />
                     </div>
                     <div>
                         <span>Last Name</span>
-                        <Input />
+                        <Input value={user[0].lastName} readOnly={true} />
                     </div>
                 </form>
                 {FORM_FIELDS.map((field) => {

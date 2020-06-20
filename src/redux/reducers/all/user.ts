@@ -20,7 +20,7 @@ const initialState: UserState = {
 const userReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case actionTypes.GET_USER_DATA_START:
-            return;
+            return state;
         default:
             return state;
     }

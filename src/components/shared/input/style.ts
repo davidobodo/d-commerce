@@ -38,6 +38,10 @@ export const InputContainer = styled.div<InputProps>`
             border-color: rgba(50, 84, 168, 1);
         }
 
+        &:read-only {
+            background-color: #c0c6cf;
+        }
+
         &.error {
             border-color: #ff0000;
         }

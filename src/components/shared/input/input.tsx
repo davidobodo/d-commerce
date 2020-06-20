@@ -18,6 +18,7 @@ const Input: React.FC<InputProps> = ({
     value,
     handleOnChange,
     handleOnBlur,
+    readOnly = false,
 }) => {
     const errorClassName = hasError ? "error" : "";
     return (
@@ -37,6 +38,7 @@ const Input: React.FC<InputProps> = ({
                 value={value}
                 onChange={handleOnChange}
                 onBlur={handleOnBlur}
+                readOnly={readOnly}
             />
             {hasError && <h6 className="error-message">{errorMessage}</h6>}
         </InputContainer>

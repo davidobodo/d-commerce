@@ -10,4 +10,5 @@ export interface InputProps {
     value?: any;
     handleOnChange?: any;
     handleOnBlur?: any;
+    readOnly?: boolean;
 }
