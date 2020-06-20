@@ -1,31 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useGetUserDetails } from "../../../utils/customHooks/useGetUserDetails";
+import { useGetUserDocument } from "../../../utils/customHooks/useGetUserDocument";
 import Layout from "../../shared/layout/layout";
 import Input from "../../shared/input/input";
 import Button from "../../shared/button/button";
 
 import { DashboardPageContainer } from "./style";
-import { getUserDataStart } from "../../../redux/actions/user";
-
-const FORM_FIELDS = [
-    {
-        old_title: "Old Email",
-        new_title: "New Email",
-        btn_text: "Update Email",
-    },
-    {
-        old_title: "Old Password",
-        new_title: "New Password",
-        btn_text: "Update Password",
-    },
-];
+import {
+    getUserDataStart,
+    updateEmailStart,
+} from "../../../redux/actions/user";
 
 const DashboardPage = () => {
     const dispatch = useDispatch();
-    const user = useGetUserDetails();
+    const user = useGetUserDocument();
+    const [newEmail, setNewEmail] = useState("");
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const isLoading = useSelector((state) => state.user.isloading);
     console.log(user);
+
+    const handleOnChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        name?: string
+    ): void => {
+        if (name === "new-email") {
+            setNewEmail(e.target.value);
+        }
+
+        if (name === "old-password") {
+        }
+
+        if (name === "new-password") {
+        }
+    };
+
+    const handleOnSubmit = (
+        e: React.FormEvent<HTMLFormElement>,
+        name?: string
+    ) => {
+        e.preventDefault();
+        if (name === "new-email") {
+            const idToken = localStorage.getItem("token");
+            const payload = {
+                idToken,
+                newEmail,
+            };
+            dispatch(updateEmailStart(payload));
+            return;
+        }
+    };
 
     // useEffect(() => {
     //     const idToken = localStorage.getItem("token");
@@ -39,31 +64,53 @@ const DashboardPage = () => {
                     <h1>Dashboard</h1>
                 </div>
                 <form className="section one">
-                    <div>
-                        <span>First Name</span>
-                        <Input value={user[0].firstName} readOnly={true} />
-                    </div>
-                    <div>
-                        <span>Last Name</span>
-                        <Input value={user[0].lastName} readOnly={true} />
-                    </div>
+                    {user && (
+                        <Fragment>
+                            <div>
+                                <span>First Name</span>
+                                <Input value={user.firstName} readOnly={true} />
+                            </div>
+                            <div>
+                                <span>Last Name</span>
+                                <Input value={user.lastName} readOnly={true} />
+                            </div>
+                        </Fragment>
+                    )}
                 </form>
 
-                <form className="section two">
+                <form
+                    className="section two"
+                    onSubmit={(e) => handleOnSubmit(e, "new-email")}
+                >
                     <div>
                         <span>New Email</span>
-                        <Input />
+                        <Input
+                            value={newEmail}
+                            handleOnChange={(e) =>
+                                handleOnChange(e, "new-email")
+                            }
+                        />
                     </div>
                     <Button>Update Email</Button>
                 </form>
                 <form className="section three">
                     <div>
                         <span>Old Password</span>
-                        <Input />
+                        <Input
+                            value={oldPassword}
+                            handleOnChange={(e) =>
+                                handleOnChange(e, "old-password")
+                            }
+                        />
                     </div>
                     <div>
                         <span>New Password</span>
-                        <Input />
+                        <Input
+                            value={newPassword}
+                            handleOnChange={(e) =>
+                                handleOnChange(e, "new-password")
+                            }
+                        />
                     </div>
                     <Button>Update Password</Button>
                 </form>

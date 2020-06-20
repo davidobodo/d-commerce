@@ -67,4 +67,5 @@ const Navbar = () => {
     );
 };
 
-export default firestoreConnect([{ collection: "users" }])(Navbar) as any;
+// export default firestoreConnect([{ collection: "users" }])(Navbar) as any;
+export default Navbar as any;
