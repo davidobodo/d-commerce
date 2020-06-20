@@ -6,6 +6,7 @@ import PaymentPage from "../components/pages/paymentPage/paymentPage";
 import SignUpPage from "../components/pages/signUpPage/signUpPage";
 import LoginPage from "../components/pages/loginPage/loginPage";
 import OrderConfirmationPage from "../components/pages/orderConfirmationPage/orderConfirmationPage";
+import DashboardPage from "../components/pages/dashboardPage/dashboardPage";
 import ErrorPageUrl from "../components/pages/errorPageUrl/errorPageUrl";
 
 export const Routes = [
@@ -13,50 +14,55 @@ export const Routes = [
         component: Home,
         exact: true,
         path: "/",
-        protected: false
+        protected: false,
     },
     {
         component: ProductPage,
         exact: true,
         path: "/product/:id",
-        protected: false
+        protected: false,
     },
     {
         component: CartPage,
         exact: true,
         path: "/cart",
-        protected: false
+        protected: false,
     },
     {
         component: CheckoutPage,
         exact: true,
         path: "/checkout",
-        protected: true
-
+        protected: true,
     },
     {
         component: PaymentPage,
         exact: true,
         path: "/payment",
-        protected: true
+        protected: true,
     },
     {
         component: SignUpPage,
         excat: true,
         path: "/signup",
-        protected: false
+        protected: false,
     },
     {
         component: LoginPage,
         excat: true,
         path: "/login",
-        protected: false
+        protected: false,
     },
     {
         component: OrderConfirmationPage,
         exact: true,
         path: "/orderConfirmation",
-        protected: true
+        protected: true,
+    },
+    {
+        component: DashboardPage,
+        exact: true,
+        path: "/dashboard",
+        protected: true,
     },
     // {
     //     component: ErrorPageUrl
