@@ -6,15 +6,14 @@ import {
     REQUEST_LOGIN_SUCCESS,
     REQUEST_LOGIN_FAIL,
     SIGNOUT,
-    CHECK_AUTH_STATE
+    CHECK_AUTH_STATE,
 } from "../constants/action_types";
+import { setLocalStorage, clearLocalStorage } from "../../utils/localStorage";
 
-
-
-export const requestSignUpStart = payload => {
+export const requestSignUpStart = (payload) => {
     return {
         type: REQUEST_SIGNUP_START,
-        payload
+        payload,
     };
 };
 
@@ -27,46 +26,35 @@ export const requestSignUpSuccess = () => {
 export const requestSignUpError = ({ error }) => {
     return {
         type: REQUEST_SIGNUP_FAIL,
-        error
+        error,
     };
 };
 
-export const requestUserLoginStart = payload => {
+export const requestUserLoginStart = (payload) => {
     return {
         type: REQUEST_LOGIN_START,
-        payload
+        payload,
     };
 };
 
-export const requestUserLoginSuccess = payload => {
-    let expirationDate;
-    if (payload.sessionActive) {
-        expirationDate = JSON.parse(localStorage.getItem('expirationDate'));
-    } else {
-        expirationDate = new Date().getTime() + 3600 * 1000;
-    }
-    localStorage.setItem('token', payload.idToken)
-    localStorage.setItem('userId', payload.localId)
-    localStorage.setItem('expirationDate', JSON.stringify(expirationDate))
+export const requestUserLoginSuccess = (payload) => {
+    setLocalStorage(payload);
     return {
         type: REQUEST_LOGIN_SUCCESS,
-        payload
+        payload,
     };
 };
 
 export const requestUserLoginError = ({ error }) => {
     return {
         type: REQUEST_LOGIN_FAIL,
-        error
+        error,
     };
 };
 
 export const signOutStart = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('expirationDate');
+    clearLocalStorage();
     return {
-        type: SIGNOUT
+        type: SIGNOUT,
     };
 };
-
