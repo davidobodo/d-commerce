@@ -1,11 +1,14 @@
 import * as actionTypes from "../../constants/action_types";
 
 interface UserState {
-    isLoading: boolean;
+    emailIsLoading: boolean;
+    passwordIsLoading: boolean;
     error: unknown;
     data: unknown;
     updateEmailSuccessMsg: string;
     updateEmailFailMsg: string;
+    updatePasswordSuccessMsg: string;
+    updatePasswordFailMsg: string;
 }
 
 interface Action {
@@ -14,11 +17,14 @@ interface Action {
 }
 
 const initialState: UserState = {
-    isLoading: false,
+    emailIsLoading: false,
+    passwordIsLoading: false,
     error: null,
     data: null,
     updateEmailSuccessMsg: "",
     updateEmailFailMsg: "",
+    updatePasswordSuccessMsg: "",
+    updatePasswordFailMsg: "",
 };
 
 const userReducer = (state = initialState, action: Action) => {
@@ -44,14 +50,14 @@ const userReducer = (state = initialState, action: Action) => {
         case actionTypes.UPDATE_EMAIL_START:
             return {
                 ...state,
-                isLoading: true,
+                emailIsLoading: true,
                 updateEmailSuccessMsg: "",
                 updateEmailFailMsg: "",
             };
         case actionTypes.UPDATE_EMAIL_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                emailIsLoading: false,
                 error: null,
                 updateEmailSuccessMsg: "Email updated Successfully",
                 updateEmailFailMsg: "",
@@ -59,9 +65,31 @@ const userReducer = (state = initialState, action: Action) => {
         case actionTypes.UPDATE_EMAIL_FAIL:
             return {
                 ...state,
-                isLoading: false,
+                emailIsLoading: false,
                 updateEmailFailMsg: action.payload.error.message,
                 updateEmailSuccessMsg: "",
+            };
+        case actionTypes.UPDATE_PASSWORD_START:
+            return {
+                ...state,
+                passwordIsLoading: true,
+                updatePasswordSuccessMsg: "",
+                updatePasswordFailMsg: "",
+            };
+        case actionTypes.UPDATE_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                passwordIsLoading: false,
+                error: null,
+                updatePasswordSuccessMsg: "Password updated Successfully",
+                updatePasswordFailMsg: "",
+            };
+        case actionTypes.UPDATE_PASSWORD_FAIL:
+            return {
+                ...state,
+                passwordIsLoading: false,
+                updatePasswordFailMsg: action.payload.error.message,
+                updatePasswordSuccessMsg: "",
             };
         default:
             return state;

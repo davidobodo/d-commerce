@@ -33,7 +33,6 @@ function* handleGetFirebaseUserProfile({ payload }) {
 }
 
 function* handleUpdateEmail({ payload }) {
-    console.log("firing saga action");
     const { idToken, newEmail } = payload;
     const bodyPayload = {
         idToken,
@@ -50,10 +49,8 @@ function* handleUpdateEmail({ payload }) {
             },
             method: "POST",
         });
-        console.log(res);
         if (res.ok) {
             const data = yield res.json();
-            console.log(data);
             yield put(actions.updateEmailSuccess(data));
         } else {
             const err = yield res.json();
@@ -61,6 +58,35 @@ function* handleUpdateEmail({ payload }) {
         }
     } catch (err) {
         yield put(actions.updateEmailFail(err));
+    }
+}
+
+function* handleUpdatePassword({ payload }) {
+    const { idToken, newPassword } = payload;
+    const bodyPayload = {
+        idToken,
+        password: newPassword,
+        returnSecureToken: true,
+    };
+    const UPDATE_PASSWORD_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${process.env.REACT_APP_apiKey}`;
+
+    try {
+        const res = yield fetch(UPDATE_PASSWORD_ENDPOINT, {
+            body: JSON.stringify(bodyPayload),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+        });
+        if (res.ok) {
+            const data = yield res.json();
+            yield put(actions.updatePasswordSuccess(data));
+        } else {
+            const err = yield res.json();
+            yield put(actions.updatePasswordFail(err));
+        }
+    } catch (err) {
+        yield put(actions.updatePasswordFail(err));
     }
 }
 
@@ -90,6 +116,10 @@ function* watchUserRequest() {
         handleGetUserDocument
     );
     yield takeEvery(action_types.UPDATE_EMAIL_START as any, handleUpdateEmail);
+    yield takeEvery(
+        action_types.UPDATE_PASSWORD_START as any,
+        handleUpdatePassword
+    );
 }
 
 export default function* () {

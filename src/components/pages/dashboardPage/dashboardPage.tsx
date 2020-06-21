@@ -10,23 +10,30 @@ import { DashboardPageContainer } from "./style";
 import {
     getUserDataStart,
     updateEmailStart,
+    updatePasswordStart,
 } from "../../../redux/actions/user";
 
 const DashboardPage = () => {
     const dispatch = useDispatch();
     const user = useGetUserDocument();
     const [newEmail, setNewEmail] = useState("");
-    const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
-    const isLoading = useSelector((state) => state.user.isLoading);
+    const emailIsLoading = useSelector((state) => state.user.emailIsLoading);
+    const passwordIsLoading = useSelector(
+        (state) => state.user.passwordIsLoading
+    );
     const updateEmailSuccessMsg = useSelector(
         (state) => state.user.updateEmailSuccessMsg
     );
     const updateEmailFailMsg = useSelector(
         (state) => state.user.updateEmailFailMsg
     );
-
-    console.log(isLoading);
+    const updatePasswordSuccessMsg = useSelector(
+        (state) => state.user.updatePasswordSuccessMsg
+    );
+    const updatePasswordFailMsg = useSelector(
+        (state) => state.user.updatePasswordFailMsg
+    );
 
     const handleOnChange = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -36,10 +43,8 @@ const DashboardPage = () => {
             setNewEmail(e.target.value);
         }
 
-        if (name === "old-password") {
-        }
-
         if (name === "new-password") {
+            setNewPassword(e.target.value);
         }
     };
 
@@ -57,7 +62,40 @@ const DashboardPage = () => {
             dispatch(updateEmailStart(payload));
             return;
         }
+
+        if (name === "new-password") {
+            const idToken = localStorage.getItem("token");
+            const payload = {
+                idToken,
+                newPassword,
+            };
+            dispatch(updatePasswordStart(payload));
+            return;
+        }
     };
+
+    const FORM_FIELDS = [
+        {
+            name: "new-email",
+            label: "New Email",
+            loadingText: "Updating Email ...",
+            notLoadingText: "Update Email",
+            successMsg: updateEmailSuccessMsg,
+            failureMsg: updateEmailFailMsg,
+            state: newEmail,
+            isLoading: emailIsLoading,
+        },
+        {
+            name: "new-password",
+            label: "New Password",
+            loadingText: "Updating Password ...",
+            notLoadingText: "Update Password",
+            successMsg: updatePasswordSuccessMsg,
+            failureMsg: updatePasswordFailMsg,
+            state: newPassword,
+            isLoading: passwordIsLoading,
+        },
+    ];
 
     // useEffect(() => {
     //     const idToken = localStorage.getItem("token");
@@ -84,51 +122,47 @@ const DashboardPage = () => {
                         </Fragment>
                     )}
                 </form>
-
-                <form
-                    className="section two"
-                    onSubmit={(e) => handleOnSubmit(e, "new-email")}
-                >
-                    <div>
-                        <span>New Email</span>
-                        <Input
-                            value={newEmail}
-                            handleOnChange={(e) =>
-                                handleOnChange(e, "new-email")
-                            }
-                        />
-                    </div>
-                    <Button blue_small_text disabled={isLoading ? true : false}>
-                        {isLoading ? "Updating Email ..." : "Update Email"}
-                    </Button>
-                    {updateEmailSuccessMsg && (
-                        <h5 className="msg success">{updateEmailSuccessMsg}</h5>
-                    )}
-                    {updateEmailFailMsg && (
-                        <h5 className="msg fail">{updateEmailFailMsg}</h5>
-                    )}
-                </form>
-                <form className="section three">
-                    <div>
-                        <span>Old Password</span>
-                        <Input
-                            value={oldPassword}
-                            handleOnChange={(e) =>
-                                handleOnChange(e, "old-password")
-                            }
-                        />
-                    </div>
-                    <div>
-                        <span>New Password</span>
-                        <Input
-                            value={newPassword}
-                            handleOnChange={(e) =>
-                                handleOnChange(e, "new-password")
-                            }
-                        />
-                    </div>
-                    <Button>Update Password</Button>
-                </form>
+                {FORM_FIELDS.map((field) => {
+                    const {
+                        name,
+                        label,
+                        loadingText,
+                        notLoadingText,
+                        successMsg,
+                        failureMsg,
+                        state,
+                        isLoading,
+                    } = field;
+                    return (
+                        <form
+                            className="section two"
+                            onSubmit={(e) => handleOnSubmit(e, name)}
+                            key={name}
+                        >
+                            <div>
+                                <span>{label}</span>
+                                <Input
+                                    value={state}
+                                    handleOnChange={(e) =>
+                                        handleOnChange(e, name)
+                                    }
+                                />
+                            </div>
+                            <Button
+                                blue_small_text
+                                disabled={isLoading ? true : false}
+                            >
+                                {isLoading ? loadingText : notLoadingText}
+                            </Button>
+                            {successMsg && (
+                                <h5 className="msg success">{successMsg}</h5>
+                            )}
+                            {failureMsg && (
+                                <h5 className="msg fail">{failureMsg}</h5>
+                            )}
+                        </form>
+                    );
+                })}
             </DashboardPageContainer>
         </Layout>
     );

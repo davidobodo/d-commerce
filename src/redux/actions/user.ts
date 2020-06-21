@@ -33,7 +33,6 @@ export const updateEmailStart = (payload) => ({
 });
 
 export const updateEmailSuccess = (payload) => {
-    console.log(payload);
     setLocalStorage(payload);
     return {
         type: actionTypes.UPDATE_EMAIL_SUCCESS,
@@ -44,6 +43,29 @@ export const updateEmailSuccess = (payload) => {
 export const updateEmailFail = (payload) => {
     return {
         type: actionTypes.UPDATE_EMAIL_FAIL,
+        payload,
+    };
+};
+
+//-------------------------------------------------------
+//Update user password
+//-------------------------------------------------------
+export const updatePasswordStart = (payload) => ({
+    type: actionTypes.UPDATE_PASSWORD_START,
+    payload,
+});
+
+export const updatePasswordSuccess = (payload) => {
+    setLocalStorage(payload);
+    return {
+        type: actionTypes.UPDATE_PASSWORD_SUCCESS,
+        payload,
+    };
+};
+
+export const updatePasswordFail = (payload) => {
+    return {
+        type: actionTypes.UPDATE_PASSWORD_FAIL,
         payload,
     };
 };
