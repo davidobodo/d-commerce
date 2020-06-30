@@ -5,38 +5,27 @@ import * as action_types from "../../constants/action_types";
 import * as actions from "../../actions/auth";
 
 function* handleuserSignUp({ payload }) {
-    const { email, password, firstName, lastName } = payload;
-    const SIGNUP_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_apiKey}`;
-    const bodyPayload = {
-        email,
-        password,
-        returnSecureToken: true
-    }
+    const EXPRESS_SIGNUP_ENDPOINT_LOCALHOST =
+        "http://localhost:5000/api/users/signup";
+
     try {
-        const res = yield fetch(SIGNUP_ENDPOINT, {
-            body: JSON.stringify(bodyPayload),
+        const res = yield fetch(EXPRESS_SIGNUP_ENDPOINT_LOCALHOST, {
+            body: JSON.stringify(payload),
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-            method: 'POST'
-        })
+            method: "POST",
+        });
 
+        // if (res.ok) {
+        //     const data = yield res.json();
 
-        if (res.ok) {
-            const data = yield res.json();
-            firestore
-                .collection("users")
-                .doc(data.localId)
-                .set({
-                    firstName: firstName,
-                    lastName: lastName
-                });
-            yield put(actions.requestSignUpSuccess())
-            yield put(actions.requestUserLoginStart({ email, password }))
-        } else {
-            const err = yield res.json()
-            yield put(actions.requestSignUpError(err));
-        }
+        //     yield put(actions.requestSignUpSuccess())
+        //     // yield put(actions.requestUserLoginStart({ email, password }))
+        // } else {
+        //     const err = yield res.json()
+        //     yield put(actions.requestSignUpError(err));
+        // }
     } catch (err) {
         yield put(actions.requestSignUpError(err));
     }
