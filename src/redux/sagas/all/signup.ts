@@ -17,15 +17,18 @@ function* handleuserSignUp({ payload }) {
             method: "POST",
         });
 
-        // if (res.ok) {
-        //     const data = yield res.json();
+        console.log(res);
 
-        //     yield put(actions.requestSignUpSuccess())
-        //     // yield put(actions.requestUserLoginStart({ email, password }))
-        // } else {
-        //     const err = yield res.json()
-        //     yield put(actions.requestSignUpError(err));
-        // }
+        if (res.ok) {
+            const data = yield res.json();
+            console.log(data);
+
+            // yield put(actions.requestSignUpSuccess())
+            // yield put(actions.requestUserLoginStart({ email, password }))
+        } else {
+            // const err = yield res.json()
+            // yield put(actions.requestSignUpError(err));
+        }
     } catch (err) {
         yield put(actions.requestSignUpError(err));
     }
