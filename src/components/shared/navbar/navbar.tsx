@@ -9,6 +9,7 @@ import { useGetUserDocument } from "../../../utils/customHooks/useGetUserDocumen
 const Navbar = () => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.userId);
+    const userName = useSelector((state) => state.auth.userName);
     const user = useGetUserDocument();
 
     const handleSignout = () => {
@@ -19,9 +20,7 @@ const Navbar = () => {
         if (userId) {
             return (
                 <>
-                    <h4 className="nav__links__username">
-                        Hi, {user && user.firstName}
-                    </h4>
+                    <h4 className="nav__links__username">Hi, {userName}</h4>
                     <div className="nav__links__auth">
                         <Link to="/dashboard">My Dashboard</Link>
                         <Link to="/" onClick={handleSignout}>
