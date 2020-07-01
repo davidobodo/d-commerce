@@ -1,5 +1,4 @@
 export const setLocalStorage = (payload) => {
-    console.log(payload);
     const { sessionActive, token, userId, refreshToken, firstName } = payload;
     let expirationDate;
     if (sessionActive) {

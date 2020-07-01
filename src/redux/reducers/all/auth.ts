@@ -19,6 +19,9 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
+                userId: action.payload.userId,
+                idToken: action.payload.token,
+                userName: action.payload.firstName,
             };
         case actionTypes.REQUEST_SIGNUP_FAIL:
             return {
