@@ -1,14 +1,16 @@
 export const setLocalStorage = (payload) => {
-    const { sessionActive, idToken, localId, refreshToken } = payload;
+    console.log(payload);
+    const { sessionActive, token, userId, refreshToken, firstName } = payload;
     let expirationDate;
     if (sessionActive) {
         expirationDate = JSON.parse(localStorage.getItem("expirationDate"));
     } else {
         expirationDate = new Date().getTime() + 3600 * 1000;
     }
-    localStorage.setItem("token", idToken);
+    localStorage.setItem("token", token);
     localStorage.setItem("refreshToken", refreshToken);
-    localStorage.setItem("userId", localId);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("userName", firstName);
     localStorage.setItem("expirationDate", JSON.stringify(expirationDate));
 };
 

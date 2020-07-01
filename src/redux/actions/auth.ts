@@ -17,9 +17,11 @@ export const requestSignUpStart = (payload) => {
     };
 };
 
-export const requestSignUpSuccess = () => {
+export const requestSignUpSuccess = (payload) => {
+    setLocalStorage(payload);
     return {
         type: REQUEST_SIGNUP_SUCCESS,
+        payload,
     };
 };
 
