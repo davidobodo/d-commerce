@@ -39,8 +39,9 @@ export default (state = initState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                userId: action.payload.localId,
-                idToken: action.payload.idToken,
+                userId: action.payload.userId,
+                idToken: action.payload.token,
+                userName: action.payload.firstName,
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
             return {

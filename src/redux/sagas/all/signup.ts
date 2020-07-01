@@ -17,15 +17,12 @@ function* handleuserSignUp({ payload }) {
             method: "POST",
         });
 
-        console.log(res);
-
         if (res.ok) {
             const data = yield res.json();
-
             yield put(actions.requestSignUpSuccess(data));
         } else {
-            // const err = yield res.json()
-            // yield put(actions.requestSignUpError(err));
+            const err = yield res.json();
+            yield put(actions.requestSignUpError(err));
         }
     } catch (err) {
         yield put(actions.requestSignUpError(err));
