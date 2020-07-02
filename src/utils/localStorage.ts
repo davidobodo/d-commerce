@@ -16,9 +16,10 @@ export const setLocalStorage = (payload) => {
 export const getLocalStorage = () => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
+    const userName = localStorage.getItem("userName");
     const refreshToken = localStorage.getItem("refreshToken");
     const expirationTime = localStorage.getItem("expirationDate");
-    return { token, userId, refreshToken, expirationTime };
+    return { token, userId, refreshToken, expirationTime, userName };
 };
 
 export const clearLocalStorage = () => {
@@ -26,4 +27,5 @@ export const clearLocalStorage = () => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userId");
     localStorage.removeItem("expirationDate");
+    localStorage.removeItem("userName");
 };
