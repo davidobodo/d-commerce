@@ -22,6 +22,7 @@ function* handleUserLogin({ payload }) {
             yield put(actions.requestUserLoginSuccess(data));
         } else {
             const err = yield res.json();
+            console.log(err);
             yield put(actions.requestUserLoginError(err));
         }
     } catch (err) {
