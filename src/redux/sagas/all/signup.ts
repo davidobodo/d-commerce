@@ -9,13 +9,16 @@ function* handleuserSignUp({ payload }) {
         "http://localhost:5000/api/users/signup";
 
     try {
-        const res = yield fetch(EXPRESS_SIGNUP_ENDPOINT_LOCALHOST, {
-            body: JSON.stringify(payload),
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-        });
+        const res = yield fetch(
+            "https://d-commerce-backend.herokuapp.com/api/users/signup",
+            {
+                body: JSON.stringify(payload),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+            }
+        );
 
         if (res.ok) {
             const data = yield res.json();
