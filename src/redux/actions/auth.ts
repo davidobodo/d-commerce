@@ -17,13 +17,15 @@ export const requestSignUpStart = (payload) => {
     };
 };
 
-export const requestSignUpSuccess = () => {
+export const requestSignUpSuccess = (payload) => {
+    setLocalStorage(payload);
     return {
         type: REQUEST_SIGNUP_SUCCESS,
+        payload,
     };
 };
 
-export const requestSignUpError = ({ error }) => {
+export const requestSignUpError = (error) => {
     return {
         type: REQUEST_SIGNUP_FAIL,
         error,
@@ -45,7 +47,7 @@ export const requestUserLoginSuccess = (payload) => {
     };
 };
 
-export const requestUserLoginError = ({ error }) => {
+export const requestUserLoginError = (error) => {
     return {
         type: REQUEST_LOGIN_FAIL,
         error,

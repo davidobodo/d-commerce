@@ -1,33 +1,30 @@
-import firebase from "firebase/app";
 import { takeEvery, put, all, call } from "redux-saga/effects";
 import * as action_types from "../../constants/action_types";
 import * as actions from "../../actions/auth";
 
 //worker saga: fired on each REQUEST_LOGIN_START action
 function* handleUserLogin({ payload }) {
-    const { email, password } = payload;
-    const SIGNIN_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_apiKey}`
+    const EXPRESS_LOGIN_ENDPOINT_LOCALHOST =
+        "http://localhost:5000/api/users/login";
 
-    const bodyPayload = {
-        email,
-        password,
-        returnSecureToken: true
-    }
     try {
-
-        const res = yield fetch(SIGNIN_ENDPOINT, {
-            body: JSON.stringify(bodyPayload),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST'
-        })
+        const res = yield fetch(
+            "https://d-commerce-backend.herokuapp.com/api/users/login",
+            {
+                body: JSON.stringify(payload),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+            }
+        );
 
         if (res.ok) {
             const data = yield res.json();
             yield put(actions.requestUserLoginSuccess(data));
         } else {
             const err = yield res.json();
+            console.log(err);
             yield put(actions.requestUserLoginError(err));
         }
     } catch (err) {

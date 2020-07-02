@@ -20,15 +20,22 @@ import { getLocalStorage } from "./utils/localStorage";
 const App = () => {
     const dispatch = useDispatch();
 
-    const { token, userId, refreshToken, expirationTime } = getLocalStorage();
+    const {
+        token,
+        userId,
+        refreshToken,
+        expirationTime,
+        userName,
+    } = getLocalStorage();
 
     useEffect(() => {
         if (!token) {
             dispatch(signOutStart());
         } else {
             const userData = {
-                localId: userId,
-                idToken: token,
+                userId,
+                token,
+                firstName: userName,
                 refreshToken: refreshToken,
                 sessionActive: true,
             };

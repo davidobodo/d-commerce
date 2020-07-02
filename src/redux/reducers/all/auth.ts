@@ -4,7 +4,8 @@ const initState = {
     loading: false,
     error: null,
     userId: null,
-    idToken: null
+    idToken: null,
+    userName: "",
 };
 
 export default (state = initState, action) => {
@@ -18,6 +19,9 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
+                userId: action.payload.userId,
+                idToken: action.payload.token,
+                userName: action.payload.firstName,
             };
         case actionTypes.REQUEST_SIGNUP_FAIL:
             return {
@@ -35,8 +39,9 @@ export default (state = initState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                userId: action.payload.localId,
-                idToken: action.payload.idToken
+                userId: action.payload.userId,
+                idToken: action.payload.token,
+                userName: action.payload.firstName,
             };
         case actionTypes.REQUEST_LOGIN_FAIL:
             return {
@@ -48,7 +53,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 userId: null,
-                idToken: null
+                idToken: null,
             };
         default:
             return state;
